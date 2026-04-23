@@ -382,6 +382,9 @@ updateKeyStatus();
 // Apply saved name on load
 (function(){const s=getSettings();if(s.name&&s.name!=='Kanishk'){const h=document.querySelector('.header-left h1');if(h){const gt=document.getElementById('gtime');h.innerHTML=`Good <em id="gtime">${gt?gt.textContent:'morning'}</em>, ${s.name}`;}}})();
 
+// ── HELPERS ──────────────────────────────────────────────────────
+function tAgo(iso){const d=Math.floor((Date.now()-new Date(iso))/60000);if(d<60)return d+'m ago';if(d<1440)return Math.floor(d/60)+'h ago';return Math.floor(d/1440)+'d ago';}
+
 // ── NEWS ─────────────────────────────────────────────────────────
 const NEWS_SOURCES = {
   global: {
@@ -602,7 +605,6 @@ function filterJobs(type,btn){
   document.getElementById('m-jobs').textContent=n;
 }
 
-function tAgo(iso){const d=Math.floor((Date.now()-new Date(iso))/60000);if(d<60)return d+'m ago';if(d<1440)return Math.floor(d/60)+'h ago';return Math.floor(d/1440)+'d ago';}
 
 // Auto-refresh jobs once per day on page open
 (function(){
