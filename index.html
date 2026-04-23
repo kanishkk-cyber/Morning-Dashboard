@@ -15,8 +15,9 @@ a{color:inherit;text-decoration:none}
 .header-left h1{font-family:'DM Serif Display',serif;font-size:32px;font-weight:400;line-height:1.1}
 .header-left h1 em{font-style:italic;color:var(--accent)}
 .header-left p{font-size:13px;color:var(--text3);margin-top:4px}
+.hbtns{display:flex;align-items:center;gap:10px}
 .clock{font-family:'DM Serif Display',serif;font-size:28px;color:var(--text2);letter-spacing:-.02em}
-.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
+.metrics{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:20px}
 .metric{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;transition:border-color .2s}
 .metric:hover{border-color:var(--border2)}
 .ml{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
@@ -38,12 +39,15 @@ a{color:inherit;text-decoration:none}
 .btn-a:hover{background:var(--accent);color:#fff;border-color:transparent}
 .btn-r{background:var(--bg3);color:var(--teal);border-color:rgba(45,212,191,0.25);font-size:13px;padding:6px 16px;font-weight:500}
 .btn-r:hover{background:var(--teal-bg);border-color:var(--teal)}
+.btn-settings{background:var(--bg3);color:var(--amber);border-color:rgba(251,191,36,0.25);font-size:13px;padding:6px 14px;font-weight:500}
+.btn-settings:hover{background:var(--amber-bg);border-color:var(--amber)}
 .badge{display:inline-block;font-size:10px;padding:2px 7px;border-radius:4px;font-weight:500}
 .bg{background:var(--green-bg);color:var(--green)}
 .ba{background:var(--amber-bg);color:var(--amber)}
 .bb{background:rgba(79,142,247,0.12);color:var(--accent)}
 .bp{background:var(--purple-bg);color:var(--purple)}
 .bt{background:var(--teal-bg);color:var(--teal)}
+.br{background:var(--red-bg);color:var(--red)}
 .ftabs{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
 .ft{font-size:12px;padding:4px 12px;border-radius:20px;border:1px solid var(--border2);background:transparent;color:var(--text3);cursor:pointer;transition:all .15s;font-family:'DM Sans',sans-serif}
 .ft.on{background:rgba(79,142,247,0.15);color:var(--accent);border-color:rgba(79,142,247,0.3)}
@@ -84,9 +88,6 @@ a{color:inherit;text-decoration:none}
 .sl{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--text3);margin:24px 0 12px;display:flex;align-items:center;gap:12px}
 .sl::after{content:'';flex:1;height:1px;background:var(--border)}
 .lmsg{font-size:12px;color:var(--text3);padding:14px 0;text-align:center}
-.sbox{background:var(--bg3);border:1px solid rgba(251,191,36,0.2);border-radius:8px;padding:14px 16px;margin-bottom:16px;font-size:12px;color:var(--text2);line-height:1.8}
-.sbox strong{color:var(--amber)}
-.sbox code{background:var(--bg4);padding:2px 6px;border-radius:4px;color:var(--teal);font-size:11px}
 .ldot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite;margin-right:4px}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 @keyframes spin{to{transform:rotate(360deg)}}
@@ -94,35 +95,75 @@ a{color:inherit;text-decoration:none}
 @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 .card{animation:fadeIn .3s ease both}
 .es{font-size:13px;color:var(--text3);padding:12px 0;text-align:center}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:1000;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
+.modal{background:var(--bg2);border:1px solid var(--border2);border-radius:16px;padding:28px;width:520px;max-width:90vw;max-height:90vh;overflow-y:auto}
+.modal h2{font-family:'DM Serif Display',serif;font-size:22px;font-weight:400;margin-bottom:6px}
+.modal p{font-size:13px;color:var(--text3);margin-bottom:20px}
+.modal-section{margin-bottom:20px}
+.modal-label{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--text3);margin-bottom:8px}
+.modal-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:13px;font-family:'DM Sans',sans-serif;color:var(--text);outline:none;transition:border-color .15s}
+.modal-input:focus{border-color:var(--accent)}
+.modal-input::placeholder{color:var(--text3)}
+.modal-hint{font-size:11px;color:var(--text3);margin-top:6px;line-height:1.5}
+.modal-hint a{color:var(--accent)}
+.modal-footer{display:flex;gap:8px;justify-content:flex-end;margin-top:24px}
+.key-status{display:inline-flex;align-items:center;gap:5px;font-size:11px;padding:3px 8px;border-radius:4px;margin-left:8px}
+.key-set{background:var(--green-bg);color:var(--green)}
+.key-unset{background:var(--red-bg);color:var(--red)}
+
+/* APPLICATION TRACKER */
+.app-form{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+.app-form input,.app-form select{background:var(--bg3);border:1px solid var(--border);border-radius:7px;padding:7px 10px;font-size:12px;font-family:'DM Sans',sans-serif;color:var(--text);outline:none;transition:border-color .15s}
+.app-form input:focus,.app-form select:focus{border-color:var(--accent)}
+.app-form input::placeholder{color:var(--text3)}
+.app-form select option{background:var(--bg3)}
+.app-form-full{grid-column:1/-1}
+.app-item{display:grid;grid-template-columns:1fr auto auto auto;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px}
+.app-item:last-child{border-bottom:none}
+.app-info{min-width:0}
+.app-title{font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.app-sub{font-size:11px;color:var(--text3);margin-top:1px}
+.app-date{font-size:11px;color:var(--text3);white-space:nowrap}
+.app-status-sel{background:var(--bg3);border:1px solid var(--border);border-radius:5px;padding:3px 6px;font-size:11px;font-family:'DM Sans',sans-serif;color:var(--text);cursor:pointer;outline:none}
+.app-del{background:none;border:none;color:var(--text3);cursor:pointer;font-size:15px;padding:0 2px;transition:color .15s}
+.app-del:hover{color:var(--red)}
+.app-stats{display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.app-stat{background:var(--bg3);border-radius:7px;padding:7px 12px;font-size:12px;color:var(--text2);display:flex;align-items:center;gap:5px}
+.app-stat strong{color:var(--text);font-size:16px}
+
 ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--bg4);border-radius:3px}
-@media(max-width:900px){.r3{grid-template-columns:1fr}}
+@media(max-width:1000px){.metrics{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:900px){.r3{grid-template-columns:1fr}.app-form{grid-template-columns:1fr}}
 @media(max-width:700px){.r2{grid-template-columns:1fr}.metrics{grid-template-columns:repeat(2,1fr)}.header{flex-direction:column;align-items:flex-start;gap:8px}}
 </style>
 </head>
 <body>
 <div class="app">
 
+<!-- HEADER -->
 <div class="header">
   <div class="header-left">
     <h1>Good <em id="gtime">morning</em>, Kanishk</h1>
     <p id="ddisp"></p>
   </div>
-  <div class="header-right"><div class="clock" id="clock">--:--</div></div>
+  <div class="hbtns">
+    <button class="btn btn-settings" onclick="openSettings()">⚙ Settings</button>
+    <div class="clock" id="clock">--:--</div>
+  </div>
 </div>
 
+<!-- METRICS -->
 <div class="metrics">
   <div class="metric"><div class="ml">Jobs found</div><div class="mv" id="m-jobs">5</div><div class="ms">3 platforms</div></div>
-  <div class="metric"><div class="ml">To-do pending</div><div class="mv" id="m-todos">0</div><div class="ms">tasks remaining</div></div>
+  <div class="metric"><div class="ml">Applied</div><div class="mv" id="m-applied">0</div><div class="ms">applications</div></div>
+  <div class="metric"><div class="ml">Interviews</div><div class="mv" id="m-interviews" style="color:var(--amber)">0</div><div class="ms">scheduled</div></div>
   <div class="metric"><div class="ml">Delhi weather</div><div class="mv" id="m-temp">--°</div><div class="ms" id="m-wsub">loading...</div></div>
   <div class="metric"><div class="ml">Concept today</div><div class="mv" style="font-size:15px;line-height:1.3" id="m-concept">DSCR</div><div class="ms">project finance</div></div>
 </div>
 
-<div class="sbox">
-  <strong>▶ Setup guide</strong><br>
-  <strong style="color:var(--green)">News — Click any ↻ button</strong> to open that live news source directly in a new tab.<br>
-  <strong style="color:var(--teal)">Live Jobs:</strong> Get a free API key at <a href="https://apify.com" target="_blank" style="color:var(--accent)">apify.com</a> → Settings → API &amp; Integrations → copy token → open this file in Notepad → replace <code>YOUR_APIFY_KEY</code> → save &amp; reload.
-</div>
-
+<!-- JOBS -->
 <div class="sl">Job matches</div>
 <div class="card" style="margin-bottom:16px">
   <div class="ch">
@@ -140,8 +181,8 @@ a{color:inherit;text-decoration:none}
   </div>
   <div id="job-list">
     <div class="ji" data-type="onsite"><span class="jl" onclick="window.open('https://to.indeed.com/aarp87xgxmmn','_blank')">AVP – Underwriting &amp; Execution, Energy Investment</span><span class="badge bg" style="margin-left:6px">Top match</span><div class="jm">GE Vernova <span class="badge bb">On-site</span> Gurugram · Indeed · Apr 15</div></div>
-    <div class="ji" data-type="remote"><span class="jl" onclick="window.open('https://in.linkedin.com/jobs/view/financial-analyst-renewables-at-sts-4404405121','_blank')">Financial Analyst – Renewables</span><div class="jm">STS <span class="badge ba">Remote</span> India · LinkedIn · Apr 22 · 46 applicants</div></div>
-    <div class="ji" data-type="onsite"><span class="jl" onclick="window.open('https://www.naukri.com/jobs-in-delhi?keyword=infrastructure+advisory+EY','_blank')">Infrastructure Advisory Consultant</span><div class="jm">EY <span class="badge bb">On-site</span> New Delhi · Naukri · This week</div></div>
+    <div class="ji" data-type="remote"><span class="jl" onclick="window.open('https://in.linkedin.com/jobs/view/financial-analyst-renewables-at-sts-4404405121','_blank')">Financial Analyst – Renewables</span><div class="jm">STS <span class="badge ba">Remote</span> India · LinkedIn · Apr 22</div></div>
+    <div class="ji" data-type="onsite"><span class="jl" onclick="window.open('https://www.naukri.com/jobs-in-delhi?keyword=infrastructure+advisory+EY','_blank')">Infrastructure Advisory Consultant</span><div class="jm">EY <span class="badge bb">On-site</span> New Delhi · Naukri</div></div>
     <div class="ji" data-type="remote"><span class="jl" onclick="window.open('https://in.linkedin.com/jobs/view/fp-a-analyst-senior-analyst--global-finance-role--remote-india-at-mavi-4403513873','_blank')">FP&amp;A Analyst / Senior Analyst – Global Finance</span><div class="jm">MAVI <span class="badge ba">Remote</span> India · LinkedIn · Apr 17</div></div>
     <div class="ji" data-type="onsite"><span class="jl" onclick="window.open('https://to.indeed.com/aanzrrtlhvx7','_blank')">Project Finance L3/L4</span><div class="jm">ERM <span class="badge bb">On-site</span> Delhi · Indeed</div></div>
   </div>
@@ -153,6 +194,7 @@ a{color:inherit;text-decoration:none}
   </div>
 </div>
 
+<!-- NEWS -->
 <div class="sl">Headlines</div>
 <div class="row r2">
   <div class="card">
@@ -171,20 +213,18 @@ a{color:inherit;text-decoration:none}
       <div class="ni"><span class="nl" onclick="window.open('https://economictimes.indiatimes.com/industry/energy/power','_blank')">India on track to achieve 500 GW renewable capacity by 2030</span><div class="ns"><span class="badge bg">Energy</span> ET</div></div>
       <div class="ni"><span class="nl" onclick="window.open('https://www.livemint.com/economy','_blank')">RBI holds rates steady, flags broad-based growth recovery</span><div class="ns"><span class="badge bb">Finance</span> Mint</div></div>
       <div class="ni"><span class="nl" onclick="window.open('https://www.businessstandard.com/finance','_blank')">India boosts infrastructure spending in revised union budget</span><div class="ns"><span class="badge ba">Policy</span> BS</div></div>
-      <div class="ni"><span class="nl" onclick="window.open('https://www.thehindubusinessline.com/economy/','_blank')">NTPC, Adani lead next wave of green hydrogen projects in India</span><div class="ns"><span class="badge bt">Hydrogen</span> BL</div></div>
+      <div class="ni"><span class="nl" onclick="window.open('https://www.thehindubusinessline.com/economy/','_blank')">NTPC, Adani lead next wave of green hydrogen projects</span><div class="ns"><span class="badge bt">Hydrogen</span> BL</div></div>
     </div>
     <div class="nf"><a href="https://economictimes.indiatimes.com/industry/energy" target="_blank" style="font-size:12px;color:var(--accent)">Economic Times ↗</a><a href="https://www.livemint.com" target="_blank" style="font-size:12px;color:var(--accent)">Mint ↗</a></div>
   </div>
 </div>
-
-<div class="sl">Sector news</div>
 <div class="row r2">
   <div class="card">
     <div class="ch"><div class="ct"><span class="dot t"></span> Renewable energy</div><div class="rr"><span class="nts" id="ts-renew"></span><button class="btn btn-r" id="btn-renew" onclick="refreshNews('renew')">↻ Open live ↗</button></div></div>
     <div id="gnews-renew">
       <div class="ni"><span class="nl" onclick="window.open('https://www.mercom.in/solar-news/','_blank')">India adds record solar capacity in Q1 2026 driven by utility-scale projects</span><div class="ns"><span class="badge ba">Solar</span> Mercom India</div></div>
       <div class="ni"><span class="nl" onclick="window.open('https://www.rechargenews.com','_blank')">Offshore wind LCOE hits new low in Europe as technology matures</span><div class="ns"><span class="badge bt">Wind</span> Recharge News</div></div>
-      <div class="ni"><span class="nl" onclick="window.open('https://www.spglobal.com/commodityinsights/en/market-insights/topics/hydrogen','_blank')">Green hydrogen finance gap narrowing as large-scale projects reach FID</span><div class="ns"><span class="badge bg">Hydrogen</span> S&amp;P Global</div></div>
+      <div class="ni"><span class="nl" onclick="window.open('https://www.spglobal.com/commodityinsights/en/market-insights/topics/hydrogen','_blank')">Green hydrogen finance gap narrowing as projects reach FID</span><div class="ns"><span class="badge bg">Hydrogen</span> S&amp;P Global</div></div>
       <div class="ni"><span class="nl" onclick="window.open('https://www.woodmac.com','_blank')">BESS deployments surge across Asia-Pacific led by India and Australia</span><div class="ns"><span class="badge bp">Storage</span> Wood Mackenzie</div></div>
     </div>
     <div class="nf"><a href="https://www.mercom.in" target="_blank" style="font-size:12px;color:var(--accent)">Mercom ↗</a><a href="https://www.rechargenews.com" target="_blank" style="font-size:12px;color:var(--accent)">Recharge ↗</a></div>
@@ -193,7 +233,7 @@ a{color:inherit;text-decoration:none}
     <div class="ch"><div class="ct"><span class="dot p"></span> AI &amp; science / tech</div><div class="rr"><span class="nts" id="ts-ai"></span><button class="btn btn-r" id="btn-ai" onclick="refreshNews('ai')">↻ Open live ↗</button></div></div>
     <div id="gnews-ai">
       <div class="ni"><span class="nl" onclick="window.open('https://techcrunch.com/category/artificial-intelligence/','_blank')">Next-generation AI models push reasoning and coding benchmarks further</span><div class="ns"><span class="badge bp">AI</span> TechCrunch</div></div>
-      <div class="ni"><span class="nl" onclick="window.open('https://www.technologyreview.com/topic/energy/','_blank')">AI-driven grid optimisation cuts renewable curtailment by up to 30%</span><div class="ns"><span class="badge bp">AI + Energy</span> MIT Tech Review</div></div>
+      <div class="ni"><span class="nl" onclick="window.open('https://www.technologyreview.com/topic/energy/','_blank')">AI-driven grid optimisation cuts renewable curtailment by 30%</span><div class="ns"><span class="badge bp">AI+Energy</span> MIT Tech Review</div></div>
       <div class="ni"><span class="nl" onclick="window.open('https://www.nature.com/subjects/fusion-power','_blank')">Fusion energy startup achieves sustained net energy output milestone</span><div class="ns"><span class="badge bt">Science</span> Nature</div></div>
       <div class="ni"><span class="nl" onclick="window.open('https://techcrunch.com','_blank')">Solid-state batteries edge closer to commercial production scale</span><div class="ns"><span class="badge bt">Tech</span> MIT</div></div>
     </div>
@@ -205,11 +245,11 @@ a{color:inherit;text-decoration:none}
 <div class="card" style="margin-bottom:16px">
   <div class="ch"><div class="ct"><span class="dot a"></span> Deals &amp; financing news</div><div class="rr"><span class="nts" id="ts-pf"></span><button class="btn btn-r" id="btn-pf" onclick="refreshNews('pf')">↻ Open live ↗</button></div></div>
   <div class="row r2" style="margin-bottom:0">
-    <div id="gnews-pf-l">
+    <div>
       <div class="ni"><span class="nl" onclick="window.open('https://www.financialexpress.com','_blank')">PFC, REC disburse Rs 12,000 Cr for hybrid renewable projects in Q1 2026</span><div class="ns"><span class="badge bg">Project Finance</span> FE</div></div>
       <div class="ni"><span class="nl" onclick="window.open('https://www.ifc.org','_blank')">IFC commits $800M to Asia-Pacific clean energy infrastructure fund</span><div class="ns"><span class="badge bb">DFI</span> IFC</div></div>
     </div>
-    <div id="gnews-pf-r">
+    <div>
       <div class="ni"><span class="nl" onclick="window.open('https://www.bloomberg.com/green','_blank')">India green bond market crosses $10 billion cumulative milestone</span><div class="ns"><span class="badge bt">Green Bonds</span> Bloomberg</div></div>
       <div class="ni"><span class="nl" onclick="window.open('https://powermin.gov.in','_blank')">DISCOM reforms unlock Rs 3,000 Cr in state-level distribution funding</span><div class="ns"><span class="badge ba">Distribution</span> Power Min</div></div>
     </div>
@@ -221,6 +261,33 @@ a{color:inherit;text-decoration:none}
   </div>
 </div>
 
+<!-- APPLICATION TRACKER -->
+<div class="sl">Application tracker</div>
+<div class="card" style="margin-bottom:16px">
+  <div class="ch">
+    <div class="ct"><span class="dot g"></span> Job applications</div>
+    <div id="app-stats" class="app-stats"></div>
+  </div>
+  <div class="app-form">
+    <input class="ti" type="text" id="app-title" placeholder="Job title *">
+    <input class="ti" type="text" id="app-company" placeholder="Company *">
+    <input class="ti" type="text" id="app-platform" placeholder="Platform (LinkedIn, Naukri...)">
+    <select class="ti" id="app-status">
+      <option value="Applied">Applied</option>
+      <option value="Interview">Interview Scheduled</option>
+      <option value="Assessment">Assessment</option>
+      <option value="Offer">Offer Received</option>
+      <option value="Rejected">Rejected</option>
+      <option value="Withdrawn">Withdrawn</option>
+    </select>
+    <input class="ti app-form-full" type="text" id="app-url" placeholder="Job URL (optional)">
+    <button class="btn btn-a app-form-full" onclick="addApp()" style="padding:9px">+ Add Application</button>
+  </div>
+  <div id="app-list"></div>
+  <div id="app-empty" class="es">No applications tracked yet. Add your first one above!</div>
+</div>
+
+<!-- TOOLS -->
 <div class="sl">Tools</div>
 <div class="row r3">
   <div class="card">
@@ -235,8 +302,8 @@ a{color:inherit;text-decoration:none}
   </div>
   <div class="card">
     <div class="ch"><div class="ct"><span class="dot t"></span> Delhi weather</div><a href="https://www.weather.com/weather/today/l/28.6139,77.2090" target="_blank"><button class="btn">Forecast ↗</button></a></div>
-    <div class="wbig" id="wt">--C</div>
-    <div class="wdsc" id="wd">Loading...</div>
+    <div class="wbig" id="wt">--°C</div>
+    <div class="wdsc" id="wdsc">Loading...</div>
     <div class="wdet">
       <div class="wd">Feels like <span id="wf">--</span></div>
       <div class="wd">Humidity <span id="wh">--</span></div>
@@ -247,121 +314,234 @@ a{color:inherit;text-decoration:none}
   </div>
 </div>
 
-<div style="text-align:center;padding:24px 0 8px;font-size:11px;color:var(--text3)">Kanishk Kumar · Morning Dashboard v2.0 · <span id="lupd"></span></div>
+<div style="text-align:center;padding:24px 0 8px;font-size:11px;color:var(--text3)">Kanishk Kumar · Morning Dashboard v3.0 · <span id="lupd"></span></div>
+
+<!-- SETTINGS MODAL -->
+<div class="modal-overlay" id="settings-modal" style="display:none" onclick="if(event.target===this)closeSettings()">
+  <div class="modal">
+    <h2>⚙ Settings</h2>
+    <p>Configure your API keys. These are saved privately in your browser and never shared anywhere.</p>
+
+    <div class="modal-section">
+      <div class="modal-label">Apify API Key <span id="apify-status"></span></div>
+      <input class="modal-input" type="password" id="apify-input" placeholder="apify_api_xxxxxxxxxxxxxxxx">
+      <div class="modal-hint">Get your free key at <a href="https://apify.com" target="_blank">apify.com</a> → Settings → API &amp; Integrations → API token. Enables live job refresh from LinkedIn every morning.</div>
+    </div>
+
+    <div class="modal-section">
+      <div class="modal-label">Job Search Keywords</div>
+      <input class="modal-input" type="text" id="keywords-input" placeholder="project finance renewable energy India">
+      <div class="modal-hint">Customize what jobs are searched for when you click ↻ Refresh Jobs.</div>
+    </div>
+
+    <div class="modal-section">
+      <div class="modal-label">Your Name</div>
+      <input class="modal-input" type="text" id="name-input" placeholder="Kanishk">
+      <div class="modal-hint">Personalizes the dashboard greeting.</div>
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn" onclick="closeSettings()">Cancel</button>
+      <button class="btn btn-a" onclick="saveSettings()">Save Settings</button>
+    </div>
+  </div>
 </div>
 
+</div>
 <script>
-// ── KEYS (replace these) ─────────────────────────────────────────
-// News uses RSS feeds via rss2json.com — no API key needed, works from local files
-const APIFY_KEY  = 'YOUR_APIFY_KEY';   // apify.com - free tier
-
-// ── NEWS CONFIG ──────────────────────────────────────────────────
-const NC = {
-  global:{el:'gnews-global', ts:'ts-global', btn:'btn-global'},
-  india: {el:'gnews-india',  ts:'ts-india',  btn:'btn-india'},
-  renew: {el:'gnews-renew',  ts:'ts-renew',  btn:'btn-renew'},
-  ai:    {el:'gnews-ai',     ts:'ts-ai',     btn:'btn-ai'},
-  pf:    {el:'gnews-pf-l',   ts:'ts-pf',     btn:'btn-pf'}
-};
-const FB = {
-  global:'https://www.reuters.com/world/',
-  india:'https://economictimes.indiatimes.com/industry/energy',
-  renew:'https://www.mercom.in',
-  ai:'https://techcrunch.com/category/artificial-intelligence/',
-  pf:'https://www.ijglobal.com'
-};
-
-// Refresh opens the live news source in a new tab
-function refreshNews(sec){
-  const c=NC[sec];
-  window.open(FB[sec],'_blank');
-  const ts=document.getElementById(c.ts);
-  if(ts)ts.textContent='Opened '+new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});
+// ── SETTINGS ─────────────────────────────────────────────────────
+function getSettings(){
+  try{return JSON.parse(localStorage.getItem('kd_settings')||'{}');}catch(e){return{};}
 }
+function openSettings(){
+  const s=getSettings();
+  document.getElementById('apify-input').value=s.apifyKey||'';
+  document.getElementById('keywords-input').value=s.keywords||'project finance renewable energy India';
+  document.getElementById('name-input').value=s.name||'Kanishk';
+  updateKeyStatus();
+  document.getElementById('settings-modal').style.display='flex';
+}
+function closeSettings(){document.getElementById('settings-modal').style.display='none';}
+function saveSettings(){
+  const s={
+    apifyKey:document.getElementById('apify-input').value.trim(),
+    keywords:document.getElementById('keywords-input').value.trim()||'project finance renewable energy India',
+    name:document.getElementById('name-input').value.trim()||'Kanishk'
+  };
+  localStorage.setItem('kd_settings',JSON.stringify(s));
+  updateKeyStatus();
+  // Update greeting name
+  const gt=document.getElementById('gtime');
+  if(gt)document.querySelector('.header-left h1').innerHTML=`Good <em id="gtime">${document.getElementById('gtime').textContent}</em>, ${s.name}`;
+  closeSettings();
+  alert('Settings saved! Your Apify key is stored securely in your browser.');
+}
+function updateKeyStatus(){
+  const s=getSettings();
+  const el=document.getElementById('apify-status');
+  if(el){el.innerHTML=s.apifyKey?'<span class="key-status key-set">✓ Set</span>':'<span class="key-status key-unset">Not set</span>';}
+}
+updateKeyStatus();
 
-// ── JOB REFRESH (Apify LinkedIn scraper) ────────────────────────
-const JOB_QUERIES = [
-  'https://www.linkedin.com/jobs/search/?keywords=project+finance+renewable+energy&location=India&f_TPR=r604800',
-  'https://www.linkedin.com/jobs/search/?keywords=infrastructure+finance+analyst+India&f_TPR=r604800',
-  'https://www.linkedin.com/jobs/search/?keywords=energy+investment+India&f_TPR=r604800'
-];
+// Apply saved name on load
+(function(){const s=getSettings();if(s.name&&s.name!=='Kanishk'){const h=document.querySelector('.header-left h1');if(h){const gt=document.getElementById('gtime');h.innerHTML=`Good <em id="gtime">${gt?gt.textContent:'morning'}</em>, ${s.name}`;}}})();
 
-const WORK_TYPE_LABEL = {REMOTE:'Remote',HYBRID:'Hybrid',ON_SITE:'On-site',FLEXIBLE:'Flexible'};
-const WORK_TYPE_BADGE = {REMOTE:'ba',HYBRID:'bg',ON_SITE:'bb',FLEXIBLE:'bt'};
-const WORK_TYPE_DATA  = {REMOTE:'remote',HYBRID:'hybrid',ON_SITE:'onsite',FLEXIBLE:'hybrid'};
+// ── NEWS ─────────────────────────────────────────────────────────
+const FB={global:'https://www.reuters.com/world/',india:'https://economictimes.indiatimes.com/industry/energy',renew:'https://www.mercom.in',ai:'https://techcrunch.com/category/artificial-intelligence/',pf:'https://www.ijglobal.com'};
+function refreshNews(sec){window.open(FB[sec],'_blank');}
 
+// ── JOB REFRESH ──────────────────────────────────────────────────
 async function refreshJobs(){
-  if(APIFY_KEY==='YOUR_APIFY_KEY'){alert('Setup for live jobs:\n\n1. Go to apify.com\n2. Sign up free\n3. Go to Settings > API & Integrations > API token\n4. Copy your token\n5. Open this file in Notepad\n6. Replace YOUR_APIFY_KEY\n7. Save & reload\n\nFree tier gives ~5 actor runs/month.');return;}
+  const s=getSettings();
+  if(!s.apifyKey){
+    if(confirm('Apify key not set. Open Settings to add your key?')){openSettings();}
+    return;
+  }
   const btn=document.getElementById('btn-jobs');
-  btn.disabled=true;btn.innerHTML='<span class="spin">↻</span> Searching jobs...';
-  document.getElementById('job-list').innerHTML='<div class="lmsg">Scanning LinkedIn, Naukri, Indeed for fresh jobs...</div>';
+  btn.disabled=true;btn.innerHTML='<span class="spin">↻</span> Searching...';
+  document.getElementById('job-list').innerHTML='<div class="lmsg">Scanning LinkedIn for fresh jobs...</div>';
+
+  const kw=encodeURIComponent(s.keywords||'project finance renewable energy India');
+  const urls=[
+    `https://www.linkedin.com/jobs/search/?keywords=${kw}&location=India&f_TPR=r604800`,
+    `https://www.linkedin.com/jobs/search/?keywords=${kw}&location=Delhi&f_TPR=r604800&f_WT=2`
+  ];
 
   try{
-    // Start Apify run
-    const startRes=await fetch('https://api.apify.com/v2/acts/curious_coder~linkedin-jobs-scraper/runs?token='+APIFY_KEY,{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({urls:JOB_QUERIES,count:10,scrapeCompany:false})
+    const startRes=await fetch(`https://api.apify.com/v2/acts/curious_coder~linkedin-jobs-scraper/runs?token=${s.apifyKey}`,{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({urls,count:10,scrapeCompany:false})
     });
-    const startData=await startRes.json();
-    const runId=startData?.data?.id;
-    if(!runId)throw new Error('Could not start job search');
+    const sd=await startRes.json();
+    const runId=sd?.data?.id;
+    if(!runId)throw new Error('Run failed to start');
 
-    // Poll for completion (max 60s)
     let status='RUNNING',tries=0;
     while(status==='RUNNING'&&tries<20){
       await new Promise(r=>setTimeout(r,3000));
-      const poll=await fetch(`https://api.apify.com/v2/actor-runs/${runId}?token=${APIFY_KEY}`);
-      const pd=await poll.json();
+      const pr=await fetch(`https://api.apify.com/v2/actor-runs/${runId}?token=${s.apifyKey}`);
+      const pd=await pr.json();
       status=pd?.data?.status||'RUNNING';
       tries++;
     }
 
-    // Get results
-    const resData=await fetch(`https://api.apify.com/v2/actor-runs/${runId}/dataset/items?token=${APIFY_KEY}&limit=10`);
-    const jobs=await resData.json();
+    const dr=await fetch(`https://api.apify.com/v2/actor-runs/${runId}/dataset/items?token=${s.apifyKey}&limit=10`);
+    const jobs=await dr.json();
 
-    if(jobs&&jobs.length>0){
-      const html=jobs.map(j=>{
+    if(jobs?.length){
+      const WL={REMOTE:'Remote',HYBRID:'Hybrid',ON_SITE:'On-site',FLEXIBLE:'Flexible'};
+      const WB={REMOTE:'ba',HYBRID:'bg',ON_SITE:'bb',FLEXIBLE:'bt'};
+      const WD={REMOTE:'remote',HYBRID:'hybrid',ON_SITE:'onsite',FLEXIBLE:'hybrid'};
+      document.getElementById('job-list').innerHTML=jobs.map(j=>{
         const wt=j.workType||j.workplaceType||'ON_SITE';
-        const wtLabel=WORK_TYPE_LABEL[wt]||'On-site';
-        const wtBadge=WORK_TYPE_BADGE[wt]||'bb';
-        const wtData=WORK_TYPE_DATA[wt]||'onsite';
-        const url=j.jobUrl||j.url||'#';
-        const title=(j.title||'Untitled Role').replace(/</g,'&lt;');
-        const company=(j.company||j.companyName||'').replace(/</g,'&lt;');
-        const location=(j.location||'India').replace(/</g,'&lt;');
-        const posted=j.postedAt?tAgo(j.postedAt):'Recently';
-        return `<div class="ji" data-type="${wtData}"><span class="jl" onclick="window.open('${url}','_blank')">${title}</span><div class="jm">${company} <span class="badge ${wtBadge}">${wtLabel}</span> ${location} · LinkedIn · ${posted}</div></div>`;
+        const url=(j.jobUrl||j.url||'#');
+        const title=(j.title||'Role').replace(/</g,'&lt;');
+        const co=(j.company||j.companyName||'').replace(/</g,'&lt;');
+        const loc=(j.location||'India').replace(/</g,'&lt;');
+        const age=j.postedAt?tAgo(j.postedAt):'Recently';
+        return `<div class="ji" data-type="${WD[wt]||'onsite'}"><span class="jl" onclick="window.open('${url}','_blank')">${title}</span><div class="jm">${co} <span class="badge ${WB[wt]||'bb'}">${WL[wt]||'On-site'}</span> ${loc} · ${age}</div></div>`;
       }).join('');
-      document.getElementById('job-list').innerHTML=html;
       document.getElementById('m-jobs').textContent=jobs.length;
-      const ts=document.getElementById('ts-jobs');if(ts)ts.textContent='Updated '+new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});
+      document.getElementById('ts-jobs').textContent='Updated '+new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});
+      // Auto-run daily
+      localStorage.setItem('kd_last_job_refresh',new Date().toDateString());
     }else{
-      document.getElementById('job-list').innerHTML='<div class="lmsg">No results found. Try the direct search links below.</div>';
+      document.getElementById('job-list').innerHTML='<div class="lmsg">No results. Try the search links below.</div>';
     }
   }catch(e){
-    document.getElementById('job-list').innerHTML=`<div class="lmsg">Could not fetch live jobs. Use the search links below or check your Apify key.</div>`;
+    document.getElementById('job-list').innerHTML='<div class="lmsg">Error fetching jobs. Check your Apify key in ⚙ Settings.</div>';
   }
   btn.disabled=false;btn.textContent='↻ Refresh Jobs';
 }
 
 function filterJobs(type,btn){
   document.querySelectorAll('.ftabs .ft').forEach(t=>t.classList.remove('on'));btn.classList.add('on');
-  let n=0;
-  document.querySelectorAll('#job-list .ji').forEach(j=>{const s=type==='all'||j.dataset.type===type;j.style.display=s?'':'none';if(s)n++;});
+  let n=0;document.querySelectorAll('#job-list .ji').forEach(j=>{const s=type==='all'||j.dataset.type===type;j.style.display=s?'':'none';if(s)n++;});
   document.getElementById('m-jobs').textContent=n;
 }
 
+function tAgo(iso){const d=Math.floor((Date.now()-new Date(iso))/60000);if(d<60)return d+'m ago';if(d<1440)return Math.floor(d/60)+'h ago';return Math.floor(d/1440)+'d ago';}
+
+// Auto-refresh jobs once per day on page open
+(function(){
+  const s=getSettings();
+  if(s.apifyKey){
+    const last=localStorage.getItem('kd_last_job_refresh');
+    if(last!==new Date().toDateString()){
+      setTimeout(()=>refreshJobs(),2000);
+    }
+  }
+})();
+
+// ── APPLICATION TRACKER ──────────────────────────────────────────
+let apps=[];
+try{apps=JSON.parse(localStorage.getItem('kd_apps')||'[]');}catch(e){}
+
+const STATUS_BADGE={Applied:'bb',Interview:'ba',Assessment:'bp',Offer:'bg',Rejected:'br',Withdrawn:'bt'};
+
+function saveApps(){
+  localStorage.setItem('kd_apps',JSON.stringify(apps));
+  const counts={Applied:0,Interview:0,Assessment:0,Offer:0,Rejected:0,Withdrawn:0};
+  apps.forEach(a=>counts[a.status]=(counts[a.status]||0)+1);
+  document.getElementById('m-applied').textContent=apps.length;
+  document.getElementById('m-interviews').textContent=counts.Interview||0;
+  document.getElementById('app-stats').innerHTML=
+    Object.entries(counts).filter(([,v])=>v>0).map(([k,v])=>`<div class="app-stat"><strong>${v}</strong> ${k}</div>`).join('');
+}
+
+function renderApps(){
+  const ul=document.getElementById('app-list');
+  const em=document.getElementById('app-empty');
+  ul.innerHTML='';
+  em.style.display=apps.length?'none':'block';
+  [...apps].reverse().forEach((a,ri)=>{
+    const i=apps.length-1-ri;
+    const d=document.createElement('div');
+    d.className='app-item';
+    d.innerHTML=`
+      <div class="app-info">
+        <div class="app-title">${a.url?`<a href="${a.url}" target="_blank" style="color:var(--accent)">${a.title}</a>`:a.title}</div>
+        <div class="app-sub">${a.company}${a.platform?' · '+a.platform:''}</div>
+      </div>
+      <div class="app-date">${a.date}</div>
+      <select class="app-status-sel" onchange="updateAppStatus(${i},this.value)">
+        ${['Applied','Interview','Assessment','Offer','Rejected','Withdrawn'].map(s=>`<option value="${s}" ${a.status===s?'selected':''}>${s}</option>`).join('')}
+      </select>
+      <button class="app-del" onclick="delApp(${i})">×</button>`;
+    ul.appendChild(d);
+  });
+  saveApps();
+}
+
+function addApp(){
+  const title=document.getElementById('app-title').value.trim();
+  const company=document.getElementById('app-company').value.trim();
+  if(!title||!company){alert('Please enter at least job title and company.');return;}
+  apps.push({
+    title,company,
+    platform:document.getElementById('app-platform').value.trim(),
+    status:document.getElementById('app-status').value,
+    url:document.getElementById('app-url').value.trim(),
+    date:new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'short'})
+  });
+  ['app-title','app-company','app-platform','app-url'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('app-status').value='Applied';
+  renderApps();
+}
+
+function updateAppStatus(i,val){apps[i].status=val;renderApps();}
+function delApp(i){if(confirm('Remove this application?')){apps.splice(i,1);renderApps();}}
+renderApps();
+
 // ── CONCEPTS ─────────────────────────────────────────────────────
 const CONCEPTS=[
-  {t:'Debt Service Coverage Ratio (DSCR)',b:'DSCR measures a project\'s ability to repay its debt from operating cash flows. Calculated as Net Operating Income ÷ Total Debt Service (principal + interest). Lenders like PFC and REC require a minimum 1.20x–1.35x for renewable projects in India.',e:'A 100 MW solar plant generates Rs 80 Cr net cash flow with Rs 60 Cr annual debt repayments. DSCR = 80/60 = 1.33x — within acceptable range for most infrastructure lenders.'},
-  {t:'Power Purchase Agreement (PPA)',b:'A long-term contract between a power generator and an offtaker (DISCOM or industrial consumer) defining price, volume, and duration of electricity supply. PPAs provide revenue certainty — the backbone of project finance, enabling debt financing from lenders.',e:'Adani Green signs a 25-year PPA with SECI at Rs 2.49/kWh for a 600 MW solar project. This fixed tariff underpins the entire financial model and lender due diligence process.'},
-  {t:'Internal Rate of Return (IRR)',b:'IRR is the discount rate at which the NPV of all project cash flows equals zero — the annualised return on investment. In Indian renewables, equity IRRs of 14–18% are targeted; project IRRs (pre-financing) typically range 10–14%.',e:'A wind project with Rs 500 Cr equity investment delivers cash flows over 25 years. If IRR = 16%, the equity earns a 16% annualised return — above the developer\'s 14% hurdle rate.'},
-  {t:'Debt-Equity Ratio & LTV',b:'Measures how much of a project is funded by debt vs equity. Standard ratios in Indian renewable project finance are 70:30 to 75:25. Higher leverage amplifies equity returns but increases financial risk. Lenders assess LTV alongside DSCR.',e:'A Rs 1,000 Cr solar project with Rs 750 Cr debt (PFC) and Rs 250 Cr equity — 75:25 ratio. If project value rises to Rs 1,200 Cr post-commissioning, equity jumps from Rs 250 Cr to Rs 450 Cr.'},
-  {t:'Refinancing & Take-out Finance',b:'Replacing higher-cost construction-period debt with cheaper long-term operational debt once a project is commissioned and de-risked. Take-out finance is when a long-term lender (PFC, REC, or infra bond) replaces the construction lender, freeing capital.',e:'Adani\'s Jaisalmer hybrid project raised construction debt at 9.5%. Post-commissioning, PFC refinanced at 8.2% for 18 years — reducing interest costs and improving equity IRR by ~150 bps.'},
-  {t:'Sensitivity Analysis in Project Finance',b:'Tests how changes in key assumptions — tariff, CUF/PLF, capex, interest rates, O&M costs — affect DSCR and equity IRR. Lenders require projects to remain viable under stressed scenarios, typically a 10–20% adverse shift in key variables.',e:'A solar project shows DSCR of 1.35x at base CUF 22%. Sensitivity test shows DSCR drops to 1.18x if CUF falls to 19% — still above the 1.15x covenant floor, giving lenders comfort.'},
-  {t:'Green Bonds & Sustainability-Linked Finance',b:'Green bonds are debt instruments where proceeds are exclusively used for environmentally beneficial projects. Sustainability-Linked Bonds tie the interest rate to the issuer meeting specific ESG targets. Both help Indian energy companies access cheaper global capital.',e:'ReNew Power issued a $400M green bond at 5.875% to international investors — cheaper than domestic rupee debt — with proceeds ring-fenced for solar and wind assets.'}
+  {t:'Debt Service Coverage Ratio (DSCR)',b:'DSCR measures a project\'s ability to repay its debt from operating cash flows. Calculated as Net Operating Income ÷ Total Debt Service. Lenders like PFC and REC require a minimum 1.20x–1.35x for renewable projects.',e:'A 100 MW solar plant generates Rs 80 Cr net cash flow with Rs 60 Cr annual debt repayments. DSCR = 80/60 = 1.33x — within acceptable range for infrastructure lenders.'},
+  {t:'Power Purchase Agreement (PPA)',b:'A long-term contract between a power generator and an offtaker defining price, volume, and duration of electricity supply. PPAs provide revenue certainty — the backbone of project finance enabling debt financing.',e:'Adani Green signs a 25-year PPA with SECI at Rs 2.49/kWh for a 600 MW solar project. This fixed tariff underpins the entire financial model and lender due diligence.'},
+  {t:'Internal Rate of Return (IRR)',b:'IRR is the discount rate at which the NPV of all project cash flows equals zero. In Indian renewables, equity IRRs of 14–18% are targeted; project IRRs (pre-financing) typically range 10–14%.',e:'A wind project with Rs 500 Cr equity delivers cash flows over 25 years. If IRR = 16%, the equity earns a 16% annualised return — above the developer\'s 14% hurdle rate.'},
+  {t:'Debt-Equity Ratio & LTV',b:'Measures how much of a project is funded by debt vs equity. Standard ratios in Indian renewable project finance are 70:30 to 75:25. Higher leverage amplifies equity returns but increases financial risk.',e:'A Rs 1,000 Cr solar project with Rs 750 Cr debt (PFC) and Rs 250 Cr equity — 75:25 ratio. If project value rises to Rs 1,200 Cr, equity jumps from Rs 250 Cr to Rs 450 Cr.'},
+  {t:'Refinancing & Take-out Finance',b:'Replacing higher-cost construction-period debt with cheaper long-term operational debt once a project is commissioned. Take-out finance is when a long-term lender replaces the construction lender, freeing capital for new projects.',e:'Adani\'s Jaisalmer hybrid project raised construction debt at 9.5%. Post-commissioning, PFC refinanced at 8.2% for 18 years — improving equity IRR by ~150 bps.'},
+  {t:'Sensitivity Analysis in Project Finance',b:'Tests how changes in key assumptions — tariff, CUF/PLF, capex, interest rates, O&M costs — affect DSCR and equity IRR. Lenders require projects to remain viable under stressed scenarios of 10–20% adverse shift.',e:'A solar project shows DSCR of 1.35x at base CUF 22%. Sensitivity test shows DSCR drops to 1.18x if CUF falls to 19% — still above the 1.15x covenant floor.'},
+  {t:'Green Bonds & Sustainability-Linked Finance',b:'Green bonds are debt instruments where proceeds are exclusively used for environmentally beneficial projects. Sustainability-Linked Bonds tie the interest rate to the issuer meeting specific ESG targets.',e:'ReNew Power issued a $400M green bond at 5.875% to international investors — cheaper than domestic rupee debt — with proceeds ring-fenced for solar and wind assets.'}
 ];
 let ci=0;
 function renderC(){
@@ -375,7 +555,12 @@ function prevC(){ci=(ci-1+CONCEPTS.length)%CONCEPTS.length;renderC();}
 renderC();
 
 // ── CLOCK ────────────────────────────────────────────────────────
-function tick(){const n=new Date(),h=n.getHours(),m=n.getMinutes();document.getElementById('clock').textContent=String(h).padStart(2,'0')+':'+String(m).padStart(2,'0');document.getElementById('gtime').textContent=h<12?'morning':h<17?'afternoon':'evening';}
+function tick(){
+  const n=new Date(),h=n.getHours(),m=n.getMinutes();
+  document.getElementById('clock').textContent=String(h).padStart(2,'0')+':'+String(m).padStart(2,'0');
+  const gt=document.getElementById('gtime');
+  if(gt)gt.textContent=h<12?'morning':h<17?'afternoon':'evening';
+}
 tick();setInterval(tick,1000);
 const _n=new Date();
 document.getElementById('ddisp').textContent=_n.toLocaleDateString('en-IN',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
@@ -383,8 +568,23 @@ document.getElementById('lupd').textContent='Loaded '+_n.toLocaleTimeString('en-
 
 // ── TODOS ────────────────────────────────────────────────────────
 let todos=[];try{todos=JSON.parse(localStorage.getItem('kd_todos')||'[]');}catch(e){}
-function saveT(){try{localStorage.setItem('kd_todos',JSON.stringify(todos));}catch(e){}const p=todos.filter(t=>!t.done).length;document.getElementById('m-todos').textContent=p;const b=document.getElementById('tbadge');p>0?(b.style.display='inline-block',b.textContent=p+' pending'):b.style.display='none';}
-function renderT(){const ul=document.getElementById('tlist'),em=document.getElementById('tempty');ul.innerHTML='';em.style.display=todos.length?'none':'block';todos.forEach((t,i)=>{const d=document.createElement('div');d.className='tdi';d.innerHTML=`<input type="checkbox" ${t.done?'checked':''} onchange="togT(${i})"><span class="${t.done?'dn':''}">${t.text}</span><button class="tdx" onclick="delT(${i})">x</button>`;ul.appendChild(d);});saveT();}
+function saveT(){
+  try{localStorage.setItem('kd_todos',JSON.stringify(todos));}catch(e){}
+  const p=todos.filter(t=>!t.done).length;
+  document.getElementById('m-todos')&&(document.getElementById('m-todos').textContent=p);
+  const b=document.getElementById('tbadge');
+  p>0?(b.style.display='inline-block',b.textContent=p+' pending'):b.style.display='none';
+}
+function renderT(){
+  const ul=document.getElementById('tlist'),em=document.getElementById('tempty');
+  ul.innerHTML='';em.style.display=todos.length?'none':'block';
+  todos.forEach((t,i)=>{
+    const d=document.createElement('div');d.className='tdi';
+    d.innerHTML=`<input type="checkbox" ${t.done?'checked':''} onchange="togT(${i})"><span class="${t.done?'dn':''}">${t.text}</span><button class="tdx" onclick="delT(${i})">x</button>`;
+    ul.appendChild(d);
+  });
+  saveT();
+}
 function addT(){const inp=document.getElementById('tinp'),v=inp.value.trim();if(!v)return;todos.unshift({text:v,done:false});inp.value='';renderT();}
 function togT(i){todos[i].done=!todos[i].done;renderT();}
 function delT(i){todos.splice(i,1);renderT();}
@@ -395,10 +595,10 @@ fetch('https://api.open-meteo.com/v1/forecast?latitude=28.6139&longitude=77.2090
   .then(r=>r.json()).then(d=>{
     const c=d.current;
     const CD={0:'Clear sky',1:'Mainly clear',2:'Partly cloudy',3:'Overcast',45:'Foggy',51:'Light drizzle',61:'Light rain',63:'Moderate rain',80:'Rain showers',95:'Thunderstorm'};
-    const CI={0:'☀',1:'🌤',2:'⛅',3:'☁',45:'🌫',51:'🌦',61:'🌧',63:'🌧',80:'🌦',95:'⛈'};
+    const CI={0:'☀️',1:'🌤️',2:'⛅',3:'☁️',45:'🌫️',51:'🌦️',61:'🌧️',63:'🌧️',80:'🌦️',95:'⛈️'};
     const desc=CD[c.weather_code]||'See forecast';
     document.getElementById('wt').textContent=Math.round(c.temperature_2m)+'°C';
-    document.getElementById('wd').textContent=desc+' · New Delhi';
+    document.getElementById('wdsc').textContent=desc+' · New Delhi';
     document.getElementById('wf').textContent=Math.round(c.apparent_temperature)+'°C';
     document.getElementById('wh').textContent=c.relative_humidity_2m+'%';
     document.getElementById('ww').textContent=Math.round(c.wind_speed_10m)+' km/h';
@@ -407,12 +607,13 @@ fetch('https://api.open-meteo.com/v1/forecast?latitude=28.6139&longitude=77.2090
     document.getElementById('m-wsub').textContent=desc;
     const days=['Today','Tomorrow','Day 3','Day 4'],fc=document.getElementById('wfc');fc.innerHTML='';
     (d.daily.temperature_2m_max||[]).slice(0,4).forEach((max,i)=>{
-      const min=d.daily.temperature_2m_min[i],icon=CI[d.daily.weather_code[i]]||'🌡';
-      const div=document.createElement('div');div.style.cssText='background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 10px;text-align:center;flex:1;min-width:60px';
+      const min=d.daily.temperature_2m_min[i],icon=CI[d.daily.weather_code[i]]||'🌡️';
+      const div=document.createElement('div');
+      div.style.cssText='background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 10px;text-align:center;flex:1;min-width:60px';
       div.innerHTML=`<div style="font-size:11px;color:var(--text3);margin-bottom:4px">${days[i]}</div><div style="font-size:18px;margin-bottom:3px">${icon}</div><div style="font-size:12px;color:var(--text2)">${Math.round(max)}° <span style="color:var(--text3)">${Math.round(min)}°</span></div>`;
       fc.appendChild(div);
     });
-  }).catch(()=>{document.getElementById('wd').textContent='Weather unavailable';document.getElementById('m-wsub').textContent='Unavailable';});
+  }).catch(()=>{document.getElementById('wdsc').textContent='Weather unavailable';});
 </script>
 </body>
 </html>
