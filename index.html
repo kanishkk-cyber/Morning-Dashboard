@@ -361,67 +361,172 @@ a{color:inherit;text-decoration:none}
 
 <script>
 // ── SETTINGS ──────────────────────────────────────────────────────
-function getSettings(){try{return JSON.parse(localStorage.getItem('kd_settings')||'{}');}catch(e){return{};}}
-function openSettings(){
-  var s=getSettings();
-  document.getElementById('eleven-input').value=s.elevenKey||'';
-  document.getElementById('apify-input').value=s.apifyKey||'';
-  document.getElementById('keywords-input').value=s.keywords||'project finance renewable energy India';
-  document.getElementById('name-input').value=s.name||'Kanishk';
-  updateKeyStatus();
-  document.getElementById('settings-modal').style.display='flex';
+function getSettings(){
+  try { return JSON.parse(localStorage.getItem('kd_settings')||'{}'); }
+  catch(e){ return {}; }
 }
-function closeSettings(){document.getElementById('settings-modal').style.display='none';}
+
+function openSettings(){
+  var s = getSettings();
+  document.getElementById('eleven-input').value = s.elevenKey || '';
+  document.getElementById('apify-input').value = s.apifyKey || '';
+  document.getElementById('keywords-input').value = s.keywords || 'project finance renewable energy India';
+  document.getElementById('name-input').value = s.name || 'Kanishk';
+  updateKeyStatus();
+  document.getElementById('settings-modal').style.display = 'flex';
+}
+
+function closeSettings(){
+  document.getElementById('settings-modal').style.display = 'none';
+}
+
 function saveSettings(){
-  var s={
-    elevenKey:document.getElementById('eleven-input').value.trim(),
-    apifyKey:document.getElementById('apify-input').value.trim(),
-    keywords:document.getElementById('keywords-input').value.trim()||'project finance renewable energy India',
-    name:document.getElementById('name-input').value.trim()||'Kanishk'
+  var s = {
+    elevenKey: document.getElementById('eleven-input').value.trim(),
+    apifyKey: document.getElementById('apify-input').value.trim(),
+    keywords: document.getElementById('keywords-input').value.trim() || 'project finance renewable energy India',
+    name: document.getElementById('name-input').value.trim() || 'Kanishk'
   };
-  localStorage.setItem('kd_settings',JSON.stringify(s));
+  localStorage.setItem('kd_settings', JSON.stringify(s));
   updateKeyStatus();
   closeSettings();
   alert('Settings saved!');
 }
-function testVoice(){
-  var key = document.getElementById('eleven-input').value.trim();
-  if(!key){ alert('Please enter your ElevenLabs key first.'); return; }
-  var btn = document.querySelector('[onclick="testVoice()"]');
-  btn.textContent = 'Testing...'; btn.disabled = true;
-  fetch('https://corsproxy.io/?https://api.elevenlabs.io/v1/text-to-speech/pNInz6obpgDQGcFmaJgB',{
+
+// ── VOICE ENGINE (ElevenLabs) ─────────────────────────────────────
+function speak(text){
+  var s = getSettings();
+  var key = s.elevenKey;
+
+  if(!key){
+    alert('Please set your ElevenLabs API key in settings.');
+    return;
+  }
+
+  const VOICE_ID = "pNInz6obpgDQGcFmaJgB";
+  const url = `https://api.elevenlabs.io/v1/text-to-speech/${VOICE_ID}`;
+  const proxy = `https://corsproxy.io/?${encodeURIComponent(url)}`;
+
+  fetch(proxy,{
     method:'POST',
-    headers:{'Content-Type':'application/json','xi-api-key':key},
-    body:JSON.stringify({text:'Hello Kanishk, voice is working perfectly.',model_id:'eleven_monolingual_v1',voice_settings:{stability:0.75,similarity_boost:0.85}})
+    headers:{
+      'Content-Type':'application/json',
+      'xi-api-key': key
+    },
+    body: JSON.stringify({
+      text: text,
+      model_id: 'eleven_multilingual_v2',
+      voice_settings:{
+        stability:0.7,
+        similarity_boost:0.85
+      }
+    })
   })
-  .then(function(r){
+  .then(r => {
     if(!r.ok) throw new Error('Status: '+r.status);
     return r.blob();
   })
-  .then(function(blob){
-    var url=URL.createObjectURL(blob);
-    var audio=new Audio(url);
-    audio.playbackRate=0.92;
-    audio.onended=function(){URL.revokeObjectURL(url);};
+  .then(blob => {
+    var audioUrl = URL.createObjectURL(blob);
+    var audio = new Audio(audioUrl);
+    audio.playbackRate = 0.92;
+    audio.onended = () => URL.revokeObjectURL(audioUrl);
     audio.play();
-    btn.textContent='&#9654; Test Voice'; btn.disabled=false;
   })
-  .catch(function(e){
-    alert('Voice test failed: '+e.message+'. Check your API key is correct and has credits.');
-    btn.textContent='&#9654; Test Voice'; btn.disabled=false;
+  .catch(err => {
+    console.error(err);
+    alert('Voice failed. Check API key / credits.');
   });
 }
 
-function updateKeyStatus(){
-  var s=getSettings();
-  var el=document.getElementById('apify-status');
-  if(el)el.innerHTML=s.apifyKey?'<span class="key-status key-set">&#10003; Set</span>':'<span class="key-status key-unset">Not set</span>';
-  var el2=document.getElementById('eleven-status');
-  if(el2)el2.innerHTML=s.elevenKey?'<span class="key-status key-set">&#10003; Set</span>':'<span class="key-status key-unset">Not set</span>';
-}
-updateKeyStatus();
-</script>
+// ── TEST BUTTON ───────────────────────────────────────────────────
+function testVoice(){
+  var btn = document.querySelector('[onclick="testVoice()"]');
+  btn.textContent = 'Testing...';
+  btn.disabled = true;
 
+  speak("Hello, your voice system is working perfectly.");
+
+  setTimeout(() => {
+    btn.textContent = '▶ Test Voice';
+    btn.disabled = false;
+  }, 3000);
+}
+
+// ── STATUS ────────────────────────────────────────────────────────
+function updateKeyStatus(){
+  var s = getSettings();
+  var el = document.getElementById('apify-status');
+  if(el) el.innerHTML = s.apifyKey ? '✔ Set' : 'Not set';
+
+  var el2 = document.getElementById('eleven-status');
+  if(el2) el2.innerHTML = s.elevenKey ? '✔ Set' : 'Not set';
+}
+
+updateKeyStatus();
+
+// ── JARVIS: AUTO GREETING ─────────────────────────────────────────
+window.onload = function(){
+  var s = getSettings();
+  var name = s.name || "Kanishk";
+
+  setTimeout(() => {
+    speak(`Good morning ${name}, your dashboard is ready.`);
+  }, 1500);
+};
+
+// ── JARVIS: VOICE COMMANDS (MIC) ─────────────────────────────────
+function startListening(){
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+  if(!SpeechRecognition){
+    alert("Speech recognition not supported in this browser");
+    return;
+  }
+
+  const recognition = new SpeechRecognition();
+  recognition.lang = "en-US";
+
+  recognition.start();
+
+  recognition.onresult = function(event){
+    const command = event.results[0][0].transcript.toLowerCase();
+    console.log("Command:", command);
+    handleCommand(command);
+  };
+}
+
+// ── COMMAND HANDLER ───────────────────────────────────────────────
+function handleCommand(cmd){
+
+  if(cmd.includes("hello")){
+    speak("Hello Kanishk");
+  }
+
+  else if(cmd.includes("time")){
+    const t = new Date().toLocaleTimeString();
+    speak("The time is " + t);
+  }
+
+  else if(cmd.includes("date")){
+    const d = new Date().toDateString();
+    speak("Today is " + d);
+  }
+
+  else if(cmd.includes("open google")){
+    window.open("https://google.com");
+    speak("Opening Google");
+  }
+
+  else if(cmd.includes("news")){
+    speak("Fetching latest updates");
+    // connect to your news function here if you have one
+  }
+
+  else{
+    speak("Sorry, I did not understand that");
+  }
+}
 <script>
 // ── GMAIL ──────────────────────────────────────────────────────────
 function loadGmail(){
