@@ -389,7 +389,7 @@ function testVoice(){
   if(!key){ alert('Please enter your ElevenLabs key first.'); return; }
   var btn = document.querySelector('[onclick="testVoice()"]');
   btn.textContent = 'Testing...'; btn.disabled = true;
-  fetch('https://api.elevenlabs.io/v1/text-to-speech/pNInz6obpgDQGcFmaJgB',{
+  fetch('https://corsproxy.io/?https://api.elevenlabs.io/v1/text-to-speech/pNInz6obpgDQGcFmaJgB',{
     method:'POST',
     headers:{'Content-Type':'application/json','xi-api-key':key},
     body:JSON.stringify({text:'Hello Kanishk, voice is working perfectly.',model_id:'eleven_monolingual_v1',voice_settings:{stability:0.75,similarity_boost:0.85}})
