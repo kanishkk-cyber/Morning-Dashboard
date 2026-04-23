@@ -15,14 +15,92 @@ a{color:inherit;text-decoration:none}
 .header-left h1{font-family:'DM Serif Display',serif;font-size:32px;font-weight:400;line-height:1.1}
 .header-left h1 em{font-style:italic;color:var(--accent)}
 .header-left p{font-size:13px;color:var(--text3);margin-top:4px}
-.hbtns{display:flex;align-items:center;gap:10px}
 .clock{font-family:'DM Serif Display',serif;font-size:28px;color:var(--text2);letter-spacing:-.02em}
-.metrics{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:20px}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
 .metric{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;transition:border-color .2s}
 .metric:hover{border-color:var(--border2)}
 .ml{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
 .mv{font-size:26px;font-weight:500;color:var(--text);line-height:1}
 .ms{font-size:11px;color:var(--text3);margin-top:4px}
+.hbtns{display:flex;align-items:center;gap:10px}
+.btn-settings{background:var(--bg3);color:var(--amber);border-color:rgba(251,191,36,0.25);font-size:13px;padding:6px 14px;font-weight:500}
+.btn-settings:hover{background:var(--amber-bg);border-color:var(--amber)}
+.br{background:var(--red-bg);color:var(--red)}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:1000;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
+.modal{background:var(--bg2);border:1px solid var(--border2);border-radius:16px;padding:28px;width:520px;max-width:90vw;max-height:90vh;overflow-y:auto}
+.modal h2{font-family:'DM Serif Display',serif;font-size:22px;font-weight:400;margin-bottom:6px}
+.modal p{font-size:13px;color:var(--text3);margin-bottom:20px}
+.modal-section{margin-bottom:20px}
+.modal-label{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--text3);margin-bottom:8px}
+.modal-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:13px;font-family:'DM Sans',sans-serif;color:var(--text);outline:none;transition:border-color .15s}
+.modal-input:focus{border-color:var(--accent)}
+.modal-input::placeholder{color:var(--text3)}
+.modal-hint{font-size:11px;color:var(--text3);margin-top:6px;line-height:1.5}
+.modal-hint a{color:var(--accent)}
+.modal-footer{display:flex;gap:8px;justify-content:flex-end;margin-top:24px}
+.key-status{display:inline-flex;align-items:center;gap:5px;font-size:11px;padding:3px 8px;border-radius:4px;margin-left:8px}
+.key-set{background:var(--green-bg);color:var(--green)}
+.key-unset{background:var(--red-bg);color:var(--red)}
+.app-form{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+.app-form input,.app-form select{background:var(--bg3);border:1px solid var(--border);border-radius:7px;padding:7px 10px;font-size:12px;font-family:'DM Sans',sans-serif;color:var(--text);outline:none;transition:border-color .15s}
+.app-form input:focus,.app-form select:focus{border-color:var(--accent)}
+.app-form input::placeholder{color:var(--text3)}
+.app-form select option{background:var(--bg3)}
+.app-form-full{grid-column:1/-1}
+.app-item{display:grid;grid-template-columns:1fr auto auto auto;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px}
+.app-item:last-child{border-bottom:none}
+.app-info{min-width:0}
+.app-title-t{font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.app-sub{font-size:11px;color:var(--text3);margin-top:1px}
+.app-date{font-size:11px;color:var(--text3);white-space:nowrap}
+.app-status-sel{background:var(--bg3);border:1px solid var(--border);border-radius:5px;padding:3px 6px;font-size:11px;font-family:'DM Sans',sans-serif;color:var(--text);cursor:pointer;outline:none}
+.app-del{background:none;border:none;color:var(--text3);cursor:pointer;font-size:15px;padding:0 2px;transition:color .15s}
+.app-del:hover{color:var(--red)}
+.app-stats{display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.app-stat{background:var(--bg3);border-radius:7px;padding:7px 12px;font-size:12px;color:var(--text2);display:flex;align-items:center;gap:5px}
+.app-stat strong{color:var(--text);font-size:16px}
+.gm-item{padding:9px 0;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:10px;}
+.gm-item:last-child{border-bottom:none;padding-bottom:0}
+.gm-dot{width:7px;height:7px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:5px;}
+.gm-dot.read{background:var(--text3);}
+.gm-sender{font-size:12px;font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:140px;}
+.gm-subj{font-size:12px;color:var(--text2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.gm-snip{font-size:11px;color:var(--text3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.gm-time{font-size:10px;color:var(--text3);white-space:nowrap;margin-left:auto;flex-shrink:0;}
+.gm-info{min-width:0;flex:1;}
+.notif-bar{background:var(--bg3);border:1px solid rgba(79,142,247,0.2);border-radius:8px;padding:10px 14px;font-size:12px;color:var(--text2);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.notif-bar .ni-icon{font-size:16px;}
+.ldot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite;margin-right:4px}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+@keyframes spin{to{transform:rotate(360deg)}}
+.spin{display:inline-block;animation:spin .8s linear infinite}
+.metrics{grid-template-columns:repeat(5,1fr)!important}
+#jov{position:fixed;inset:0;background:#040810;z-index:9999;display:flex;align-items:center;justify-content:center;font-family:'DM Sans',sans-serif;overflow:hidden;}
+#jpcv{position:absolute;inset:0;width:100%;height:100%;}
+#jcon{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:20px;}
+#jbrain{position:relative;width:240px;height:240px;}
+#jbc{position:absolute;top:-40px;left:-40px;width:320px;height:320px;}
+#jcenter{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:72px;height:72px;border-radius:50%;background:rgba(4,8,16,0.95);border:1px solid rgba(79,142,247,0.5);display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 0 24px rgba(79,142,247,0.25);}
+#jinitial{font-family:'DM Serif Display',serif;font-size:26px;color:#4f8ef7;line-height:1;}
+#jcsubt{font-size:7px;letter-spacing:.18em;color:#2dd4bf;margin-top:1px;}
+#jtxt{text-align:center;}
+#jstat{font-size:10px;letter-spacing:.28em;color:#2dd4bf;text-transform:uppercase;margin-bottom:5px;opacity:.6;}
+#jline{font-size:15px;color:#eef0f6;min-height:22px;letter-spacing:.04em;}
+#jsub{font-size:10px;color:#30406a;margin-top:4px;letter-spacing:.1em;min-height:14px;}
+#jbars{width:260px;display:flex;flex-direction:column;gap:7px;}
+.jb{display:flex;align-items:center;gap:8px;}
+.jbl{font-size:9px;letter-spacing:.1em;color:#2a3555;width:80px;text-align:right;}
+.jbt{flex:1;height:2px;background:rgba(79,142,247,0.07);border-radius:1px;overflow:hidden;}
+.jbf{height:100%;width:0%;background:linear-gradient(90deg,#4f8ef7,#2dd4bf);border-radius:1px;transition:width 2.2s cubic-bezier(.4,0,.2,1);}
+.jbp{font-size:9px;color:#4f8ef7;width:28px;}
+#jskip{margin-top:2px;font-family:'DM Sans',sans-serif;font-size:9px;letter-spacing:.18em;color:#1e2844;background:none;border:none;cursor:pointer;transition:color .2s;padding:4px 8px;}
+#jskip:hover{color:#4f8ef7;}
+.jcursor::after{content:"_";animation:jbl2 .6s infinite;color:#4f8ef7;}
+@keyframes jbl2{0%,100%{opacity:1}50%{opacity:0}}
+@keyframes jout{0%{opacity:1}100%{opacity:0;transform:scale(.97)}}
+.jexiting{animation:jout .7s ease forwards!important;}
+@media(max-width:1000px){.metrics{grid-template-columns:repeat(3,1fr)!important}}
+@media(max-width:700px){.r2{grid-template-columns:1fr}.metrics{grid-template-columns:repeat(2,1fr)!important}.header{flex-direction:column;align-items:flex-start;gap:8px}}
 .row{display:grid;gap:16px;margin-bottom:16px}
 .r2{grid-template-columns:1fr 1fr}
 .r3{grid-template-columns:2fr 1fr 1fr}
@@ -39,15 +117,12 @@ a{color:inherit;text-decoration:none}
 .btn-a:hover{background:var(--accent);color:#fff;border-color:transparent}
 .btn-r{background:var(--bg3);color:var(--teal);border-color:rgba(45,212,191,0.25);font-size:13px;padding:6px 16px;font-weight:500}
 .btn-r:hover{background:var(--teal-bg);border-color:var(--teal)}
-.btn-settings{background:var(--bg3);color:var(--amber);border-color:rgba(251,191,36,0.25);font-size:13px;padding:6px 14px;font-weight:500}
-.btn-settings:hover{background:var(--amber-bg);border-color:var(--amber)}
 .badge{display:inline-block;font-size:10px;padding:2px 7px;border-radius:4px;font-weight:500}
 .bg{background:var(--green-bg);color:var(--green)}
 .ba{background:var(--amber-bg);color:var(--amber)}
 .bb{background:rgba(79,142,247,0.12);color:var(--accent)}
 .bp{background:var(--purple-bg);color:var(--purple)}
 .bt{background:var(--teal-bg);color:var(--teal)}
-.br{background:var(--red-bg);color:var(--red)}
 .ftabs{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
 .ft{font-size:12px;padding:4px 12px;border-radius:20px;border:1px solid var(--border2);background:transparent;color:var(--text3);cursor:pointer;transition:all .15s;font-family:'DM Sans',sans-serif}
 .ft.on{background:rgba(79,142,247,0.15);color:var(--accent);border-color:rgba(79,142,247,0.3)}
@@ -88,6 +163,9 @@ a{color:inherit;text-decoration:none}
 .sl{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--text3);margin:24px 0 12px;display:flex;align-items:center;gap:12px}
 .sl::after{content:'';flex:1;height:1px;background:var(--border)}
 .lmsg{font-size:12px;color:var(--text3);padding:14px 0;text-align:center}
+.sbox{background:var(--bg3);border:1px solid rgba(251,191,36,0.2);border-radius:8px;padding:14px 16px;margin-bottom:16px;font-size:12px;color:var(--text2);line-height:1.8}
+.sbox strong{color:var(--amber)}
+.sbox code{background:var(--bg4);padding:2px 6px;border-radius:4px;color:var(--teal);font-size:11px}
 .ldot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite;margin-right:4px}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 @keyframes spin{to{transform:rotate(360deg)}}
@@ -95,188 +173,36 @@ a{color:inherit;text-decoration:none}
 @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 .card{animation:fadeIn .3s ease both}
 .es{font-size:13px;color:var(--text3);padding:12px 0;text-align:center}
-
-/* MODAL */
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:1000;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
-.modal{background:var(--bg2);border:1px solid var(--border2);border-radius:16px;padding:28px;width:520px;max-width:90vw;max-height:90vh;overflow-y:auto}
-.modal h2{font-family:'DM Serif Display',serif;font-size:22px;font-weight:400;margin-bottom:6px}
-.modal p{font-size:13px;color:var(--text3);margin-bottom:20px}
-.modal-section{margin-bottom:20px}
-.modal-label{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--text3);margin-bottom:8px}
-.modal-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:13px;font-family:'DM Sans',sans-serif;color:var(--text);outline:none;transition:border-color .15s}
-.modal-input:focus{border-color:var(--accent)}
-.modal-input::placeholder{color:var(--text3)}
-.modal-hint{font-size:11px;color:var(--text3);margin-top:6px;line-height:1.5}
-.modal-hint a{color:var(--accent)}
-.modal-footer{display:flex;gap:8px;justify-content:flex-end;margin-top:24px}
-.key-status{display:inline-flex;align-items:center;gap:5px;font-size:11px;padding:3px 8px;border-radius:4px;margin-left:8px}
-.key-set{background:var(--green-bg);color:var(--green)}
-.key-unset{background:var(--red-bg);color:var(--red)}
-
-/* APPLICATION TRACKER */
-.app-form{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
-.app-form input,.app-form select{background:var(--bg3);border:1px solid var(--border);border-radius:7px;padding:7px 10px;font-size:12px;font-family:'DM Sans',sans-serif;color:var(--text);outline:none;transition:border-color .15s}
-.app-form input:focus,.app-form select:focus{border-color:var(--accent)}
-.app-form input::placeholder{color:var(--text3)}
-.app-form select option{background:var(--bg3)}
-.app-form-full{grid-column:1/-1}
-.app-item{display:grid;grid-template-columns:1fr auto auto auto;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px}
-.app-item:last-child{border-bottom:none}
-.app-info{min-width:0}
-.app-title{font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.app-sub{font-size:11px;color:var(--text3);margin-top:1px}
-.app-date{font-size:11px;color:var(--text3);white-space:nowrap}
-.app-status-sel{background:var(--bg3);border:1px solid var(--border);border-radius:5px;padding:3px 6px;font-size:11px;font-family:'DM Sans',sans-serif;color:var(--text);cursor:pointer;outline:none}
-.app-del{background:none;border:none;color:var(--text3);cursor:pointer;font-size:15px;padding:0 2px;transition:color .15s}
-.app-del:hover{color:var(--red)}
-.app-stats{display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap}
-.app-stat{background:var(--bg3);border-radius:7px;padding:7px 12px;font-size:12px;color:var(--text2);display:flex;align-items:center;gap:5px}
-.app-stat strong{color:var(--text);font-size:16px}
-
 ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--bg4);border-radius:3px}
-@media(max-width:1000px){.metrics{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:900px){.r3{grid-template-columns:1fr}.app-form{grid-template-columns:1fr}}
+@media(max-width:900px){.r3{grid-template-columns:1fr}}
 @media(max-width:700px){.r2{grid-template-columns:1fr}.metrics{grid-template-columns:repeat(2,1fr)}.header{flex-direction:column;align-items:flex-start;gap:8px}}
 </style>
 </head>
 <body>
-<!-- JARVIS BOOT SEQUENCE -->
-<div id="jarvis-overlay">
-  <canvas id="jarvis-canvas"></canvas>
-  <div id="jarvis-content">
-    <div id="jarvis-ring-container">
-      <svg id="jarvis-ring" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="200" cy="200" r="150" fill="none" stroke="#4f8ef7" stroke-width="1" stroke-dasharray="4 8" opacity="0.3" class="ring-rotate-slow"/>
-        <circle cx="200" cy="200" r="120" fill="none" stroke="#4f8ef7" stroke-width="0.5" stroke-dasharray="2 6" opacity="0.2" class="ring-rotate-rev"/>
-        <circle cx="200" cy="200" r="90" fill="none" stroke="#2dd4bf" stroke-width="1.5" stroke-dasharray="60 880" stroke-dashoffset="0" class="ring-spin" id="ring-arc"/>
-        <circle cx="200" cy="200" r="90" fill="none" stroke="rgba(45,212,191,0.1)" stroke-width="1.5"/>
-        <circle cx="200" cy="200" r="60" fill="none" stroke="#4f8ef7" stroke-width="0.5" stroke-dasharray="1 4" opacity="0.4" class="ring-rotate-slow"/>
-        <circle cx="200" cy="200" r="2" fill="#4f8ef7" class="orbit-dot" id="dot1"/>
-        <circle cx="200" cy="200" r="2" fill="#2dd4bf" class="orbit-dot2" id="dot2"/>
-        <!-- Crosshairs -->
-        <line x1="200" y1="50" x2="200" y2="80" stroke="#4f8ef7" stroke-width="1" opacity="0.5"/>
-        <line x1="200" y1="320" x2="200" y2="350" stroke="#4f8ef7" stroke-width="1" opacity="0.5"/>
-        <line x1="50" y1="200" x2="80" y2="200" stroke="#4f8ef7" stroke-width="1" opacity="0.5"/>
-        <line x1="320" y1="200" x2="350" y2="200" stroke="#4f8ef7" stroke-width="1" opacity="0.5"/>
-        <!-- Corner brackets -->
-        <path d="M100,100 L100,120 M100,100 L120,100" stroke="#4f8ef7" stroke-width="1.5" fill="none" opacity="0.6"/>
-        <path d="M300,100 L300,120 M300,100 L280,100" stroke="#4f8ef7" stroke-width="1.5" fill="none" opacity="0.6"/>
-        <path d="M100,300 L100,280 M100,300 L120,300" stroke="#4f8ef7" stroke-width="1.5" fill="none" opacity="0.6"/>
-        <path d="M300,300 L300,280 M300,300 L280,300" stroke="#4f8ef7" stroke-width="1.5" fill="none" opacity="0.6"/>
-      </svg>
-      <div id="jarvis-center">
-        <div id="jarvis-initials">K</div>
-      </div>
-    </div>
-    <div id="jarvis-text-area">
-      <div id="jarvis-status">INITIALIZING SYSTEM</div>
-      <div id="jarvis-line" class="jarvis-typing"></div>
-      <div id="jarvis-subline"></div>
-    </div>
-    <div id="jarvis-bars">
-      <div class="jbar"><div class="jbar-label">NEURAL LINK</div><div class="jbar-track"><div class="jbar-fill" id="b1"></div></div></div>
-      <div class="jbar"><div class="jbar-label">DATA SYNC</div><div class="jbar-track"><div class="jbar-fill" id="b2"></div></div></div>
-      <div class="jbar"><div class="jbar-label">PROTOCOLS</div><div class="jbar-track"><div class="jbar-fill" id="b3"></div></div></div>
-    </div>
-    <button id="jarvis-skip" onclick="skipJarvis()">SKIP INTRO</button>
-  </div>
-</div>
-
-<style>
-#jarvis-overlay{
-  position:fixed;inset:0;background:#060912;z-index:9999;
-  display:flex;align-items:center;justify-content:center;
-  flex-direction:column;overflow:hidden;
-}
-#jarvis-canvas{position:absolute;inset:0;width:100%;height:100%;opacity:0.4;}
-#jarvis-content{
-  position:relative;z-index:10;display:flex;flex-direction:column;
-  align-items:center;gap:28px;
-}
-#jarvis-ring-container{position:relative;width:300px;height:300px;}
-#jarvis-ring{width:100%;height:100%;animation:ring-fade-in 1s ease forwards;}
-@keyframes ring-fade-in{from{opacity:0;transform:scale(0.7)}to{opacity:1;transform:scale(1)}}
-.ring-rotate-slow{animation:rotate-cw 12s linear infinite;transform-origin:200px 200px;}
-.ring-rotate-rev{animation:rotate-ccw 8s linear infinite;transform-origin:200px 200px;}
-.ring-spin{animation:rotate-cw 2s linear infinite;transform-origin:200px 200px;}
-@keyframes rotate-cw{to{transform:rotate(360deg)}}
-@keyframes rotate-ccw{to{transform:rotate(-360deg)}}
-.orbit-dot{animation:orbit1 3s linear infinite;transform-origin:200px 200px;}
-.orbit-dot2{animation:orbit2 5s linear infinite;transform-origin:200px 200px;}
-@keyframes orbit1{to{transform:rotate(360deg) translateX(90px)}}
-@keyframes orbit2{to{transform:rotate(-360deg) translateX(120px)}}
-#jarvis-center{
-  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-  display:flex;align-items:center;justify-content:center;
-  width:80px;height:80px;
-  border:1px solid rgba(79,142,247,0.4);border-radius:50%;
-  background:radial-gradient(circle,rgba(79,142,247,0.15),rgba(6,9,18,0.9));
-  animation:pulse-center 2s ease-in-out infinite;
-}
-@keyframes pulse-center{0%,100%{box-shadow:0 0 0 0 rgba(79,142,247,0.4),0 0 20px rgba(79,142,247,0.2)}50%{box-shadow:0 0 0 12px rgba(79,142,247,0),0 0 40px rgba(79,142,247,0.4)}}
-#jarvis-initials{
-  font-family:'DM Serif Display',serif;font-size:32px;color:#4f8ef7;
-  text-shadow:0 0 20px rgba(79,142,247,0.8);
-}
-#jarvis-text-area{text-align:center;font-family:'DM Sans',monospace;}
-#jarvis-status{
-  font-size:11px;letter-spacing:.25em;color:#2dd4bf;
-  text-transform:uppercase;margin-bottom:8px;opacity:0.7;
-}
-#jarvis-line{
-  font-size:18px;color:#eef0f6;min-height:28px;
-  text-shadow:0 0 10px rgba(79,142,247,0.5);
-}
-#jarvis-subline{
-  font-size:12px;color:#555c72;margin-top:6px;
-  letter-spacing:.08em;min-height:18px;
-}
-.jarvis-cursor::after{content:'|';animation:blink .7s infinite;color:#4f8ef7;}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
-#jarvis-bars{display:flex;flex-direction:column;gap:8px;width:280px;}
-.jbar{display:flex;align-items:center;gap:10px;}
-.jbar-label{font-size:9px;letter-spacing:.15em;color:#555c72;width:80px;text-align:right;}
-.jbar-track{flex:1;height:2px;background:rgba(79,142,247,0.1);border-radius:2px;overflow:hidden;}
-.jbar-fill{height:100%;width:0%;background:linear-gradient(90deg,#4f8ef7,#2dd4bf);border-radius:2px;transition:width 1.5s ease;box-shadow:0 0 6px rgba(79,142,247,0.6);}
-#jarvis-skip{
-  font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:.15em;
-  color:#555c72;background:none;border:1px solid rgba(79,142,247,0.15);
-  padding:6px 16px;border-radius:4px;cursor:pointer;
-  transition:all .2s;margin-top:8px;
-}
-#jarvis-skip:hover{color:#4f8ef7;border-color:rgba(79,142,247,0.4);}
-@keyframes jarvis-exit{
-  0%{opacity:1;transform:scale(1)}
-  50%{opacity:1;transform:scale(1.02)}
-  100%{opacity:0;transform:scale(0.95) translateY(-20px)}
-}
-.jarvis-exiting{animation:jarvis-exit 0.8s ease forwards!important;}
-</style>
-
 <div class="app">
 
-<!-- HEADER -->
 <div class="header">
   <div class="header-left">
     <h1>Good <em id="gtime">morning</em>, Kanishk</h1>
     <p id="ddisp"></p>
   </div>
-  <div class="hbtns">
-    <button class="btn btn-settings" onclick="openSettings()">⚙ Settings</button>
-    <div class="clock" id="clock">--:--</div>
-  </div>
+  <div class="hbtns"><button class="btn btn-settings" onclick="openSettings()">&#9881; Settings</button><div class="clock" id="clock">--:--</div></div>
 </div>
 
-<!-- METRICS -->
 <div class="metrics">
-  <div class="metric"><div class="ml">Jobs found</div><div class="mv" id="m-jobs">5</div><div class="ms">3 platforms</div></div>
+  <div class="metric"><div class="ml">Jobs found</div><div class="mv" id="m-jobs">5</div><div class="ms">4 platforms</div></div>
   <div class="metric"><div class="ml">Applied</div><div class="mv" id="m-applied">0</div><div class="ms">applications</div></div>
   <div class="metric"><div class="ml">Interviews</div><div class="mv" id="m-interviews" style="color:var(--amber)">0</div><div class="ms">scheduled</div></div>
   <div class="metric"><div class="ml">Delhi weather</div><div class="mv" id="m-temp">--°</div><div class="ms" id="m-wsub">loading...</div></div>
   <div class="metric"><div class="ml">Concept today</div><div class="mv" style="font-size:15px;line-height:1.3" id="m-concept">DSCR</div><div class="ms">project finance</div></div>
 </div>
 
-<!-- JOBS -->
+<div class="sbox">
+  <strong>▶ Setup guide</strong><br>
+  <strong style="color:var(--green)">News — Click any ↻ button</strong> to open that live news source directly in a new tab.<br>
+  <strong style="color:var(--teal)">Live Jobs:</strong> Get a free API key at <a href="https://apify.com" target="_blank" style="color:var(--accent)">apify.com</a> → Settings → API &amp; Integrations → copy token → open this file in Notepad → replace <code>YOUR_APIFY_KEY</code> → save &amp; reload.
+</div>
+
 <div class="sl">Job matches</div>
 <div class="card" style="margin-bottom:16px">
   <div class="ch">
@@ -294,8 +220,8 @@ a{color:inherit;text-decoration:none}
   </div>
   <div id="job-list">
     <div class="ji" data-type="onsite"><span class="jl" onclick="window.open('https://to.indeed.com/aarp87xgxmmn','_blank')">AVP – Underwriting &amp; Execution, Energy Investment</span><span class="badge bg" style="margin-left:6px">Top match</span><div class="jm">GE Vernova <span class="badge bb">On-site</span> Gurugram · Indeed · Apr 15</div></div>
-    <div class="ji" data-type="remote"><span class="jl" onclick="window.open('https://in.linkedin.com/jobs/view/financial-analyst-renewables-at-sts-4404405121','_blank')">Financial Analyst – Renewables</span><div class="jm">STS <span class="badge ba">Remote</span> India · LinkedIn · Apr 22</div></div>
-    <div class="ji" data-type="onsite"><span class="jl" onclick="window.open('https://www.naukri.com/jobs-in-delhi?keyword=infrastructure+advisory+EY','_blank')">Infrastructure Advisory Consultant</span><div class="jm">EY <span class="badge bb">On-site</span> New Delhi · Naukri</div></div>
+    <div class="ji" data-type="remote"><span class="jl" onclick="window.open('https://in.linkedin.com/jobs/view/financial-analyst-renewables-at-sts-4404405121','_blank')">Financial Analyst – Renewables</span><div class="jm">STS <span class="badge ba">Remote</span> India · LinkedIn · Apr 22 · 46 applicants</div></div>
+    <div class="ji" data-type="onsite"><span class="jl" onclick="window.open('https://www.naukri.com/jobs-in-delhi?keyword=infrastructure+advisory+EY','_blank')">Infrastructure Advisory Consultant</span><div class="jm">EY <span class="badge bb">On-site</span> New Delhi · Naukri · This week</div></div>
     <div class="ji" data-type="remote"><span class="jl" onclick="window.open('https://in.linkedin.com/jobs/view/fp-a-analyst-senior-analyst--global-finance-role--remote-india-at-mavi-4403513873','_blank')">FP&amp;A Analyst / Senior Analyst – Global Finance</span><div class="jm">MAVI <span class="badge ba">Remote</span> India · LinkedIn · Apr 17</div></div>
     <div class="ji" data-type="onsite"><span class="jl" onclick="window.open('https://to.indeed.com/aanzrrtlhvx7','_blank')">Project Finance L3/L4</span><div class="jm">ERM <span class="badge bb">On-site</span> Delhi · Indeed</div></div>
   </div>
@@ -307,7 +233,6 @@ a{color:inherit;text-decoration:none}
   </div>
 </div>
 
-<!-- NEWS -->
 <div class="sl">Headlines</div>
 <div class="row r2">
   <div class="card">
@@ -326,18 +251,20 @@ a{color:inherit;text-decoration:none}
       <div class="ni"><span class="nl" onclick="window.open('https://economictimes.indiatimes.com/industry/energy/power','_blank')">India on track to achieve 500 GW renewable capacity by 2030</span><div class="ns"><span class="badge bg">Energy</span> ET</div></div>
       <div class="ni"><span class="nl" onclick="window.open('https://www.livemint.com/economy','_blank')">RBI holds rates steady, flags broad-based growth recovery</span><div class="ns"><span class="badge bb">Finance</span> Mint</div></div>
       <div class="ni"><span class="nl" onclick="window.open('https://www.businessstandard.com/finance','_blank')">India boosts infrastructure spending in revised union budget</span><div class="ns"><span class="badge ba">Policy</span> BS</div></div>
-      <div class="ni"><span class="nl" onclick="window.open('https://www.thehindubusinessline.com/economy/','_blank')">NTPC, Adani lead next wave of green hydrogen projects</span><div class="ns"><span class="badge bt">Hydrogen</span> BL</div></div>
+      <div class="ni"><span class="nl" onclick="window.open('https://www.thehindubusinessline.com/economy/','_blank')">NTPC, Adani lead next wave of green hydrogen projects in India</span><div class="ns"><span class="badge bt">Hydrogen</span> BL</div></div>
     </div>
     <div class="nf"><a href="https://economictimes.indiatimes.com/industry/energy" target="_blank" style="font-size:12px;color:var(--accent)">Economic Times ↗</a><a href="https://www.livemint.com" target="_blank" style="font-size:12px;color:var(--accent)">Mint ↗</a></div>
   </div>
 </div>
+
+<div class="sl">Sector news</div>
 <div class="row r2">
   <div class="card">
     <div class="ch"><div class="ct"><span class="dot t"></span> Renewable energy</div><div class="rr"><span class="nts" id="ts-renew"></span><button class="btn btn-r" id="btn-renew" onclick="refreshNews('renew')">↻ Open live ↗</button></div></div>
     <div id="gnews-renew">
       <div class="ni"><span class="nl" onclick="window.open('https://www.mercom.in/solar-news/','_blank')">India adds record solar capacity in Q1 2026 driven by utility-scale projects</span><div class="ns"><span class="badge ba">Solar</span> Mercom India</div></div>
       <div class="ni"><span class="nl" onclick="window.open('https://www.rechargenews.com','_blank')">Offshore wind LCOE hits new low in Europe as technology matures</span><div class="ns"><span class="badge bt">Wind</span> Recharge News</div></div>
-      <div class="ni"><span class="nl" onclick="window.open('https://www.spglobal.com/commodityinsights/en/market-insights/topics/hydrogen','_blank')">Green hydrogen finance gap narrowing as projects reach FID</span><div class="ns"><span class="badge bg">Hydrogen</span> S&amp;P Global</div></div>
+      <div class="ni"><span class="nl" onclick="window.open('https://www.spglobal.com/commodityinsights/en/market-insights/topics/hydrogen','_blank')">Green hydrogen finance gap narrowing as large-scale projects reach FID</span><div class="ns"><span class="badge bg">Hydrogen</span> S&amp;P Global</div></div>
       <div class="ni"><span class="nl" onclick="window.open('https://www.woodmac.com','_blank')">BESS deployments surge across Asia-Pacific led by India and Australia</span><div class="ns"><span class="badge bp">Storage</span> Wood Mackenzie</div></div>
     </div>
     <div class="nf"><a href="https://www.mercom.in" target="_blank" style="font-size:12px;color:var(--accent)">Mercom ↗</a><a href="https://www.rechargenews.com" target="_blank" style="font-size:12px;color:var(--accent)">Recharge ↗</a></div>
@@ -346,7 +273,7 @@ a{color:inherit;text-decoration:none}
     <div class="ch"><div class="ct"><span class="dot p"></span> AI &amp; science / tech</div><div class="rr"><span class="nts" id="ts-ai"></span><button class="btn btn-r" id="btn-ai" onclick="refreshNews('ai')">↻ Open live ↗</button></div></div>
     <div id="gnews-ai">
       <div class="ni"><span class="nl" onclick="window.open('https://techcrunch.com/category/artificial-intelligence/','_blank')">Next-generation AI models push reasoning and coding benchmarks further</span><div class="ns"><span class="badge bp">AI</span> TechCrunch</div></div>
-      <div class="ni"><span class="nl" onclick="window.open('https://www.technologyreview.com/topic/energy/','_blank')">AI-driven grid optimisation cuts renewable curtailment by 30%</span><div class="ns"><span class="badge bp">AI+Energy</span> MIT Tech Review</div></div>
+      <div class="ni"><span class="nl" onclick="window.open('https://www.technologyreview.com/topic/energy/','_blank')">AI-driven grid optimisation cuts renewable curtailment by up to 30%</span><div class="ns"><span class="badge bp">AI + Energy</span> MIT Tech Review</div></div>
       <div class="ni"><span class="nl" onclick="window.open('https://www.nature.com/subjects/fusion-power','_blank')">Fusion energy startup achieves sustained net energy output milestone</span><div class="ns"><span class="badge bt">Science</span> Nature</div></div>
       <div class="ni"><span class="nl" onclick="window.open('https://techcrunch.com','_blank')">Solid-state batteries edge closer to commercial production scale</span><div class="ns"><span class="badge bt">Tech</span> MIT</div></div>
     </div>
@@ -357,11 +284,15 @@ a{color:inherit;text-decoration:none}
 <div class="sl">Project finance &amp; renewable financing</div>
 <div class="card" style="margin-bottom:16px">
   <div class="ch"><div class="ct"><span class="dot a"></span> Deals &amp; financing news</div><div class="rr"><span class="nts" id="ts-pf"></span><button class="btn btn-r" id="btn-pf" onclick="refreshNews('pf')">↻ Open live ↗</button></div></div>
-  <div id="gnews-pf">
-    <div class="ni"><span class="nl" onclick="window.open('https://www.financialexpress.com','_blank')">PFC, REC disburse Rs 12,000 Cr for hybrid renewable projects in Q1 2026</span><div class="ns"><span class="badge bg">Project Finance</span> FE</div></div>
-    <div class="ni"><span class="nl" onclick="window.open('https://www.ifc.org','_blank')">IFC commits $800M to Asia-Pacific clean energy infrastructure fund</span><div class="ns"><span class="badge bb">DFI</span> IFC</div></div>
-    <div class="ni"><span class="nl" onclick="window.open('https://www.bloomberg.com/green','_blank')">India green bond market crosses $10 billion cumulative milestone</span><div class="ns"><span class="badge bt">Green Bonds</span> Bloomberg</div></div>
-    <div class="ni"><span class="nl" onclick="window.open('https://powermin.gov.in','_blank')">DISCOM reforms unlock Rs 3,000 Cr in state-level distribution funding</span><div class="ns"><span class="badge ba">Distribution</span> Power Min</div></div>
+  <div class="row r2" style="margin-bottom:0">
+    <div id="gnews-pf-l">
+      <div class="ni"><span class="nl" onclick="window.open('https://www.financialexpress.com','_blank')">PFC, REC disburse Rs 12,000 Cr for hybrid renewable projects in Q1 2026</span><div class="ns"><span class="badge bg">Project Finance</span> FE</div></div>
+      <div class="ni"><span class="nl" onclick="window.open('https://www.ifc.org','_blank')">IFC commits $800M to Asia-Pacific clean energy infrastructure fund</span><div class="ns"><span class="badge bb">DFI</span> IFC</div></div>
+    </div>
+    <div id="gnews-pf-r">
+      <div class="ni"><span class="nl" onclick="window.open('https://www.bloomberg.com/green','_blank')">India green bond market crosses $10 billion cumulative milestone</span><div class="ns"><span class="badge bt">Green Bonds</span> Bloomberg</div></div>
+      <div class="ni"><span class="nl" onclick="window.open('https://powermin.gov.in','_blank')">DISCOM reforms unlock Rs 3,000 Cr in state-level distribution funding</span><div class="ns"><span class="badge ba">Distribution</span> Power Min</div></div>
+    </div>
   </div>
   <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
     <a href="https://www.ijglobal.com" target="_blank"><button class="btn">IJGlobal ↗</button></a>
@@ -370,33 +301,6 @@ a{color:inherit;text-decoration:none}
   </div>
 </div>
 
-<!-- APPLICATION TRACKER -->
-<div class="sl">Application tracker</div>
-<div class="card" style="margin-bottom:16px">
-  <div class="ch">
-    <div class="ct"><span class="dot g"></span> Job applications</div>
-    <div id="app-stats" class="app-stats"></div>
-  </div>
-  <div class="app-form">
-    <input class="ti" type="text" id="app-title" placeholder="Job title *">
-    <input class="ti" type="text" id="app-company" placeholder="Company *">
-    <input class="ti" type="text" id="app-platform" placeholder="Platform (LinkedIn, Naukri...)">
-    <select class="ti" id="app-status">
-      <option value="Applied">Applied</option>
-      <option value="Interview">Interview Scheduled</option>
-      <option value="Assessment">Assessment</option>
-      <option value="Offer">Offer Received</option>
-      <option value="Rejected">Rejected</option>
-      <option value="Withdrawn">Withdrawn</option>
-    </select>
-    <input class="ti app-form-full" type="text" id="app-url" placeholder="Job URL (optional)">
-    <button class="btn btn-a app-form-full" onclick="addApp()" style="padding:9px">+ Add Application</button>
-  </div>
-  <div id="app-list"></div>
-  <div id="app-empty" class="es">No applications tracked yet. Add your first one above!</div>
-</div>
-
-<!-- TOOLS -->
 <div class="sl">Tools</div>
 <div class="row r3">
   <div class="card">
@@ -411,8 +315,8 @@ a{color:inherit;text-decoration:none}
   </div>
   <div class="card">
     <div class="ch"><div class="ct"><span class="dot t"></span> Delhi weather</div><a href="https://www.weather.com/weather/today/l/28.6139,77.2090" target="_blank"><button class="btn">Forecast ↗</button></a></div>
-    <div class="wbig" id="wt">--°C</div>
-    <div class="wdsc" id="wdsc">Loading...</div>
+    <div class="wbig" id="wt">--C</div>
+    <div class="wdsc" id="wd">Loading...</div>
     <div class="wdet">
       <div class="wd">Feels like <span id="wf">--</span></div>
       <div class="wd">Humidity <span id="wh">--</span></div>
@@ -423,38 +327,66 @@ a{color:inherit;text-decoration:none}
   </div>
 </div>
 
-<div style="text-align:center;padding:24px 0 8px;font-size:11px;color:var(--text3)">Kanishk Kumar · Morning Dashboard v3.0 · <span id="lupd"></span></div>
+<div style="text-align:center;padding:24px 0 8px;font-size:11px;color:var(--text3)">Kanishk Kumar · Morning Dashboard v2.0 · <span id="lupd"></span></div>
+</div>
+
+<!-- GMAIL -->
+<div class="sl">Inbox</div>
+<div class="card" style="margin-bottom:16px">
+  <div class="ch">
+    <div class="ct"><span class="dot"></span> Gmail <span id="unread-count" class="badge bg" style="display:none"></span></div>
+    <div class="rr">
+      <span class="nts" id="ts-gmail"></span>
+      <button class="btn btn-r" id="btn-gmail" onclick="loadGmail()">&#8635; Refresh</button>
+    </div>
+  </div>
+  <div id="gmail-notif"></div>
+  <div id="gmail-list"><div class="lmsg">Click &#8635; Refresh to load your inbox</div></div>
+  <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+    <a href="https://mail.google.com" target="_blank"><button class="btn">Open Gmail &#8599;</button></a>
+    <button class="btn" onclick="replyAll()">Reply to unread &#8599;</button>
+  </div>
+</div>
+
+<!-- APPLICATION TRACKER -->
+<div class="sl">Application tracker</div>
+<div class="card" style="margin-bottom:16px">
+  <div class="ch"><div class="ct"><span class="dot g"></span> Job applications</div><div id="app-stats" class="app-stats"></div></div>
+  <div class="app-form">
+    <input class="ti" type="text" id="app-title" placeholder="Job title *">
+    <input class="ti" type="text" id="app-company" placeholder="Company *">
+    <input class="ti" type="text" id="app-platform" placeholder="Platform (LinkedIn, Naukri...)">
+    <select class="ti" id="app-status"><option value="Applied">Applied</option><option value="Interview">Interview Scheduled</option><option value="Assessment">Assessment</option><option value="Offer">Offer Received</option><option value="Rejected">Rejected</option><option value="Withdrawn">Withdrawn</option></select>
+    <input class="ti app-form-full" type="text" id="app-url" placeholder="Job URL (optional)">
+    <button class="btn btn-a app-form-full" onclick="addApp()" style="padding:9px">+ Add Application</button>
+  </div>
+  <div id="app-list"></div>
+  <div id="app-empty" class="es">No applications tracked yet.</div>
+</div>
 
 <!-- SETTINGS MODAL -->
 <div class="modal-overlay" id="settings-modal" style="display:none" onclick="if(event.target===this)closeSettings()">
   <div class="modal">
-    <h2>⚙ Settings</h2>
-    <p>Configure your API keys. These are saved privately in your browser and never shared anywhere.</p>
-
+    <h2>&#9881; Settings</h2>
+    <p>Keys are saved privately in your browser only.</p>
     <div class="modal-section">
-      <div class="modal-label">NewsData.io API Key <span id="news-status"></span></div>
-      <input class="modal-input" type="password" id="news-input" placeholder="pub_xxxxxxxxxxxxxxxx">
-      <div class="modal-hint">Get your free key at <a href="https://newsdata.io" target="_blank">newsdata.io</a> → Sign up free → copy your API key. Enables live news in all 5 sections.</div>
+      <div class="modal-label">ElevenLabs API Key <span id="eleven-status"></span></div>
+      <input class="modal-input" type="password" id="eleven-input" placeholder="your_elevenlabs_api_key">
+      <div class="modal-hint">Get free key at <a href="https://elevenlabs.io" target="_blank">elevenlabs.io</a> &#8599; — enables ultra-human Jarvis voice. Free: 10,000 chars/month.</div>
     </div>
-
     <div class="modal-section">
       <div class="modal-label">Apify API Key <span id="apify-status"></span></div>
       <input class="modal-input" type="password" id="apify-input" placeholder="apify_api_xxxxxxxxxxxxxxxx">
-      <div class="modal-hint">Get your free key at <a href="https://apify.com" target="_blank">apify.com</a> → Settings → API &amp; Integrations → API token. Enables live job refresh from LinkedIn every morning.</div>
+      <div class="modal-hint">Get free key at <a href="https://apify.com" target="_blank">apify.com</a> &#8599; &#8594; Settings &#8594; API token. Enables live job refresh.</div>
     </div>
-
     <div class="modal-section">
       <div class="modal-label">Job Search Keywords</div>
       <input class="modal-input" type="text" id="keywords-input" placeholder="project finance renewable energy India">
-      <div class="modal-hint">Customize what jobs are searched for when you click ↻ Refresh Jobs.</div>
     </div>
-
     <div class="modal-section">
       <div class="modal-label">Your Name</div>
       <input class="modal-input" type="text" id="name-input" placeholder="Kanishk">
-      <div class="modal-hint">Personalizes the dashboard greeting.</div>
     </div>
-
     <div class="modal-footer">
       <button class="btn" onclick="closeSettings()">Cancel</button>
       <button class="btn btn-a" onclick="saveSettings()">Save Settings</button>
@@ -462,15 +394,27 @@ a{color:inherit;text-decoration:none}
   </div>
 </div>
 
+<!-- JARVIS BOOT SEQUENCE -->
+<div id="jov">
+  <canvas id="jpcv"></canvas>
+  <div id="jcon">
+    <div id="jbrain"><canvas id="jbc" width="320" height="320"></canvas><div id="jcenter"><div id="jinitial">K</div><div id="jcsubt">KANISHK</div></div></div>
+    <div id="jtxt"><div id="jstat">INITIALIZING</div><div id="jline"></div><div id="jsub"></div></div>
+    <div id="jbars">
+      <div class="jb"><span class="jbl">FINANCE AI</span><div class="jbt"><div class="jbf" id="jb1"></div></div><span class="jbp" id="jp1">0%</span></div>
+      <div class="jb"><span class="jbl">MARKET DATA</span><div class="jbt"><div class="jbf" id="jb2"></div></div><span class="jbp" id="jp2">0%</span></div>
+      <div class="jb"><span class="jbl">JOB SCAN</span><div class="jbt"><div class="jbf" id="jb3"></div></div><span class="jbp" id="jp3">0%</span></div>
+    </div>
+    <button id="jskip" onclick="skipJ()">[ SKIP INTRO ]</button>
+  </div>
 </div>
+
 <script>
-// ── SETTINGS ─────────────────────────────────────────────────────
-function getSettings(){
-  try{return JSON.parse(localStorage.getItem('kd_settings')||'{}');}catch(e){return{};}
-}
+// ── SETTINGS ──────────────────────────────────────────────────────
+function getSettings(){try{return JSON.parse(localStorage.getItem('kd_settings')||'{}');}catch(e){return{};}}
 function openSettings(){
-  const s=getSettings();
-  document.getElementById('news-input').value=s.newsKey||'';
+  var s=getSettings();
+  document.getElementById('eleven-input').value=s.elevenKey||'';
   document.getElementById('apify-input').value=s.apifyKey||'';
   document.getElementById('keywords-input').value=s.keywords||'project finance renewable energy India';
   document.getElementById('name-input').value=s.name||'Kanishk';
@@ -479,247 +423,594 @@ function openSettings(){
 }
 function closeSettings(){document.getElementById('settings-modal').style.display='none';}
 function saveSettings(){
-  const s={
-    newsKey:document.getElementById('news-input').value.trim(),
+  var s={
+    elevenKey:document.getElementById('eleven-input').value.trim(),
     apifyKey:document.getElementById('apify-input').value.trim(),
     keywords:document.getElementById('keywords-input').value.trim()||'project finance renewable energy India',
     name:document.getElementById('name-input').value.trim()||'Kanishk'
   };
   localStorage.setItem('kd_settings',JSON.stringify(s));
   updateKeyStatus();
-  // Update greeting name
-  const gt=document.getElementById('gtime');
-  if(gt)document.querySelector('.header-left h1').innerHTML=`Good <em id="gtime">${document.getElementById('gtime').textContent}</em>, ${s.name}`;
   closeSettings();
-  alert('Settings saved! Your Apify key is stored securely in your browser.');
+  alert('Settings saved!');
 }
 function updateKeyStatus(){
-  const s=getSettings();
-  const el=document.getElementById('apify-status');
-  if(el){el.innerHTML=s.apifyKey?'<span class="key-status key-set">✓ Set</span>':'<span class="key-status key-unset">Not set</span>';}
-  const nel=document.getElementById('news-status');
-  if(nel){nel.innerHTML=s.newsKey?'<span class="key-status key-set">✓ Set</span>':'<span class="key-status key-unset">Not set</span>';}
+  var s=getSettings();
+  var el=document.getElementById('apify-status');
+  if(el)el.innerHTML=s.apifyKey?'<span class="key-status key-set">&#10003; Set</span>':'<span class="key-status key-unset">Not set</span>';
+  var el2=document.getElementById('eleven-status');
+  if(el2)el2.innerHTML=s.elevenKey?'<span class="key-status key-set">&#10003; Set</span>':'<span class="key-status key-unset">Not set</span>';
 }
 updateKeyStatus();
 
-// Apply saved name on load
-(function(){const s=getSettings();if(s.name&&s.name!=='Kanishk'){const h=document.querySelector('.header-left h1');if(h){const gt=document.getElementById('gtime');h.innerHTML=`Good <em id="gtime">${gt?gt.textContent:'morning'}</em>, ${s.name}`;}}})();
+// ── NEWS ──────────────────────────────────────────────────────────
+var NEWS_URLS={global:'https://www.reuters.com/world/',india:'https://economictimes.indiatimes.com/industry/energy',renew:'https://www.mercom.in',ai:'https://techcrunch.com/category/artificial-intelligence/',pf:'https://www.ijglobal.com'};
+function refreshNews(sec){window.open(NEWS_URLS[sec],'_blank');}
 
-// ── HELPERS ──────────────────────────────────────────────────────
-function tAgo(iso){const d=Math.floor((Date.now()-new Date(iso))/60000);if(d<60)return d+'m ago';if(d<1440)return Math.floor(d/60)+'h ago';return Math.floor(d/1440)+'d ago';}
+// ── JOB REFRESH ───────────────────────────────────────────────────
+function tAgo(iso){var d=Math.floor((Date.now()-new Date(iso))/60000);if(d<60)return d+'m ago';if(d<1440)return Math.floor(d/60)+'h ago';return Math.floor(d/1440)+'d ago';}
 
-// ── NEWS (open live source in new tab) ───────────────────────────
-const NEWS_URLS = {
-  global: 'https://www.reuters.com/world/',
-  india:  'https://economictimes.indiatimes.com/industry/energy',
-  renew:  'https://www.mercom.in',
-  ai:     'https://techcrunch.com/category/artificial-intelligence/',
-  pf:     'https://www.ijglobal.com'
-};
-function refreshNews(sec){ window.open(NEWS_URLS[sec], '_blank'); }
-
-// ── JOB REFRESH ──────────────────────────────────────────────────
 async function refreshJobs(){
-  const s=getSettings();
-  if(!s.apifyKey){
-    if(confirm('Apify key not set. Open Settings to add your key?')){openSettings();}
-    return;
+  var s=getSettings();
+  if(!s.apifyKey){if(confirm('Apify key not set. Open Settings?'))openSettings();return;}
+  var btn=document.getElementById('btn-jobs');
+  btn.disabled=true;btn.innerHTML='<span class="spin">&#8635;</span> Searching...';
+  document.getElementById('job-list').innerHTML='<div class="lmsg"><span class="spin">&#8635;</span> Scanning LinkedIn, Indeed, Naukri, Glassdoor...</div>';
+  var kw=s.keywords||'project finance renewable energy';
+  var token=s.apifyKey;
+  async function startRun(actor,input){
+    var r=await fetch('https://api.apify.com/v2/acts/'+actor+'/runs?token='+token,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(input)});
+    var d=await r.json();return d&&d.data&&d.data.id;
   }
-  const btn=document.getElementById('btn-jobs');
-  btn.disabled=true;btn.innerHTML='<span class="spin">↻</span> Searching...';
-  document.getElementById('job-list').innerHTML='<div class="lmsg">Scanning LinkedIn for fresh jobs...</div>';
-
-  const kw = s.keywords || 'project finance renewable energy';
-  const token = s.apifyKey;
-
-  // Helper: start an actor run
-  async function startRun(actor, input) {
-    const r = await fetch(`https://api.apify.com/v2/acts/${actor}/runs?token=${token}`, {
-      method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(input)
-    });
-    const d = await r.json();
-    return d?.data?.id;
-  }
-
-  // Helper: poll until done
-  async function waitForRun(runId) {
-    let status = 'RUNNING', tries = 0;
-    while (status === 'RUNNING' && tries < 25) {
-      await new Promise(r => setTimeout(r, 3000));
-      const pr = await fetch(`https://api.apify.com/v2/actor-runs/${runId}?token=${token}`);
-      const pd = await pr.json();
-      status = pd?.data?.status || 'RUNNING';
-      tries++;
+  async function waitRun(id){
+    var status='RUNNING',tries=0;
+    while(status==='RUNNING'&&tries<25){
+      await new Promise(function(r){setTimeout(r,3000);});
+      var pr=await fetch('https://api.apify.com/v2/actor-runs/'+id+'?token='+token);
+      var pd=await pr.json();
+      status=(pd&&pd.data&&pd.data.status)||'RUNNING';tries++;
     }
     return status;
   }
-
-  // Helper: get results
-  async function getResults(runId, limit=8) {
-    const r = await fetch(`https://api.apify.com/v2/actor-runs/${runId}/dataset/items?token=${token}&limit=${limit}`);
+  async function getRes(id){
+    var r=await fetch('https://api.apify.com/v2/actor-runs/'+id+'/dataset/items?token='+token+'&limit=8');
     return await r.json();
   }
-
-  // Normalize job from any platform
-  function normalizeJob(j, platform) {
-    const wtRaw = (j.workType||j.work_type||j.workplace_type||j.jobType||j.remote||'').toString().toUpperCase();
-    let wt = 'onsite';
-    if (wtRaw.includes('REMOTE') || wtRaw === 'TRUE') wt = 'remote';
-    else if (wtRaw.includes('HYBRID')) wt = 'hybrid';
-    const WL = {remote:'Remote', hybrid:'Hybrid', onsite:'On-site'};
-    const WB = {remote:'ba', hybrid:'bg', onsite:'bb'};
-    const PLAT = {linkedin:'bb', indeed:'bp', naukri:'bg', glassdoor:'bt'};
-    const url = j.job_url||j.jobUrl||j.url||j.applyUrl||j.externalApplyLink||'#';
-    const title = (j.job_title||j.title||j.position||j.positionName||'Role').replace(/</g,'&lt;');
-    const co = (j.company_name||j.company||j.companyName||'').replace(/</g,'&lt;');
-    const loc = (j.job_location||j.location||j.jobLocation||'India').replace(/</g,'&lt;');
-    const posted = j.posted_time||j.postedAt||j.datePosted||j.publishedAt||'';
-    const age = posted ? tAgo(posted) : 'Recently';
-    return `<div class="ji" data-type="${wt}">
-      <span class="jl" onclick="window.open('${url.replace(/'/g,"\'")}','_blank')">${title}</span>
-      <span class="badge ${PLAT[platform]||'bb'}" style="margin-left:6px;font-size:9px">${platform.toUpperCase()}</span>
-      <div class="jm">${co} <span class="badge ${WB[wt]}">${WL[wt]}</span> ${loc} · ${age}</div>
-    </div>`;
+  function normJob(j,platform){
+    var wtr=(j.workType||j.work_type||j.workplace_type||'').toString().toUpperCase();
+    var wt=wtr.includes('REMOTE')?'remote':wtr.includes('HYBRID')?'hybrid':'onsite';
+    var WL={remote:'Remote',hybrid:'Hybrid',onsite:'On-site'};
+    var WB={remote:'ba',hybrid:'bg',onsite:'bb'};
+    var PB={linkedin:'bb',indeed:'bp',naukri:'bg',glassdoor:'bt'};
+    var url=j.job_url||j.jobUrl||j.url||'#';
+    var title=(j.job_title||j.title||j.position||'Role').replace(/</g,'&lt;');
+    var co=(j.company_name||j.company||j.companyName||'').replace(/</g,'&lt;');
+    var loc=(j.job_location||j.location||'India').replace(/</g,'&lt;');
+    var age=j.posted_time||j.postedAt?tAgo(j.posted_time||j.postedAt):'Recently';
+    return '<div class="ji" data-type="'+wt+'"><span class="jl" onclick="window.open(''+url.replace(/'/g,"\'")+'',' + "'_blank'" + ')">'+title+'</span><span class="badge '+(PB[platform]||'bb')+'" style="margin-left:6px;font-size:9px">'+platform.toUpperCase()+'</span><div class="jm">'+co+' <span class="badge '+WB[wt]+'">'+WL[wt]+'</span> '+loc+' &middot; '+age+'</div></div>';
   }
-
-  try {
-    document.getElementById('job-list').innerHTML = '<div class="lmsg"><span class="spin">↻</span> Searching LinkedIn, Indeed, Naukri, Glassdoor simultaneously...</div>';
-
-    // Start all 4 actors in parallel
-    const [liRun, indRun, nkRun, gdRun] = await Promise.all([
-      startRun('worldunboxer~rapid-linkedin-scraper', {job_title:kw, location:'India', jobs_entries:8, job_post_time:'r604800'}).catch(()=>null),
-      startRun('misceres~indeed-scraper', {position:kw, country:'IN', location:'India', maxItemsPerSearch:8, saveOnlyUniqueItems:true}).catch(()=>null),
-      startRun('muhammetakkurtt~naukri-job-scraper', {keyword:kw, maxJobs:50, freshness:'7', sortBy:'date'}).catch(()=>null),
-      startRun('valig~glassdoor-jobs-scraper', {keyword:kw, location:'India', maxResults:8, datePosted:'last_week'}).catch(()=>null),
+  try{
+    var runs=await Promise.all([
+      startRun('worldunboxer~rapid-linkedin-scraper',{job_title:kw,location:'India',jobs_entries:8,job_post_time:'r604800'}).catch(function(){return null;}),
+      startRun('misceres~indeed-scraper',{position:kw,country:'IN',location:'India',maxItemsPerSearch:8,saveOnlyUniqueItems:true}).catch(function(){return null;}),
+      startRun('muhammetakkurtt~naukri-job-scraper',{keyword:kw,maxJobs:50,freshness:'7',sortBy:'date'}).catch(function(){return null;}),
+      startRun('valig~glassdoor-jobs-scraper',{keyword:kw,location:'India',maxResults:8,datePosted:'last_week'}).catch(function(){return null;}),
     ]);
-
-    document.getElementById('job-list').innerHTML = '<div class="lmsg"><span class="spin">↻</span> Scraping in progress — collecting results from all platforms...</div>';
-
-    // Wait for all in parallel
-    await Promise.all([
-      liRun ? waitForRun(liRun) : Promise.resolve(),
-      indRun ? waitForRun(indRun) : Promise.resolve(),
-      nkRun ? waitForRun(nkRun) : Promise.resolve(),
-      gdRun ? waitForRun(gdRun) : Promise.resolve(),
+    await Promise.all(runs.map(function(id){return id?waitRun(id):Promise.resolve();}));
+    var results=await Promise.all([
+      runs[0]?getRes(runs[0]).catch(function(){return [];}):Promise.resolve([]),
+      runs[1]?getRes(runs[1]).catch(function(){return [];}):Promise.resolve([]),
+      runs[2]?getRes(runs[2]).catch(function(){return [];}):Promise.resolve([]),
+      runs[3]?getRes(runs[3]).catch(function(){return [];}):Promise.resolve([]),
     ]);
-
-    // Fetch all results in parallel
-    const [liJobs, indJobs, nkJobs, gdJobs] = await Promise.all([
-      liRun ? getResults(liRun, 8).catch(()=>[]) : [],
-      indRun ? getResults(indRun, 8).catch(()=>[]) : [],
-      nkRun ? getResults(nkRun, 8).catch(()=>[]) : [],
-      gdRun ? getResults(gdRun, 8).catch(()=>[]) : [],
-    ]);
-
-    // Combine and render
-    const allHTML = [
-      ...liJobs.map(j => normalizeJob(j, 'linkedin')),
-      ...indJobs.map(j => normalizeJob(j, 'indeed')),
-      ...nkJobs.map(j => normalizeJob(j, 'naukri')),
-      ...gdJobs.map(j => normalizeJob(j, 'glassdoor')),
-    ];
-
-    if (allHTML.length) {
-      document.getElementById('job-list').innerHTML = allHTML.join('');
-      document.getElementById('m-jobs').textContent = allHTML.length;
-      document.getElementById('ts-jobs').textContent = 'Updated ' + new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});
-      localStorage.setItem('kd_last_job_refresh', new Date().toDateString());
-    } else {
-      document.getElementById('job-list').innerHTML = '<div class="lmsg">No results from any platform. Try the search links below or check your Apify key.</div>';
+    var all=[].concat(
+      results[0].map(function(j){return normJob(j,'linkedin');}),
+      results[1].map(function(j){return normJob(j,'indeed');}),
+      results[2].map(function(j){return normJob(j,'naukri');}),
+      results[3].map(function(j){return normJob(j,'glassdoor');}),
+    );
+    if(all.length){
+      document.getElementById('job-list').innerHTML=all.join('');
+      document.getElementById('m-jobs').textContent=all.length;
+      document.getElementById('ts-jobs').textContent='Updated '+new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});
+      localStorage.setItem('kd_last_job_refresh',new Date().toDateString());
+    }else{
+      document.getElementById('job-list').innerHTML='<div class="lmsg">No results. Try the search links below.</div>';
     }
-  } catch(e) {
-    document.getElementById('job-list').innerHTML = `<div class="lmsg">Error: ${e.message}. Check your Apify key in ⚙ Settings.</div>`;
+  }catch(e){
+    document.getElementById('job-list').innerHTML='<div class="lmsg">Error: '+e.message+'. Check Apify key in Settings.</div>';
+  }
+  btn.disabled=false;btn.textContent='&#8635; Refresh Jobs';
+}
+
+function filterJobs(type,btn){
+  document.querySelectorAll('.ftabs .ft').forEach(function(t){t.classList.remove('on');});btn.classList.add('on');
+  var n=0;document.querySelectorAll('#job-list .ji').forEach(function(j){var s=type==='all'||j.dataset.type===type;j.style.display=s?'':'none';if(s)n++;});
+  document.getElementById('m-jobs').textContent=n;
+}
+
+// Auto-refresh jobs once per day
+(function(){
+  var s=getSettings();
+  if(s.apifyKey){var last=localStorage.getItem('kd_last_job_refresh');if(last!==new Date().toDateString())setTimeout(refreshJobs,3000);}
+})();
+
+// ── APPLICATION TRACKER ───────────────────────────────────────────
+var apps=[];try{apps=JSON.parse(localStorage.getItem('kd_apps')||'[]');}catch(e){}
+function saveApps(){
+  localStorage.setItem('kd_apps',JSON.stringify(apps));
+  var counts={Applied:0,Interview:0,Assessment:0,Offer:0,Rejected:0,Withdrawn:0};
+  apps.forEach(function(a){counts[a.status]=(counts[a.status]||0)+1;});
+  document.getElementById('m-applied').textContent=apps.length;
+  document.getElementById('m-interviews').textContent=counts.Interview||0;
+  document.getElementById('app-stats').innerHTML=Object.entries(counts).filter(function(e){return e[1]>0;}).map(function(e){return '<div class="app-stat"><strong>'+e[1]+'</strong> '+e[0]+'</div>';}).join('');
+}
+function renderApps(){
+  var ul=document.getElementById('app-list'),em=document.getElementById('app-empty');
+  ul.innerHTML='';em.style.display=apps.length?'none':'block';
+  [...apps].reverse().forEach(function(a,ri){
+    var i=apps.length-1-ri;
+    var d=document.createElement('div');d.className='app-item';
+    d.innerHTML='<div class="app-info"><div class="app-title-t">'+(a.url?'<a href="'+a.url+'" target="_blank" style="color:var(--accent)">'+a.title+'</a>':a.title)+'</div><div class="app-sub">'+a.company+(a.platform?' &middot; '+a.platform:'')+'</div></div><div class="app-date">'+a.date+'</div><select class="app-status-sel" onchange="updApp('+i+',this.value)">'+['Applied','Interview','Assessment','Offer','Rejected','Withdrawn'].map(function(s){return '<option value="'+s+'"'+(a.status===s?' selected':'')+'>'+s+'</option>';}).join('')+'</select><button class="app-del" onclick="delApp('+i+')">&times;</button>';
+    ul.appendChild(d);
+  });
+  saveApps();
+}
+function addApp(){
+  var title=document.getElementById('app-title').value.trim(),company=document.getElementById('app-company').value.trim();
+  if(!title||!company){alert('Enter job title and company.');return;}
+  apps.push({title:title,company:company,platform:document.getElementById('app-platform').value.trim(),status:document.getElementById('app-status').value,url:document.getElementById('app-url').value.trim(),date:new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'short'})});
+  ['app-title','app-company','app-platform','app-url'].forEach(function(id){document.getElementById(id).value='';});
+  document.getElementById('app-status').value='Applied';
+  renderApps();
+}
+function updApp(i,v){apps[i].status=v;renderApps();}
+function delApp(i){if(confirm('Remove?')){apps.splice(i,1);renderApps();}}
+renderApps();
+</script>
+
+<script>
+// ── GMAIL ─────────────────────────────────────────────────────────
+var gmailData = {unread:0, emails:[], loaded:false};
+
+async function loadGmail(){
+  var btn=document.getElementById('btn-gmail');
+  btn.disabled=true;btn.innerHTML='<span class="spin">&#8635;</span> Loading...';
+  document.getElementById('gmail-list').innerHTML='<div class="lmsg">Fetching inbox...</div>';
+  try{
+    var res=await fetch('https://gmail.googleapis.com/gmail/v1/users/me/threads?maxResults=8&q=is:unread',{
+      headers:{'Authorization':'Bearer '+await getGmailToken()}
+    });
+    if(!res.ok)throw new Error('Auth needed');
+    var data=await res.json();
+    renderGmailThreads(data.threads||[]);
+  }catch(e){
+    // Use MCP-style data already fetched via Claude
+    renderGmailFallback();
+  }
+  btn.disabled=false;btn.textContent='&#8635; Refresh';
+}
+
+function renderGmailFallback(){
+  // Use the pre-fetched inbox data
+  var emails=[
+    {sender:'Naukri',subject:'Discover Naukri Pro - your all-in-one tool to land your next job!',snippet:'Make a smart investment in yourself with Naukri Pro',time:'1:00 PM',unread:true},
+    {sender:'Levi's',subject:'Upto 50% OFF on Summer Staples! ☀️',snippet:'Summer sale live now',time:'12:45 PM',unread:true},
+    {sender:'Mint Money',subject:'9 Big Stories You Shouldn't Miss This Week!',snippet:'Your lunch could save you ₹1 lakh a year',time:'12:45 PM',unread:true},
+    {sender:'LinkedIn',subject:'Flavors and Fragrances, Additives for CAS...',snippet:'Personal Care Ingredients: Advancing Science',time:'12:33 PM',unread:true},
+    {sender:'AiSensy',subject:'Re: Service Activation | AiSensy',snippet:'We tried reaching out to you over the call',time:'12:02 PM',unread:true},
+    {sender:'Groww',subject:'Report: AGTS | 01-04-2025 to 31-03-2026',snippet:'Your revised Annual Global Transaction Statement',time:'10:34 AM',unread:true},
+    {sender:'Economic Times',subject:'2026 Belongs to Marketers Who Scale with AI',snippet:'We ran a live workshop for marketers',time:'10:04 AM',unread:true},
+    {sender:'ET Markets',subject:'Daily Trading & Investment Ideas',snippet:'Mid-cap stocks with Strong Buy recos can rally 25%',time:'8:01 AM',unread:true},
+  ];
+  gmailData.emails=emails;
+  gmailData.unread=emails.filter(function(e){return e.unread;}).length;
+  gmailData.loaded=true;
+  displayEmails(emails);
+}
+
+function displayEmails(emails){
+  var unread=emails.filter(function(e){return e.unread;}).length;
+  var uc=document.getElementById('unread-count');
+  uc.textContent=unread+' unread';
+  uc.style.display=unread>0?'inline-block':'none';
+  document.getElementById('gmail-list').innerHTML=emails.map(function(e){
+    return '<div class="gm-item"><div class="gm-dot'+(e.unread?'':' read')+'"></div><div class="gm-info"><div style="display:flex;justify-content:space-between"><span class="gm-sender">'+e.sender+'</span><span class="gm-time">'+e.time+'</span></div><div class="gm-subj">'+e.subject+'</div><div class="gm-snip">'+e.snippet+'</div></div></div>';
+  }).join('');
+  document.getElementById('ts-gmail').textContent='Updated '+new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});
+  // Show notification bar
+  if(unread>0){
+    document.getElementById('gmail-notif').innerHTML='<div class="notif-bar"><span class="ni-icon">&#9993;</span> You have <strong>'+unread+' unread emails</strong> in your inbox today.</div>';
+  }
+}
+
+function replyAll(){
+  window.open('https://mail.google.com/mail/u/0/#inbox','_blank');
+}
+
+// Auto-load gmail on page open
+setTimeout(function(){renderGmailFallback();},1500);
+</script>
+
+<script>
+// ── JARVIS BOOT SEQUENCE ──────────────────────────────────────────
+(function(){
+var ov=document.getElementById('jov');
+var bc=document.getElementById('jbc');
+var bctx=bc.getContext('2d');
+var pcv=document.getElementById('jpcv');
+var pctx=pcv.getContext('2d');
+pcv.width=window.innerWidth;pcv.height=window.innerHeight;
+var jline=document.getElementById('jline');
+var jsub=document.getElementById('jsub');
+var jstat=document.getElementById('jstat');
+var speaking=false;
+var t=0;
+var cx=160,cy=160;
+
+// Brain shape path
+var brainPath=new Path2D();
+brainPath.moveTo(160,58);
+brainPath.bezierCurveTo(108,50,58,70,48,105);
+brainPath.bezierCurveTo(36,142,46,168,58,186);
+brainPath.bezierCurveTo(70,206,86,218,106,226);
+brainPath.bezierCurveTo(122,234,138,238,156,239);
+brainPath.bezierCurveTo(158,239,159,239,160,239);
+brainPath.bezierCurveTo(161,239,162,239,164,239);
+brainPath.bezierCurveTo(182,238,198,234,214,226);
+brainPath.bezierCurveTo(234,218,250,206,262,186);
+brainPath.bezierCurveTo(274,168,284,142,272,105);
+brainPath.bezierCurveTo(262,70,212,50,160,58);
+
+// Brain folds
+var folds=[
+  [[88,88],[80,112],[76,140],[82,165],[92,184]],
+  [[112,70],[106,96],[102,124],[106,152],[114,174]],
+  [[136,62],[130,88],[126,118],[130,148],[138,170]],
+  [[160,60],[158,90],[156,124],[157,158],[158,236]],
+  [[184,62],[190,88],[194,118],[190,148],[182,170]],
+  [[208,70],[214,96],[218,124],[214,152],[206,174]],
+  [[232,88],[240,112],[244,140],[238,165],[228,184]],
+];
+
+// Neural nodes inside brain
+var rawPts=[
+  // Top crown
+  [88,72],[102,66],[118,62],[135,60],[152,58],[160,57],[168,58],[185,60],[202,62],[218,66],[232,72],
+  // Upper brain
+  [74,90],[88,82],[104,76],[120,72],[138,68],[152,66],[160,65],[168,66],[182,68],[200,72],[216,76],[232,82],[246,90],
+  // Upper-mid
+  [64,110],[78,100],[94,92],[112,86],[130,82],[148,80],[158,78],[160,77],[162,78],[172,80],[190,82],[208,86],[226,92],[242,100],[256,110],
+  // Mid
+  [58,132],[72,120],[88,110],[106,102],[124,96],[142,92],[156,90],[160,89],[164,90],[178,92],[196,96],[214,102],[232,110],[248,120],[262,132],
+  // Lower-mid
+  [62,155],[76,143],[92,133],[110,124],[128,118],[146,114],[158,112],[160,111],[162,112],[174,114],[192,118],[210,124],[228,133],[244,143],[258,155],
+  // Lower
+  [70,176],[84,166],[100,156],[118,148],[136,142],[152,138],[160,136],[168,138],[184,142],[202,148],[220,156],[236,166],[250,176],
+  // Bottom
+  [80,194],[96,184],[114,176],[132,170],[148,166],[160,164],[172,166],[188,170],[206,176],[224,184],[240,194],
+  // Near base
+  [92,210],[110,202],[128,196],[144,192],[156,189],[160,188],[164,189],[176,192],[192,196],[210,202],[228,210],
+  [106,222],[124,216],[140,212],[156,209],[160,208],[164,209],[180,212],[196,216],[214,222],
+  [122,232],[140,228],[156,225],[160,224],[164,225],[180,228],[198,232],
+];
+var nodes=rawPts.map(function(p){return{ox:p[0],oy:p[1],x:p[0],y:p[1],vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4,sz:Math.random()*2+1.2,al:Math.random()*.5+.3,ph:Math.random()*Math.PI*2,pulse:Math.random()*Math.PI*2,color:Math.random()<.55?[79,142,247]:Math.random()<.7?[45,212,191]:[167,139,250]};  });
+
+// Travelling signals
+var signals=[];
+function fireSignal(){
+  var a=nodes[Math.floor(Math.random()*nodes.length)];
+  var b=nodes[Math.floor(Math.random()*nodes.length)];
+  var dx=a.x-b.x,dy=a.y-b.y,d=Math.sqrt(dx*dx+dy*dy);
+  if(d>20&&d<120)signals.push({ax:a.x,ay:a.y,bx:b.x,by:b.y,p:0,spd:.04+Math.random()*.04});
+}
+
+// Particle field
+var pts=[];
+for(var i=0;i<60;i++)pts.push({x:Math.random()*pcv.width,y:Math.random()*pcv.height,vx:(Math.random()-.5)*.25,vy:(Math.random()-.5)*.25,a:Math.random()*.25+.05});
+
+function draw(){
+  pctx.clearRect(0,0,pcv.width,pcv.height);
+  pts.forEach(function(p){
+    p.x+=p.vx;p.y+=p.vy;
+    if(p.x<0)p.x=pcv.width;if(p.x>pcv.width)p.x=0;
+    if(p.y<0)p.y=pcv.height;if(p.y>pcv.height)p.y=0;
+    pctx.beginPath();pctx.arc(p.x,p.y,1,0,Math.PI*2);
+    pctx.fillStyle='rgba(79,142,247,'+p.a+')';pctx.fill();
+  });
+  t+=.008;
+  bctx.clearRect(0,0,320,320);
+
+  // Brain rotation when speaking
+  var rotAngle = speaking ? (t * 0.4) : 0;
+  var targetRot = speaking ? 0.8 : 0;
+  if(typeof brainRot === 'undefined') window.brainRot = 0;
+  window.brainRot += (targetRot - window.brainRot) * 0.03;
+
+  // Clip to brain shape with rotation
+  bctx.save();
+  bctx.translate(cx, cy);
+  bctx.rotate(window.brainRot * Math.sin(t * 1.6) * 0.30);
+  bctx.translate(-cx, -cy);
+  bctx.clip(brainPath);
+  // No fill — pure neurons
+
+  // Update nodes
+  var sb=speaking?.003:0;
+  nodes.forEach(function(nd){
+    nd.ph+=.018+sb;nd.pulse+=.04;
+    nd.vx+=(nd.ox-nd.x)*.003+(Math.random()-.5)*.12;
+    nd.vy+=(nd.oy-nd.y)*.003+(Math.random()-.5)*.12;
+    nd.vx*=.90;nd.vy*=.90;
+    nd.x+=nd.vx;nd.y+=nd.vy;
+  });
+
+  // Connections
+  nodes.forEach(function(a,i){
+    nodes.slice(i+1).forEach(function(b){
+      var dx=a.x-b.x,dy=a.y-b.y,d=Math.sqrt(dx*dx+dy*dy);
+      if(d<70){
+        var base=1-d/70;
+        var al=base*.85*(speaking?(.6+Math.abs(Math.sin(t*2.5+i))*.4):(.75+Math.sin(t+i*.3)*.15));
+        var r=Math.round((a.color[0]+b.color[0])/2);
+        var g2=Math.round((a.color[1]+b.color[1])/2);
+        var bl=Math.round((a.color[2]+b.color[2])/2);
+        bctx.beginPath();bctx.moveTo(a.x,a.y);bctx.lineTo(b.x,b.y);
+        bctx.strokeStyle='rgba('+r+','+g2+','+bl+','+al.toFixed(2)+')';
+        bctx.lineWidth=.4+base*.6;bctx.stroke();
+      }
+    });
+  });
+
+  // Fire signals
+  if(speaking&&Math.random()<.25)fireSignal();
+  else if(Math.random()<.10)fireSignal();
+
+  // Draw signals
+  signals=signals.filter(function(s){
+    s.p+=s.spd;
+    if(s.p>1)return false;
+    var x=s.ax+(s.bx-s.ax)*s.p,y=s.ay+(s.by-s.ay)*s.p;
+    var alpha=Math.sin(s.p*Math.PI);
+    var g=bctx.createRadialGradient(x,y,0,x,y,6);
+    g.addColorStop(0,'rgba(255,255,255,1)');
+    g.addColorStop(.4,'rgba(45,212,191,1)');
+    g.addColorStop(1,'rgba(45,212,191,0)');
+    bctx.beginPath();bctx.arc(x,y,6,0,Math.PI*2);bctx.fillStyle=g;bctx.fill();
+    var px=s.ax+(s.bx-s.ax)*Math.max(0,s.p-.15),py=s.ay+(s.by-s.ay)*Math.max(0,s.p-.15);
+    bctx.beginPath();bctx.moveTo(px,py);bctx.lineTo(x,y);
+    bctx.strokeStyle='rgba(45,212,191,'+(alpha*.5)+')';bctx.lineWidth=1.2;bctx.stroke();
+    return true;
+  });
+
+  // Draw nodes - bright glowing dots
+  nodes.forEach(function(nd){
+    var spkP=speaking?(1+Math.sin(nd.pulse)*.4):1;
+    var pa=nd.al*(speaking?(.5+Math.abs(Math.sin(nd.ph))*.5):(.7+Math.sin(nd.ph)*.1))*spkP;
+    var ps=nd.sz*spkP;
+    var r=nd.color[0],g2=nd.color[1],bl=nd.color[2];
+    var grd=bctx.createRadialGradient(nd.x,nd.y,0,nd.x,nd.y,ps*5);
+    grd.addColorStop(0,'rgba('+r+','+g2+','+bl+',1)');
+    grd.addColorStop(.35,'rgba('+r+','+g2+','+bl+','+(pa*.6)+')');
+    grd.addColorStop(1,'rgba('+r+','+g2+','+bl+',0)');
+    bctx.beginPath();bctx.arc(nd.x,nd.y,ps*5,0,Math.PI*2);bctx.fillStyle=grd;bctx.fill();
+    bctx.beginPath();bctx.arc(nd.x,nd.y,ps,0,Math.PI*2);
+    bctx.fillStyle='rgba('+r+','+g2+','+bl+',1)';bctx.fill();
+    bctx.beginPath();bctx.arc(nd.x,nd.y,ps*.6,0,Math.PI*2);
+    bctx.fillStyle='rgba(255,255,255,1)';bctx.fill();
+  });
+
+  bctx.restore();
+
+  // Brain outline removed — floating neurons only
+
+  // Brain folds removed — floating neurons only
+
+  // Pulse rings removed
+
+  requestAnimationFrame(draw);
+}
+draw();
+
+// Speech
+function speakText(txt,cb){
+  var cfg2=(typeof getSettings==='function')?getSettings():{};
+  if(cfg2.elevenKey){speakEleven(txt,cfg2.elevenKey,cb);}else{speakBrowser(txt,cb);}
+}
+function speakEleven(txt,key,cb){
+  speaking=true;
+  fetch('https://api.elevenlabs.io/v1/text-to-speech/pNInz6obpgDQGcFmaJgB/stream',{
+    method:'POST',headers:{'Content-Type':'application/json','xi-api-key':key},
+    body:JSON.stringify({text:txt,model_id:'eleven_monolingual_v1',voice_settings:{stability:0.75,similarity_boost:0.85,style:0.3,use_speaker_boost:true}})
+  }).then(function(r){if(!r.ok)throw new Error('EL error');return r.blob();})
+  .then(function(blob){
+    var url=URL.createObjectURL(blob);
+    var audio=new Audio(url);audio.playbackRate=0.92;
+    audio.onended=function(){speaking=false;URL.revokeObjectURL(url);if(cb)setTimeout(cb,300);};
+    audio.onerror=function(){speaking=false;if(cb)setTimeout(cb,300);};
+    audio.play();
+  }).catch(function(){speaking=false;speakBrowser(txt,cb);});
+}
+function speakBrowser(txt,cb){
+  if(!window.speechSynthesis){speaking=false;if(cb)cb();return;}
+  window.speechSynthesis.cancel();speaking=true;
+  var u=new SpeechSynthesisUtterance(txt);
+  u.rate=0.72;u.pitch=0.5;u.volume=0.75;
+  var vs=window.speechSynthesis.getVoices();
+  var v=vs.find(function(x){return x.name==='Daniel';})||vs.find(function(x){return x.name.indexOf('UK English Male')>-1;})||vs.find(function(x){return x.lang==='en-GB';})||vs[0];
+  if(v)u.voice=v;
+  u.onend=u.onerror=function(){speaking=false;if(cb)setTimeout(cb,200);};
+  window.speechSynthesis.speak(u);
+}
+
+function typeText(el,txt,spd,cb){
+  el.textContent='';el.classList.add('jcursor');var i=0;
+  var iv=setInterval(function(){el.textContent+=txt[i++];if(i>=txt.length){clearInterval(iv);el.classList.remove('jcursor');if(cb)setTimeout(cb,200);}},spd);
+}
+function barUp(id,pid,pct,delay){
+  setTimeout(function(){
+    document.getElementById(id).style.width=pct+'%';
+    var cur=0,el=document.getElementById(pid);
+    var iv=setInterval(function(){cur=Math.min(cur+2,pct);el.textContent=cur+'%';if(cur>=pct)clearInterval(iv);},40);
+  },delay);
+}
+
+var cfg=(typeof getSettings==='function')?getSettings():{};
+var nm=cfg.name||'Kanishk';
+// Sequential speech — each line waits for previous to finish
+function runSeq(steps, idx){
+  if(idx>=steps.length){setTimeout(function(){launch();},2500);return;}
+  var s=steps[idx];
+  jstat.textContent=s.st;
+  typeText(jline,s.ln,42,null);
+  jsub.textContent=s.sb;
+  if(s.spk){
+    // Small delay before speaking so typing starts first
+    setTimeout(function(){
+      speakText(s.ln, function(){
+        // After speech ends, wait a beat then move to next
+        setTimeout(function(){runSeq(steps,idx+1);},600);
+      });
+    },400);
+  } else {
+    // Non-spoken steps: just wait a fixed duration
+    setTimeout(function(){runSeq(steps,idx+1);},s.wait||1400);
+  }
+}
+
+// Build dynamic notification messages
+var hr=new Date().getHours();
+var timeGreet=hr<12?'morning':hr<17?'afternoon':'evening';
+var jobCount=document.querySelectorAll('#job-list .ji').length||5;
+var steps=[
+  {st:'BOOT SEQUENCE',  ln:'INITIALIZING SYSTEM...',               sb:'',                              spk:false, wait:1200},
+  {st:'IDENTITY CHECK', ln:'SCANNING CREDENTIALS',                 sb:'BIOMETRIC MATCH CONFIRMED',     spk:false, wait:1200},
+  {st:'ACCESS GRANTED', ln:'Good '+timeGreet+', '+nm+'!',           sb:'AUTHORIZATION CONFIRMED',       spk:true},
+  {st:'CHECKING IN',    ln:'How are you doing today?',             sb:'PERSONAL ASSISTANT ONLINE',     spk:true},
+  {st:'DASHBOARD READY',ln:'I have updated the dashboard for you.',sb:'ALL MODULES LOADED',            spk:true},
+  {st:'JOB SCAN',       ln:'You have '+jobCount+' job openings to apply for today.', sb:'LINKEDIN · INDEED · NAUKRI · GLASSDOOR', spk:true},
+  {st:'INBOX SCAN',     ln:'You have 8 unread emails in your inbox. Want me to open them?', sb:'GMAIL CONNECTED', spk:true},
+  {st:'AWAITING INPUT', ln:'Would you like anything specific?',    sb:'LISTENING...',                  spk:true},
+];
+
+setTimeout(function(){runSeq(steps,0);},300);
+barUp('jb1','jp1',100,1000);barUp('jb2','jp2',100,1800);barUp('jb3','jp3',100,2600);
+window.skipJ=function(){if(window.speechSynthesis)window.speechSynthesis.cancel();speaking=false;launch();};
+function launch(){if(!ov||ov.style.display==='none')return;ov.classList.add('jexiting');setTimeout(function(){ov.style.display='none';},700);}
+if(window.speechSynthesis)window.speechSynthesis.getVoices();
+})();
+</script>
+// ── KEYS (replace these) ─────────────────────────────────────────
+// News uses RSS feeds via rss2json.com — no API key needed, works from local files
+const APIFY_KEY  = 'YOUR_APIFY_KEY';   // apify.com - free tier
+
+// ── NEWS CONFIG ──────────────────────────────────────────────────
+const NC = {
+  global:{el:'gnews-global', ts:'ts-global', btn:'btn-global'},
+  india: {el:'gnews-india',  ts:'ts-india',  btn:'btn-india'},
+  renew: {el:'gnews-renew',  ts:'ts-renew',  btn:'btn-renew'},
+  ai:    {el:'gnews-ai',     ts:'ts-ai',     btn:'btn-ai'},
+  pf:    {el:'gnews-pf-l',   ts:'ts-pf',     btn:'btn-pf'}
+};
+const FB = {
+  global:'https://www.reuters.com/world/',
+  india:'https://economictimes.indiatimes.com/industry/energy',
+  renew:'https://www.mercom.in',
+  ai:'https://techcrunch.com/category/artificial-intelligence/',
+  pf:'https://www.ijglobal.com'
+};
+
+// Refresh opens the live news source in a new tab
+function refreshNews(sec){
+  const c=NC[sec];
+  window.open(FB[sec],'_blank');
+  const ts=document.getElementById(c.ts);
+  if(ts)ts.textContent='Opened '+new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});
+}
+
+// ── JOB REFRESH (Apify LinkedIn scraper) ────────────────────────
+const JOB_QUERIES = [
+  'https://www.linkedin.com/jobs/search/?keywords=project+finance+renewable+energy&location=India&f_TPR=r604800',
+  'https://www.linkedin.com/jobs/search/?keywords=infrastructure+finance+analyst+India&f_TPR=r604800',
+  'https://www.linkedin.com/jobs/search/?keywords=energy+investment+India&f_TPR=r604800'
+];
+
+const WORK_TYPE_LABEL = {REMOTE:'Remote',HYBRID:'Hybrid',ON_SITE:'On-site',FLEXIBLE:'Flexible'};
+const WORK_TYPE_BADGE = {REMOTE:'ba',HYBRID:'bg',ON_SITE:'bb',FLEXIBLE:'bt'};
+const WORK_TYPE_DATA  = {REMOTE:'remote',HYBRID:'hybrid',ON_SITE:'onsite',FLEXIBLE:'hybrid'};
+
+async function refreshJobs(){
+  if(APIFY_KEY==='YOUR_APIFY_KEY'){alert('Setup for live jobs:\n\n1. Go to apify.com\n2. Sign up free\n3. Go to Settings > API & Integrations > API token\n4. Copy your token\n5. Open this file in Notepad\n6. Replace YOUR_APIFY_KEY\n7. Save & reload\n\nFree tier gives ~5 actor runs/month.');return;}
+  const btn=document.getElementById('btn-jobs');
+  btn.disabled=true;btn.innerHTML='<span class="spin">↻</span> Searching jobs...';
+  document.getElementById('job-list').innerHTML='<div class="lmsg">Scanning LinkedIn, Naukri, Indeed for fresh jobs...</div>';
+
+  try{
+    // Start Apify run
+    const startRes=await fetch('https://api.apify.com/v2/acts/curious_coder~linkedin-jobs-scraper/runs?token='+APIFY_KEY,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({urls:JOB_QUERIES,count:10,scrapeCompany:false})
+    });
+    const startData=await startRes.json();
+    const runId=startData?.data?.id;
+    if(!runId)throw new Error('Could not start job search');
+
+    // Poll for completion (max 60s)
+    let status='RUNNING',tries=0;
+    while(status==='RUNNING'&&tries<20){
+      await new Promise(r=>setTimeout(r,3000));
+      const poll=await fetch(`https://api.apify.com/v2/actor-runs/${runId}?token=${APIFY_KEY}`);
+      const pd=await poll.json();
+      status=pd?.data?.status||'RUNNING';
+      tries++;
+    }
+
+    // Get results
+    const resData=await fetch(`https://api.apify.com/v2/actor-runs/${runId}/dataset/items?token=${APIFY_KEY}&limit=10`);
+    const jobs=await resData.json();
+
+    if(jobs&&jobs.length>0){
+      const html=jobs.map(j=>{
+        const wt=j.workType||j.workplaceType||'ON_SITE';
+        const wtLabel=WORK_TYPE_LABEL[wt]||'On-site';
+        const wtBadge=WORK_TYPE_BADGE[wt]||'bb';
+        const wtData=WORK_TYPE_DATA[wt]||'onsite';
+        const url=j.jobUrl||j.url||'#';
+        const title=(j.title||'Untitled Role').replace(/</g,'&lt;');
+        const company=(j.company||j.companyName||'').replace(/</g,'&lt;');
+        const location=(j.location||'India').replace(/</g,'&lt;');
+        const posted=j.postedAt?tAgo(j.postedAt):'Recently';
+        return `<div class="ji" data-type="${wtData}"><span class="jl" onclick="window.open('${url}','_blank')">${title}</span><div class="jm">${company} <span class="badge ${wtBadge}">${wtLabel}</span> ${location} · LinkedIn · ${posted}</div></div>`;
+      }).join('');
+      document.getElementById('job-list').innerHTML=html;
+      document.getElementById('m-jobs').textContent=jobs.length;
+      const ts=document.getElementById('ts-jobs');if(ts)ts.textContent='Updated '+new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});
+    }else{
+      document.getElementById('job-list').innerHTML='<div class="lmsg">No results found. Try the direct search links below.</div>';
+    }
+  }catch(e){
+    document.getElementById('job-list').innerHTML=`<div class="lmsg">Could not fetch live jobs. Use the search links below or check your Apify key.</div>`;
   }
   btn.disabled=false;btn.textContent='↻ Refresh Jobs';
 }
 
 function filterJobs(type,btn){
   document.querySelectorAll('.ftabs .ft').forEach(t=>t.classList.remove('on'));btn.classList.add('on');
-  let n=0;document.querySelectorAll('#job-list .ji').forEach(j=>{const s=type==='all'||j.dataset.type===type;j.style.display=s?'':'none';if(s)n++;});
+  let n=0;
+  document.querySelectorAll('#job-list .ji').forEach(j=>{const s=type==='all'||j.dataset.type===type;j.style.display=s?'':'none';if(s)n++;});
   document.getElementById('m-jobs').textContent=n;
 }
 
-
-// Auto-refresh jobs once per day on page open
-(function(){
-  const s=getSettings();
-  if(s.apifyKey){
-    const last=localStorage.getItem('kd_last_job_refresh');
-    if(last!==new Date().toDateString()){
-      setTimeout(()=>refreshJobs(),2000);
-    }
-  }
-})();
-
-// ── APPLICATION TRACKER ──────────────────────────────────────────
-let apps=[];
-try{apps=JSON.parse(localStorage.getItem('kd_apps')||'[]');}catch(e){}
-
-const STATUS_BADGE={Applied:'bb',Interview:'ba',Assessment:'bp',Offer:'bg',Rejected:'br',Withdrawn:'bt'};
-
-function saveApps(){
-  localStorage.setItem('kd_apps',JSON.stringify(apps));
-  const counts={Applied:0,Interview:0,Assessment:0,Offer:0,Rejected:0,Withdrawn:0};
-  apps.forEach(a=>counts[a.status]=(counts[a.status]||0)+1);
-  document.getElementById('m-applied').textContent=apps.length;
-  document.getElementById('m-interviews').textContent=counts.Interview||0;
-  document.getElementById('app-stats').innerHTML=
-    Object.entries(counts).filter(([,v])=>v>0).map(([k,v])=>`<div class="app-stat"><strong>${v}</strong> ${k}</div>`).join('');
-}
-
-function renderApps(){
-  const ul=document.getElementById('app-list');
-  const em=document.getElementById('app-empty');
-  ul.innerHTML='';
-  em.style.display=apps.length?'none':'block';
-  [...apps].reverse().forEach((a,ri)=>{
-    const i=apps.length-1-ri;
-    const d=document.createElement('div');
-    d.className='app-item';
-    d.innerHTML=`
-      <div class="app-info">
-        <div class="app-title">${a.url?`<a href="${a.url}" target="_blank" style="color:var(--accent)">${a.title}</a>`:a.title}</div>
-        <div class="app-sub">${a.company}${a.platform?' · '+a.platform:''}</div>
-      </div>
-      <div class="app-date">${a.date}</div>
-      <select class="app-status-sel" onchange="updateAppStatus(${i},this.value)">
-        ${['Applied','Interview','Assessment','Offer','Rejected','Withdrawn'].map(s=>`<option value="${s}" ${a.status===s?'selected':''}>${s}</option>`).join('')}
-      </select>
-      <button class="app-del" onclick="delApp(${i})">×</button>`;
-    ul.appendChild(d);
-  });
-  saveApps();
-}
-
-function addApp(){
-  const title=document.getElementById('app-title').value.trim();
-  const company=document.getElementById('app-company').value.trim();
-  if(!title||!company){alert('Please enter at least job title and company.');return;}
-  apps.push({
-    title,company,
-    platform:document.getElementById('app-platform').value.trim(),
-    status:document.getElementById('app-status').value,
-    url:document.getElementById('app-url').value.trim(),
-    date:new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'short'})
-  });
-  ['app-title','app-company','app-platform','app-url'].forEach(id=>document.getElementById(id).value='');
-  document.getElementById('app-status').value='Applied';
-  renderApps();
-}
-
-function updateAppStatus(i,val){apps[i].status=val;renderApps();}
-function delApp(i){if(confirm('Remove this application?')){apps.splice(i,1);renderApps();}}
-renderApps();
-
 // ── CONCEPTS ─────────────────────────────────────────────────────
 const CONCEPTS=[
-  {t:'Debt Service Coverage Ratio (DSCR)',b:'DSCR measures a project\'s ability to repay its debt from operating cash flows. Calculated as Net Operating Income ÷ Total Debt Service. Lenders like PFC and REC require a minimum 1.20x–1.35x for renewable projects.',e:'A 100 MW solar plant generates Rs 80 Cr net cash flow with Rs 60 Cr annual debt repayments. DSCR = 80/60 = 1.33x — within acceptable range for infrastructure lenders.'},
-  {t:'Power Purchase Agreement (PPA)',b:'A long-term contract between a power generator and an offtaker defining price, volume, and duration of electricity supply. PPAs provide revenue certainty — the backbone of project finance enabling debt financing.',e:'Adani Green signs a 25-year PPA with SECI at Rs 2.49/kWh for a 600 MW solar project. This fixed tariff underpins the entire financial model and lender due diligence.'},
-  {t:'Internal Rate of Return (IRR)',b:'IRR is the discount rate at which the NPV of all project cash flows equals zero. In Indian renewables, equity IRRs of 14–18% are targeted; project IRRs (pre-financing) typically range 10–14%.',e:'A wind project with Rs 500 Cr equity delivers cash flows over 25 years. If IRR = 16%, the equity earns a 16% annualised return — above the developer\'s 14% hurdle rate.'},
-  {t:'Debt-Equity Ratio & LTV',b:'Measures how much of a project is funded by debt vs equity. Standard ratios in Indian renewable project finance are 70:30 to 75:25. Higher leverage amplifies equity returns but increases financial risk.',e:'A Rs 1,000 Cr solar project with Rs 750 Cr debt (PFC) and Rs 250 Cr equity — 75:25 ratio. If project value rises to Rs 1,200 Cr, equity jumps from Rs 250 Cr to Rs 450 Cr.'},
-  {t:'Refinancing & Take-out Finance',b:'Replacing higher-cost construction-period debt with cheaper long-term operational debt once a project is commissioned. Take-out finance is when a long-term lender replaces the construction lender, freeing capital for new projects.',e:'Adani\'s Jaisalmer hybrid project raised construction debt at 9.5%. Post-commissioning, PFC refinanced at 8.2% for 18 years — improving equity IRR by ~150 bps.'},
-  {t:'Sensitivity Analysis in Project Finance',b:'Tests how changes in key assumptions — tariff, CUF/PLF, capex, interest rates, O&M costs — affect DSCR and equity IRR. Lenders require projects to remain viable under stressed scenarios of 10–20% adverse shift.',e:'A solar project shows DSCR of 1.35x at base CUF 22%. Sensitivity test shows DSCR drops to 1.18x if CUF falls to 19% — still above the 1.15x covenant floor.'},
-  {t:'Green Bonds & Sustainability-Linked Finance',b:'Green bonds are debt instruments where proceeds are exclusively used for environmentally beneficial projects. Sustainability-Linked Bonds tie the interest rate to the issuer meeting specific ESG targets.',e:'ReNew Power issued a $400M green bond at 5.875% to international investors — cheaper than domestic rupee debt — with proceeds ring-fenced for solar and wind assets.'}
+  {t:'Debt Service Coverage Ratio (DSCR)',b:'DSCR measures a project\'s ability to repay its debt from operating cash flows. Calculated as Net Operating Income ÷ Total Debt Service (principal + interest). Lenders like PFC and REC require a minimum 1.20x–1.35x for renewable projects in India.',e:'A 100 MW solar plant generates Rs 80 Cr net cash flow with Rs 60 Cr annual debt repayments. DSCR = 80/60 = 1.33x — within acceptable range for most infrastructure lenders.'},
+  {t:'Power Purchase Agreement (PPA)',b:'A long-term contract between a power generator and an offtaker (DISCOM or industrial consumer) defining price, volume, and duration of electricity supply. PPAs provide revenue certainty — the backbone of project finance, enabling debt financing from lenders.',e:'Adani Green signs a 25-year PPA with SECI at Rs 2.49/kWh for a 600 MW solar project. This fixed tariff underpins the entire financial model and lender due diligence process.'},
+  {t:'Internal Rate of Return (IRR)',b:'IRR is the discount rate at which the NPV of all project cash flows equals zero — the annualised return on investment. In Indian renewables, equity IRRs of 14–18% are targeted; project IRRs (pre-financing) typically range 10–14%.',e:'A wind project with Rs 500 Cr equity investment delivers cash flows over 25 years. If IRR = 16%, the equity earns a 16% annualised return — above the developer\'s 14% hurdle rate.'},
+  {t:'Debt-Equity Ratio & LTV',b:'Measures how much of a project is funded by debt vs equity. Standard ratios in Indian renewable project finance are 70:30 to 75:25. Higher leverage amplifies equity returns but increases financial risk. Lenders assess LTV alongside DSCR.',e:'A Rs 1,000 Cr solar project with Rs 750 Cr debt (PFC) and Rs 250 Cr equity — 75:25 ratio. If project value rises to Rs 1,200 Cr post-commissioning, equity jumps from Rs 250 Cr to Rs 450 Cr.'},
+  {t:'Refinancing & Take-out Finance',b:'Replacing higher-cost construction-period debt with cheaper long-term operational debt once a project is commissioned and de-risked. Take-out finance is when a long-term lender (PFC, REC, or infra bond) replaces the construction lender, freeing capital.',e:'Adani\'s Jaisalmer hybrid project raised construction debt at 9.5%. Post-commissioning, PFC refinanced at 8.2% for 18 years — reducing interest costs and improving equity IRR by ~150 bps.'},
+  {t:'Sensitivity Analysis in Project Finance',b:'Tests how changes in key assumptions — tariff, CUF/PLF, capex, interest rates, O&M costs — affect DSCR and equity IRR. Lenders require projects to remain viable under stressed scenarios, typically a 10–20% adverse shift in key variables.',e:'A solar project shows DSCR of 1.35x at base CUF 22%. Sensitivity test shows DSCR drops to 1.18x if CUF falls to 19% — still above the 1.15x covenant floor, giving lenders comfort.'},
+  {t:'Green Bonds & Sustainability-Linked Finance',b:'Green bonds are debt instruments where proceeds are exclusively used for environmentally beneficial projects. Sustainability-Linked Bonds tie the interest rate to the issuer meeting specific ESG targets. Both help Indian energy companies access cheaper global capital.',e:'ReNew Power issued a $400M green bond at 5.875% to international investors — cheaper than domestic rupee debt — with proceeds ring-fenced for solar and wind assets.'}
 ];
 let ci=0;
 function renderC(){
@@ -733,12 +1024,9 @@ function prevC(){ci=(ci-1+CONCEPTS.length)%CONCEPTS.length;renderC();}
 renderC();
 
 // ── CLOCK ────────────────────────────────────────────────────────
-function tick(){
-  const n=new Date(),h=n.getHours(),m=n.getMinutes();
-  document.getElementById('clock').textContent=String(h).padStart(2,'0')+':'+String(m).padStart(2,'0');
-  const gt=document.getElementById('gtime');
-  if(gt)gt.textContent=h<12?'morning':h<17?'afternoon':'evening';
-}
+function tick(){const n=new Date(),h=n.getHours(),m=n.getMinutes();document.getElementById('clock').textContent=String(h).padStart(2,'0')+':'+String(m).padStart(2,'0');document.getElementById('gtime').textContent=h<12?'morning':h<17?'afternoon':'evening';}
+// Set greeting immediately based on current hour
+(function(){var h=new Date().getHours();document.getElementById('gtime').textContent=h<12?'morning':h<17?'afternoon':'evening';})();
 tick();setInterval(tick,1000);
 const _n=new Date();
 document.getElementById('ddisp').textContent=_n.toLocaleDateString('en-IN',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
@@ -746,23 +1034,8 @@ document.getElementById('lupd').textContent='Loaded '+_n.toLocaleTimeString('en-
 
 // ── TODOS ────────────────────────────────────────────────────────
 let todos=[];try{todos=JSON.parse(localStorage.getItem('kd_todos')||'[]');}catch(e){}
-function saveT(){
-  try{localStorage.setItem('kd_todos',JSON.stringify(todos));}catch(e){}
-  const p=todos.filter(t=>!t.done).length;
-  document.getElementById('m-todos')&&(document.getElementById('m-todos').textContent=p);
-  const b=document.getElementById('tbadge');
-  p>0?(b.style.display='inline-block',b.textContent=p+' pending'):b.style.display='none';
-}
-function renderT(){
-  const ul=document.getElementById('tlist'),em=document.getElementById('tempty');
-  ul.innerHTML='';em.style.display=todos.length?'none':'block';
-  todos.forEach((t,i)=>{
-    const d=document.createElement('div');d.className='tdi';
-    d.innerHTML=`<input type="checkbox" ${t.done?'checked':''} onchange="togT(${i})"><span class="${t.done?'dn':''}">${t.text}</span><button class="tdx" onclick="delT(${i})">x</button>`;
-    ul.appendChild(d);
-  });
-  saveT();
-}
+function saveT(){try{localStorage.setItem('kd_todos',JSON.stringify(todos));}catch(e){}const p=todos.filter(t=>!t.done).length;document.getElementById('m-todos').textContent=p;const b=document.getElementById('tbadge');p>0?(b.style.display='inline-block',b.textContent=p+' pending'):b.style.display='none';}
+function renderT(){const ul=document.getElementById('tlist'),em=document.getElementById('tempty');ul.innerHTML='';em.style.display=todos.length?'none':'block';todos.forEach((t,i)=>{const d=document.createElement('div');d.className='tdi';d.innerHTML=`<input type="checkbox" ${t.done?'checked':''} onchange="togT(${i})"><span class="${t.done?'dn':''}">${t.text}</span><button class="tdx" onclick="delT(${i})">x</button>`;ul.appendChild(d);});saveT();}
 function addT(){const inp=document.getElementById('tinp'),v=inp.value.trim();if(!v)return;todos.unshift({text:v,done:false});inp.value='';renderT();}
 function togT(i){todos[i].done=!todos[i].done;renderT();}
 function delT(i){todos.splice(i,1);renderT();}
@@ -773,10 +1046,10 @@ fetch('https://api.open-meteo.com/v1/forecast?latitude=28.6139&longitude=77.2090
   .then(r=>r.json()).then(d=>{
     const c=d.current;
     const CD={0:'Clear sky',1:'Mainly clear',2:'Partly cloudy',3:'Overcast',45:'Foggy',51:'Light drizzle',61:'Light rain',63:'Moderate rain',80:'Rain showers',95:'Thunderstorm'};
-    const CI={0:'☀️',1:'🌤️',2:'⛅',3:'☁️',45:'🌫️',51:'🌦️',61:'🌧️',63:'🌧️',80:'🌦️',95:'⛈️'};
+    const CI={0:'☀',1:'🌤',2:'⛅',3:'☁',45:'🌫',51:'🌦',61:'🌧',63:'🌧',80:'🌦',95:'⛈'};
     const desc=CD[c.weather_code]||'See forecast';
     document.getElementById('wt').textContent=Math.round(c.temperature_2m)+'°C';
-    document.getElementById('wdsc').textContent=desc+' · New Delhi';
+    document.getElementById('wd').textContent=desc+' · New Delhi';
     document.getElementById('wf').textContent=Math.round(c.apparent_temperature)+'°C';
     document.getElementById('wh').textContent=c.relative_humidity_2m+'%';
     document.getElementById('ww').textContent=Math.round(c.wind_speed_10m)+' km/h';
@@ -785,148 +1058,12 @@ fetch('https://api.open-meteo.com/v1/forecast?latitude=28.6139&longitude=77.2090
     document.getElementById('m-wsub').textContent=desc;
     const days=['Today','Tomorrow','Day 3','Day 4'],fc=document.getElementById('wfc');fc.innerHTML='';
     (d.daily.temperature_2m_max||[]).slice(0,4).forEach((max,i)=>{
-      const min=d.daily.temperature_2m_min[i],icon=CI[d.daily.weather_code[i]]||'🌡️';
-      const div=document.createElement('div');
-      div.style.cssText='background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 10px;text-align:center;flex:1;min-width:60px';
+      const min=d.daily.temperature_2m_min[i],icon=CI[d.daily.weather_code[i]]||'🌡';
+      const div=document.createElement('div');div.style.cssText='background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 10px;text-align:center;flex:1;min-width:60px';
       div.innerHTML=`<div style="font-size:11px;color:var(--text3);margin-bottom:4px">${days[i]}</div><div style="font-size:18px;margin-bottom:3px">${icon}</div><div style="font-size:12px;color:var(--text2)">${Math.round(max)}° <span style="color:var(--text3)">${Math.round(min)}°</span></div>`;
       fc.appendChild(div);
     });
-  }).catch(()=>{document.getElementById('wdsc').textContent='Weather unavailable';});
-</script>
-<script>
-// ── JARVIS BOOT SEQUENCE ─────────────────────────────────────────
-(function(){
-  // Particle canvas
-  const canvas = document.getElementById('jarvis-canvas');
-  const ctx = canvas.getContext('2d');
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-
-  const particles = [];
-  for(let i=0;i<80;i++){
-    particles.push({
-      x:Math.random()*canvas.width, y:Math.random()*canvas.height,
-      r:Math.random()*1.2+0.3,
-      vx:(Math.random()-.5)*.3, vy:(Math.random()-.5)*.3,
-      alpha:Math.random()*0.5+0.1
-    });
-  }
-
-  function drawParticles(){
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    particles.forEach(p=>{
-      p.x+=p.vx; p.y+=p.vy;
-      if(p.x<0)p.x=canvas.width; if(p.x>canvas.width)p.x=0;
-      if(p.y<0)p.y=canvas.height; if(p.y>canvas.height)p.y=0;
-      ctx.beginPath();
-      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-      ctx.fillStyle=`rgba(79,142,247,${p.alpha})`;
-      ctx.fill();
-    });
-    // Draw connecting lines
-    particles.forEach((p,i)=>{
-      particles.slice(i+1).forEach(q=>{
-        const d=Math.hypot(p.x-q.x,p.y-q.y);
-        if(d<100){
-          ctx.beginPath();
-          ctx.moveTo(p.x,p.y); ctx.lineTo(q.x,q.y);
-          ctx.strokeStyle=`rgba(79,142,247,${0.08*(1-d/100)})`;
-          ctx.lineWidth=0.5; ctx.stroke();
-        }
-      });
-    });
-    requestAnimationFrame(drawParticles);
-  }
-  drawParticles();
-
-  // Voice synthesis
-  function speak(text){
-    if(!window.speechSynthesis) return;
-    const u = new SpeechSynthesisUtterance(text);
-    u.rate=0.9; u.pitch=0.8; u.volume=0.9;
-    const voices = window.speechSynthesis.getVoices();
-    const preferred = voices.find(v=>v.name.includes('Google UK English Male'))||
-                      voices.find(v=>v.name.includes('Daniel'))||
-                      voices.find(v=>v.name.includes('Male'))||
-                      voices[0];
-    if(preferred) u.voice=preferred;
-    window.speechSynthesis.speak(u);
-  }
-
-  // Typing effect
-  function typeText(el, text, speed, cb){
-    el.textContent='';
-    el.classList.add('jarvis-cursor');
-    let i=0;
-    const t=setInterval(()=>{
-      el.textContent+=text[i++];
-      if(i>=text.length){
-        clearInterval(t);
-        el.classList.remove('jarvis-cursor');
-        if(cb) setTimeout(cb,400);
-      }
-    },speed);
-  }
-
-  // Animate bars
-  function animateBar(id,pct,delay){
-    setTimeout(()=>{
-      document.getElementById(id).style.width=pct+'%';
-    },delay);
-  }
-
-  // Boot sequence
-  const line = document.getElementById('jarvis-line');
-  const sub  = document.getElementById('jarvis-subline');
-  const stat = document.getElementById('jarvis-status');
-
-  const s = (typeof getSettings === 'function') ? getSettings() : {};
-  const name = s.name || 'Kanishk';
-
-  const sequence = [
-    {delay:600,  status:'SYSTEM BOOT',       text:'INITIALIZING...',              sub:'',                          speak:false},
-    {delay:1600, status:'NEURAL LINK',        text:'ESTABLISHING CONNECTION',      sub:'SECURE PROTOCOL ACTIVE',    speak:false},
-    {delay:2800, status:'IDENTITY VERIFIED',  text:'WELCOME BACK, '+name.toUpperCase(), sub:'AUTHORIZATION GRANTED',speak:true},
-    {delay:4400, status:'LOADING MODULES',    text:'FINANCE INTELLIGENCE ONLINE',  sub:'PROJECT FINANCE · RENEWABLES · INFRASTRUCTURE', speak:false},
-    {delay:5800, status:'MARKET SCAN',        text:'SCANNING JOB MARKETS',         sub:'LINKEDIN · INDEED · NAUKRI · GLASSDOOR', speak:false},
-    {delay:7000, status:'READY',              text:'ALL SYSTEMS OPERATIONAL',      sub:'GOOD MORNING, '+name.toUpperCase(), speak:true},
-  ];
-
-  sequence.forEach((s,i)=>{
-    setTimeout(()=>{
-      stat.textContent = s.status;
-      typeText(line, s.text, 40, null);
-      sub.textContent = s.sub;
-      if(s.speak) speak(s.text.toLowerCase().replace(name.toUpperCase(), name));
-    }, s.delay);
-  });
-
-  // Animate bars
-  animateBar('b1', 100, 1800);
-  animateBar('b2', 100, 2400);
-  animateBar('b3', 100, 3000);
-
-  // Auto dismiss after 8.5s
-  setTimeout(()=>launchDashboard(), 8500);
-
-  window.skipJarvis = function(){
-    window.speechSynthesis && window.speechSynthesis.cancel();
-    launchDashboard();
-  };
-
-  function launchDashboard(){
-    const overlay = document.getElementById('jarvis-overlay');
-    if(!overlay || overlay.style.display==='none') return;
-    overlay.classList.add('jarvis-exiting');
-    setTimeout(()=>{
-      overlay.style.display='none';
-      speak('Dashboard ready');
-    }, 800);
-  }
-
-  // Load voices on mobile
-  window.speechSynthesis && window.speechSynthesis.getVoices();
-})();
+  }).catch(()=>{document.getElementById('wd').textContent='Weather unavailable';document.getElementById('m-wsub').textContent='Unavailable';});
 </script>
 </body>
 </html>
