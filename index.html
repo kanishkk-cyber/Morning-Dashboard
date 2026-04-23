@@ -401,55 +401,106 @@ async function refreshJobs(){
   btn.disabled=true;btn.innerHTML='<span class="spin">↻</span> Searching...';
   document.getElementById('job-list').innerHTML='<div class="lmsg">Scanning LinkedIn for fresh jobs...</div>';
 
-  const kw=encodeURIComponent(s.keywords||'project finance renewable energy India');
-  const urls=[
-    `https://www.linkedin.com/jobs/search/?keywords=${kw}&location=India&f_TPR=r604800`,
-    `https://www.linkedin.com/jobs/search/?keywords=${kw}&location=Delhi&f_TPR=r604800&f_WT=2`
-  ];
+  const kw = s.keywords || 'project finance renewable energy';
+  const token = s.apifyKey;
 
-  try{
-    const startRes=await fetch(`https://api.apify.com/v2/acts/curious_coder~linkedin-jobs-scraper/runs?token=${s.apifyKey}`,{
-      method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({urls,count:10,scrapeCompany:false})
+  // Helper: start an actor run
+  async function startRun(actor, input) {
+    const r = await fetch(`https://api.apify.com/v2/acts/${actor}/runs?token=${token}`, {
+      method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(input)
     });
-    const sd=await startRes.json();
-    const runId=sd?.data?.id;
-    if(!runId)throw new Error('Run failed to start');
+    const d = await r.json();
+    return d?.data?.id;
+  }
 
-    let status='RUNNING',tries=0;
-    while(status==='RUNNING'&&tries<20){
-      await new Promise(r=>setTimeout(r,3000));
-      const pr=await fetch(`https://api.apify.com/v2/actor-runs/${runId}?token=${s.apifyKey}`);
-      const pd=await pr.json();
-      status=pd?.data?.status||'RUNNING';
+  // Helper: poll until done
+  async function waitForRun(runId) {
+    let status = 'RUNNING', tries = 0;
+    while (status === 'RUNNING' && tries < 25) {
+      await new Promise(r => setTimeout(r, 3000));
+      const pr = await fetch(`https://api.apify.com/v2/actor-runs/${runId}?token=${token}`);
+      const pd = await pr.json();
+      status = pd?.data?.status || 'RUNNING';
       tries++;
     }
+    return status;
+  }
 
-    const dr=await fetch(`https://api.apify.com/v2/actor-runs/${runId}/dataset/items?token=${s.apifyKey}&limit=10`);
-    const jobs=await dr.json();
+  // Helper: get results
+  async function getResults(runId, limit=8) {
+    const r = await fetch(`https://api.apify.com/v2/actor-runs/${runId}/dataset/items?token=${token}&limit=${limit}`);
+    return await r.json();
+  }
 
-    if(jobs?.length){
-      const WL={REMOTE:'Remote',HYBRID:'Hybrid',ON_SITE:'On-site',FLEXIBLE:'Flexible'};
-      const WB={REMOTE:'ba',HYBRID:'bg',ON_SITE:'bb',FLEXIBLE:'bt'};
-      const WD={REMOTE:'remote',HYBRID:'hybrid',ON_SITE:'onsite',FLEXIBLE:'hybrid'};
-      document.getElementById('job-list').innerHTML=jobs.map(j=>{
-        const wt=j.workType||j.workplaceType||'ON_SITE';
-        const url=(j.jobUrl||j.url||'#');
-        const title=(j.title||'Role').replace(/</g,'&lt;');
-        const co=(j.company||j.companyName||'').replace(/</g,'&lt;');
-        const loc=(j.location||'India').replace(/</g,'&lt;');
-        const age=j.postedAt?tAgo(j.postedAt):'Recently';
-        return `<div class="ji" data-type="${WD[wt]||'onsite'}"><span class="jl" onclick="window.open('${url}','_blank')">${title}</span><div class="jm">${co} <span class="badge ${WB[wt]||'bb'}">${WL[wt]||'On-site'}</span> ${loc} · ${age}</div></div>`;
-      }).join('');
-      document.getElementById('m-jobs').textContent=jobs.length;
-      document.getElementById('ts-jobs').textContent='Updated '+new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});
-      // Auto-run daily
-      localStorage.setItem('kd_last_job_refresh',new Date().toDateString());
-    }else{
-      document.getElementById('job-list').innerHTML='<div class="lmsg">No results. Try the search links below.</div>';
+  // Normalize job from any platform
+  function normalizeJob(j, platform) {
+    const wtRaw = (j.workType||j.work_type||j.workplace_type||j.jobType||j.remote||'').toString().toUpperCase();
+    let wt = 'onsite';
+    if (wtRaw.includes('REMOTE') || wtRaw === 'TRUE') wt = 'remote';
+    else if (wtRaw.includes('HYBRID')) wt = 'hybrid';
+    const WL = {remote:'Remote', hybrid:'Hybrid', onsite:'On-site'};
+    const WB = {remote:'ba', hybrid:'bg', onsite:'bb'};
+    const PLAT = {linkedin:'bb', indeed:'bp', naukri:'bg', glassdoor:'bt'};
+    const url = j.job_url||j.jobUrl||j.url||j.applyUrl||j.externalApplyLink||'#';
+    const title = (j.job_title||j.title||j.position||j.positionName||'Role').replace(/</g,'&lt;');
+    const co = (j.company_name||j.company||j.companyName||'').replace(/</g,'&lt;');
+    const loc = (j.job_location||j.location||j.jobLocation||'India').replace(/</g,'&lt;');
+    const posted = j.posted_time||j.postedAt||j.datePosted||j.publishedAt||'';
+    const age = posted ? tAgo(posted) : 'Recently';
+    return `<div class="ji" data-type="${wt}">
+      <span class="jl" onclick="window.open('${url.replace(/'/g,"\'")}','_blank')">${title}</span>
+      <span class="badge ${PLAT[platform]||'bb'}" style="margin-left:6px;font-size:9px">${platform.toUpperCase()}</span>
+      <div class="jm">${co} <span class="badge ${WB[wt]}">${WL[wt]}</span> ${loc} · ${age}</div>
+    </div>`;
+  }
+
+  try {
+    document.getElementById('job-list').innerHTML = '<div class="lmsg"><span class="spin">↻</span> Searching LinkedIn, Indeed, Naukri, Glassdoor simultaneously...</div>';
+
+    // Start all 4 actors in parallel
+    const [liRun, indRun, nkRun, gdRun] = await Promise.all([
+      startRun('worldunboxer~rapid-linkedin-scraper', {job_title:kw, location:'India', jobs_entries:8, job_post_time:'r604800'}).catch(()=>null),
+      startRun('misceres~indeed-scraper', {position:kw, country:'IN', location:'India', maxItemsPerSearch:8, saveOnlyUniqueItems:true}).catch(()=>null),
+      startRun('muhammetakkurtt~naukri-job-scraper', {keyword:kw, maxJobs:50, freshness:'7', sortBy:'date'}).catch(()=>null),
+      startRun('valig~glassdoor-jobs-scraper', {keyword:kw, location:'India', maxResults:8, datePosted:'last_week'}).catch(()=>null),
+    ]);
+
+    document.getElementById('job-list').innerHTML = '<div class="lmsg"><span class="spin">↻</span> Scraping in progress — collecting results from all platforms...</div>';
+
+    // Wait for all in parallel
+    await Promise.all([
+      liRun ? waitForRun(liRun) : Promise.resolve(),
+      indRun ? waitForRun(indRun) : Promise.resolve(),
+      nkRun ? waitForRun(nkRun) : Promise.resolve(),
+      gdRun ? waitForRun(gdRun) : Promise.resolve(),
+    ]);
+
+    // Fetch all results in parallel
+    const [liJobs, indJobs, nkJobs, gdJobs] = await Promise.all([
+      liRun ? getResults(liRun, 8).catch(()=>[]) : [],
+      indRun ? getResults(indRun, 8).catch(()=>[]) : [],
+      nkRun ? getResults(nkRun, 8).catch(()=>[]) : [],
+      gdRun ? getResults(gdRun, 8).catch(()=>[]) : [],
+    ]);
+
+    // Combine and render
+    const allHTML = [
+      ...liJobs.map(j => normalizeJob(j, 'linkedin')),
+      ...indJobs.map(j => normalizeJob(j, 'indeed')),
+      ...nkJobs.map(j => normalizeJob(j, 'naukri')),
+      ...gdJobs.map(j => normalizeJob(j, 'glassdoor')),
+    ];
+
+    if (allHTML.length) {
+      document.getElementById('job-list').innerHTML = allHTML.join('');
+      document.getElementById('m-jobs').textContent = allHTML.length;
+      document.getElementById('ts-jobs').textContent = 'Updated ' + new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});
+      localStorage.setItem('kd_last_job_refresh', new Date().toDateString());
+    } else {
+      document.getElementById('job-list').innerHTML = '<div class="lmsg">No results from any platform. Try the search links below or check your Apify key.</div>';
     }
-  }catch(e){
-    document.getElementById('job-list').innerHTML='<div class="lmsg">Error fetching jobs. Check your Apify key in ⚙ Settings.</div>';
+  } catch(e) {
+    document.getElementById('job-list').innerHTML = `<div class="lmsg">Error: ${e.message}. Check your Apify key in ⚙ Settings.</div>`;
   }
   btn.disabled=false;btn.textContent='↻ Refresh Jobs';
 }
