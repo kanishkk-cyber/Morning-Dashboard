@@ -140,6 +140,119 @@ a{color:inherit;text-decoration:none}
 </style>
 </head>
 <body>
+<!-- JARVIS BOOT SEQUENCE -->
+<div id="jarvis-overlay">
+  <canvas id="jarvis-canvas"></canvas>
+  <div id="jarvis-content">
+    <div id="jarvis-ring-container">
+      <svg id="jarvis-ring" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="200" cy="200" r="150" fill="none" stroke="#4f8ef7" stroke-width="1" stroke-dasharray="4 8" opacity="0.3" class="ring-rotate-slow"/>
+        <circle cx="200" cy="200" r="120" fill="none" stroke="#4f8ef7" stroke-width="0.5" stroke-dasharray="2 6" opacity="0.2" class="ring-rotate-rev"/>
+        <circle cx="200" cy="200" r="90" fill="none" stroke="#2dd4bf" stroke-width="1.5" stroke-dasharray="60 880" stroke-dashoffset="0" class="ring-spin" id="ring-arc"/>
+        <circle cx="200" cy="200" r="90" fill="none" stroke="rgba(45,212,191,0.1)" stroke-width="1.5"/>
+        <circle cx="200" cy="200" r="60" fill="none" stroke="#4f8ef7" stroke-width="0.5" stroke-dasharray="1 4" opacity="0.4" class="ring-rotate-slow"/>
+        <circle cx="200" cy="200" r="2" fill="#4f8ef7" class="orbit-dot" id="dot1"/>
+        <circle cx="200" cy="200" r="2" fill="#2dd4bf" class="orbit-dot2" id="dot2"/>
+        <!-- Crosshairs -->
+        <line x1="200" y1="50" x2="200" y2="80" stroke="#4f8ef7" stroke-width="1" opacity="0.5"/>
+        <line x1="200" y1="320" x2="200" y2="350" stroke="#4f8ef7" stroke-width="1" opacity="0.5"/>
+        <line x1="50" y1="200" x2="80" y2="200" stroke="#4f8ef7" stroke-width="1" opacity="0.5"/>
+        <line x1="320" y1="200" x2="350" y2="200" stroke="#4f8ef7" stroke-width="1" opacity="0.5"/>
+        <!-- Corner brackets -->
+        <path d="M100,100 L100,120 M100,100 L120,100" stroke="#4f8ef7" stroke-width="1.5" fill="none" opacity="0.6"/>
+        <path d="M300,100 L300,120 M300,100 L280,100" stroke="#4f8ef7" stroke-width="1.5" fill="none" opacity="0.6"/>
+        <path d="M100,300 L100,280 M100,300 L120,300" stroke="#4f8ef7" stroke-width="1.5" fill="none" opacity="0.6"/>
+        <path d="M300,300 L300,280 M300,300 L280,300" stroke="#4f8ef7" stroke-width="1.5" fill="none" opacity="0.6"/>
+      </svg>
+      <div id="jarvis-center">
+        <div id="jarvis-initials">K</div>
+      </div>
+    </div>
+    <div id="jarvis-text-area">
+      <div id="jarvis-status">INITIALIZING SYSTEM</div>
+      <div id="jarvis-line" class="jarvis-typing"></div>
+      <div id="jarvis-subline"></div>
+    </div>
+    <div id="jarvis-bars">
+      <div class="jbar"><div class="jbar-label">NEURAL LINK</div><div class="jbar-track"><div class="jbar-fill" id="b1"></div></div></div>
+      <div class="jbar"><div class="jbar-label">DATA SYNC</div><div class="jbar-track"><div class="jbar-fill" id="b2"></div></div></div>
+      <div class="jbar"><div class="jbar-label">PROTOCOLS</div><div class="jbar-track"><div class="jbar-fill" id="b3"></div></div></div>
+    </div>
+    <button id="jarvis-skip" onclick="skipJarvis()">SKIP INTRO</button>
+  </div>
+</div>
+
+<style>
+#jarvis-overlay{
+  position:fixed;inset:0;background:#060912;z-index:9999;
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;overflow:hidden;
+}
+#jarvis-canvas{position:absolute;inset:0;width:100%;height:100%;opacity:0.4;}
+#jarvis-content{
+  position:relative;z-index:10;display:flex;flex-direction:column;
+  align-items:center;gap:28px;
+}
+#jarvis-ring-container{position:relative;width:300px;height:300px;}
+#jarvis-ring{width:100%;height:100%;animation:ring-fade-in 1s ease forwards;}
+@keyframes ring-fade-in{from{opacity:0;transform:scale(0.7)}to{opacity:1;transform:scale(1)}}
+.ring-rotate-slow{animation:rotate-cw 12s linear infinite;transform-origin:200px 200px;}
+.ring-rotate-rev{animation:rotate-ccw 8s linear infinite;transform-origin:200px 200px;}
+.ring-spin{animation:rotate-cw 2s linear infinite;transform-origin:200px 200px;}
+@keyframes rotate-cw{to{transform:rotate(360deg)}}
+@keyframes rotate-ccw{to{transform:rotate(-360deg)}}
+.orbit-dot{animation:orbit1 3s linear infinite;transform-origin:200px 200px;}
+.orbit-dot2{animation:orbit2 5s linear infinite;transform-origin:200px 200px;}
+@keyframes orbit1{to{transform:rotate(360deg) translateX(90px)}}
+@keyframes orbit2{to{transform:rotate(-360deg) translateX(120px)}}
+#jarvis-center{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  display:flex;align-items:center;justify-content:center;
+  width:80px;height:80px;
+  border:1px solid rgba(79,142,247,0.4);border-radius:50%;
+  background:radial-gradient(circle,rgba(79,142,247,0.15),rgba(6,9,18,0.9));
+  animation:pulse-center 2s ease-in-out infinite;
+}
+@keyframes pulse-center{0%,100%{box-shadow:0 0 0 0 rgba(79,142,247,0.4),0 0 20px rgba(79,142,247,0.2)}50%{box-shadow:0 0 0 12px rgba(79,142,247,0),0 0 40px rgba(79,142,247,0.4)}}
+#jarvis-initials{
+  font-family:'DM Serif Display',serif;font-size:32px;color:#4f8ef7;
+  text-shadow:0 0 20px rgba(79,142,247,0.8);
+}
+#jarvis-text-area{text-align:center;font-family:'DM Sans',monospace;}
+#jarvis-status{
+  font-size:11px;letter-spacing:.25em;color:#2dd4bf;
+  text-transform:uppercase;margin-bottom:8px;opacity:0.7;
+}
+#jarvis-line{
+  font-size:18px;color:#eef0f6;min-height:28px;
+  text-shadow:0 0 10px rgba(79,142,247,0.5);
+}
+#jarvis-subline{
+  font-size:12px;color:#555c72;margin-top:6px;
+  letter-spacing:.08em;min-height:18px;
+}
+.jarvis-cursor::after{content:'|';animation:blink .7s infinite;color:#4f8ef7;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+#jarvis-bars{display:flex;flex-direction:column;gap:8px;width:280px;}
+.jbar{display:flex;align-items:center;gap:10px;}
+.jbar-label{font-size:9px;letter-spacing:.15em;color:#555c72;width:80px;text-align:right;}
+.jbar-track{flex:1;height:2px;background:rgba(79,142,247,0.1);border-radius:2px;overflow:hidden;}
+.jbar-fill{height:100%;width:0%;background:linear-gradient(90deg,#4f8ef7,#2dd4bf);border-radius:2px;transition:width 1.5s ease;box-shadow:0 0 6px rgba(79,142,247,0.6);}
+#jarvis-skip{
+  font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:.15em;
+  color:#555c72;background:none;border:1px solid rgba(79,142,247,0.15);
+  padding:6px 16px;border-radius:4px;cursor:pointer;
+  transition:all .2s;margin-top:8px;
+}
+#jarvis-skip:hover{color:#4f8ef7;border-color:rgba(79,142,247,0.4);}
+@keyframes jarvis-exit{
+  0%{opacity:1;transform:scale(1)}
+  50%{opacity:1;transform:scale(1.02)}
+  100%{opacity:0;transform:scale(0.95) translateY(-20px)}
+}
+.jarvis-exiting{animation:jarvis-exit 0.8s ease forwards!important;}
+</style>
+
 <div class="app">
 
 <!-- HEADER -->
@@ -679,6 +792,141 @@ fetch('https://api.open-meteo.com/v1/forecast?latitude=28.6139&longitude=77.2090
       fc.appendChild(div);
     });
   }).catch(()=>{document.getElementById('wdsc').textContent='Weather unavailable';});
+</script>
+<script>
+// ── JARVIS BOOT SEQUENCE ─────────────────────────────────────────
+(function(){
+  // Particle canvas
+  const canvas = document.getElementById('jarvis-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const particles = [];
+  for(let i=0;i<80;i++){
+    particles.push({
+      x:Math.random()*canvas.width, y:Math.random()*canvas.height,
+      r:Math.random()*1.2+0.3,
+      vx:(Math.random()-.5)*.3, vy:(Math.random()-.5)*.3,
+      alpha:Math.random()*0.5+0.1
+    });
+  }
+
+  function drawParticles(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    particles.forEach(p=>{
+      p.x+=p.vx; p.y+=p.vy;
+      if(p.x<0)p.x=canvas.width; if(p.x>canvas.width)p.x=0;
+      if(p.y<0)p.y=canvas.height; if(p.y>canvas.height)p.y=0;
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(79,142,247,${p.alpha})`;
+      ctx.fill();
+    });
+    // Draw connecting lines
+    particles.forEach((p,i)=>{
+      particles.slice(i+1).forEach(q=>{
+        const d=Math.hypot(p.x-q.x,p.y-q.y);
+        if(d<100){
+          ctx.beginPath();
+          ctx.moveTo(p.x,p.y); ctx.lineTo(q.x,q.y);
+          ctx.strokeStyle=`rgba(79,142,247,${0.08*(1-d/100)})`;
+          ctx.lineWidth=0.5; ctx.stroke();
+        }
+      });
+    });
+    requestAnimationFrame(drawParticles);
+  }
+  drawParticles();
+
+  // Voice synthesis
+  function speak(text){
+    if(!window.speechSynthesis) return;
+    const u = new SpeechSynthesisUtterance(text);
+    u.rate=0.9; u.pitch=0.8; u.volume=0.9;
+    const voices = window.speechSynthesis.getVoices();
+    const preferred = voices.find(v=>v.name.includes('Google UK English Male'))||
+                      voices.find(v=>v.name.includes('Daniel'))||
+                      voices.find(v=>v.name.includes('Male'))||
+                      voices[0];
+    if(preferred) u.voice=preferred;
+    window.speechSynthesis.speak(u);
+  }
+
+  // Typing effect
+  function typeText(el, text, speed, cb){
+    el.textContent='';
+    el.classList.add('jarvis-cursor');
+    let i=0;
+    const t=setInterval(()=>{
+      el.textContent+=text[i++];
+      if(i>=text.length){
+        clearInterval(t);
+        el.classList.remove('jarvis-cursor');
+        if(cb) setTimeout(cb,400);
+      }
+    },speed);
+  }
+
+  // Animate bars
+  function animateBar(id,pct,delay){
+    setTimeout(()=>{
+      document.getElementById(id).style.width=pct+'%';
+    },delay);
+  }
+
+  // Boot sequence
+  const line = document.getElementById('jarvis-line');
+  const sub  = document.getElementById('jarvis-subline');
+  const stat = document.getElementById('jarvis-status');
+
+  const s = (typeof getSettings === 'function') ? getSettings() : {};
+  const name = s.name || 'Kanishk';
+
+  const sequence = [
+    {delay:600,  status:'SYSTEM BOOT',       text:'INITIALIZING...',              sub:'',                          speak:false},
+    {delay:1600, status:'NEURAL LINK',        text:'ESTABLISHING CONNECTION',      sub:'SECURE PROTOCOL ACTIVE',    speak:false},
+    {delay:2800, status:'IDENTITY VERIFIED',  text:'WELCOME BACK, '+name.toUpperCase(), sub:'AUTHORIZATION GRANTED',speak:true},
+    {delay:4400, status:'LOADING MODULES',    text:'FINANCE INTELLIGENCE ONLINE',  sub:'PROJECT FINANCE · RENEWABLES · INFRASTRUCTURE', speak:false},
+    {delay:5800, status:'MARKET SCAN',        text:'SCANNING JOB MARKETS',         sub:'LINKEDIN · INDEED · NAUKRI · GLASSDOOR', speak:false},
+    {delay:7000, status:'READY',              text:'ALL SYSTEMS OPERATIONAL',      sub:'GOOD MORNING, '+name.toUpperCase(), speak:true},
+  ];
+
+  sequence.forEach((s,i)=>{
+    setTimeout(()=>{
+      stat.textContent = s.status;
+      typeText(line, s.text, 40, null);
+      sub.textContent = s.sub;
+      if(s.speak) speak(s.text.toLowerCase().replace(name.toUpperCase(), name));
+    }, s.delay);
+  });
+
+  // Animate bars
+  animateBar('b1', 100, 1800);
+  animateBar('b2', 100, 2400);
+  animateBar('b3', 100, 3000);
+
+  // Auto dismiss after 8.5s
+  setTimeout(()=>launchDashboard(), 8500);
+
+  window.skipJarvis = function(){
+    window.speechSynthesis && window.speechSynthesis.cancel();
+    launchDashboard();
+  };
+
+  function launchDashboard(){
+    const overlay = document.getElementById('jarvis-overlay');
+    if(!overlay || overlay.style.display==='none') return;
+    overlay.classList.add('jarvis-exiting');
+    setTimeout(()=>{
+      overlay.style.display='none';
+      speak('Dashboard ready');
+    }, 800);
+  }
+
+  // Load voices on mobile
+  window.speechSynthesis && window.speechSynthesis.getVoices();
+})();
 </script>
 </body>
 </html>
