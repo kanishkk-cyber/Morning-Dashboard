@@ -244,15 +244,11 @@ a{color:inherit;text-decoration:none}
 <div class="sl">Project finance &amp; renewable financing</div>
 <div class="card" style="margin-bottom:16px">
   <div class="ch"><div class="ct"><span class="dot a"></span> Deals &amp; financing news</div><div class="rr"><span class="nts" id="ts-pf"></span><button class="btn btn-r" id="btn-pf" onclick="refreshNews('pf')">↻ Refresh</button></div></div>
-  <div class="row r2" style="margin-bottom:0">
-    <div>
-      <div class="ni"><span class="nl" onclick="window.open('https://www.financialexpress.com','_blank')">PFC, REC disburse Rs 12,000 Cr for hybrid renewable projects in Q1 2026</span><div class="ns"><span class="badge bg">Project Finance</span> FE</div></div>
-      <div class="ni"><span class="nl" onclick="window.open('https://www.ifc.org','_blank')">IFC commits $800M to Asia-Pacific clean energy infrastructure fund</span><div class="ns"><span class="badge bb">DFI</span> IFC</div></div>
-    </div>
-    <div>
-      <div class="ni"><span class="nl" onclick="window.open('https://www.bloomberg.com/green','_blank')">India green bond market crosses $10 billion cumulative milestone</span><div class="ns"><span class="badge bt">Green Bonds</span> Bloomberg</div></div>
-      <div class="ni"><span class="nl" onclick="window.open('https://powermin.gov.in','_blank')">DISCOM reforms unlock Rs 3,000 Cr in state-level distribution funding</span><div class="ns"><span class="badge ba">Distribution</span> Power Min</div></div>
-    </div>
+  <div id="gnews-pf">
+    <div class="ni"><span class="nl" onclick="window.open('https://www.financialexpress.com','_blank')">PFC, REC disburse Rs 12,000 Cr for hybrid renewable projects in Q1 2026</span><div class="ns"><span class="badge bg">Project Finance</span> FE</div></div>
+    <div class="ni"><span class="nl" onclick="window.open('https://www.ifc.org','_blank')">IFC commits $800M to Asia-Pacific clean energy infrastructure fund</span><div class="ns"><span class="badge bb">DFI</span> IFC</div></div>
+    <div class="ni"><span class="nl" onclick="window.open('https://www.bloomberg.com/green','_blank')">India green bond market crosses $10 billion cumulative milestone</span><div class="ns"><span class="badge bt">Green Bonds</span> Bloomberg</div></div>
+    <div class="ni"><span class="nl" onclick="window.open('https://powermin.gov.in','_blank')">DISCOM reforms unlock Rs 3,000 Cr in state-level distribution funding</span><div class="ns"><span class="badge ba">Distribution</span> Power Min</div></div>
   </div>
   <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
     <a href="https://www.ijglobal.com" target="_blank"><button class="btn">IJGlobal ↗</button></a>
@@ -423,8 +419,8 @@ const NEWS_SOURCES = {
   pf: {
     feeds: [
       'https://www.ft.com/companies/energy?format=rss',
-      'https://www.businessgreen.com/feed',
-      'https://www.spglobal.com/commodityinsights/en/rss-feed/energy'
+      'https://businessgreen.com/feed',
+      'https://www.renewableenergyworld.com/feed/'
     ],
     badge: 'ba', fallback: 'https://www.ijglobal.com'
   }
@@ -440,11 +436,17 @@ async function refreshNews(sec) {
   btn.innerHTML = '<span class="spin">↻</span> Loading...';
   el.innerHTML = '<div class="lmsg">Fetching latest headlines...</div>';
 
+  // Try multiple proxies for reliability
+  const PROXIES = [
+    feed => `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feed)}&count=4`,
+    feed => `https://feeds.feedburner.com/~r/${encodeURIComponent(feed)}`,
+  ];
+
   let items = [];
   for (const feed of cfg.feeds) {
     try {
       const proxy = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feed)}&count=4`;
-      const res = await fetch(proxy);
+      const res = await fetch(proxy, {signal: AbortSignal.timeout(8000)});
       const data = await res.json();
       if (data.status === 'ok' && data.items?.length) {
         items = [...items, ...data.items];
