@@ -355,7 +355,7 @@ a{color:inherit;text-decoration:none}
       <div class="jb"><span class="jbl">MARKET DATA</span><div class="jbt"><div class="jbf" id="jb2"></div></div><span class="jbp" id="jp2">0%</span></div>
       <div class="jb"><span class="jbl">JOB SCAN</span><div class="jbt"><div class="jbf" id="jb3"></div></div><span class="jbp" id="jp3">0%</span></div>
     </div>
-    <button id="jskip" onclick="skipJ()">[ SKIP INTRO ]</button>
+    <button id="jskip" onclick="startOrSkip()">[ TAP TO START ]</button>
   </div>
 </div>
 
@@ -798,12 +798,49 @@ var steps=[
   {st:'AWAITING INPUT', ln:'Would you like anything specific?',             sb:'LISTENING...',                    spk:true}
 ];
 
-setTimeout(function(){runSeq(steps,0);},300);
-barUp('jb1','jp1',100,800);barUp('jb2','jp2',100,1600);barUp('jb3','jp3',100,2400);
+var seqStarted=false;
+function startOrSkip(){
+  if(seqStarted){
+    // Already started — skip
+    if(window.speechSynthesis)window.speechSynthesis.cancel();
+    speaking=false;launch();
+  } else {
+    // First tap — unlock audio and start
+    seqStarted=true;
+    document.getElementById('jskip').textContent='[ SKIP INTRO ]';
+    // Unlock AudioContext
+    try{var ctx=new(window.AudioContext||window.webkitAudioContext)();ctx.resume();}catch(e){}
+    runSeq(steps,0);
+  }
+}
+window.skipJ=function(){startOrSkip();};
 
-window.skipJ=function(){if(window.speechSynthesis)window.speechSynthesis.cancel();speaking=false;launch();};
+// Auto-start after 3s if user doesn't tap (for desktop)
+setTimeout(function(){
+  if(!seqStarted){
+    seqStarted=true;
+    document.getElementById('jskip').textContent='[ SKIP INTRO ]';
+    runSeq(steps,0);
+  }
+},3000);
+
+barUp('jb1','jp1',100,800);barUp('jb2','jp2',100,1600);barUp('jb3','jp3',100,2400);
 function launch(){if(!ov||ov.style.display==='none')return;ov.classList.add('jexiting');setTimeout(function(){ov.style.display='none';},700);}
 if(window.speechSynthesis)window.speechSynthesis.getVoices();
+
+// Unlock audio on first user interaction (Chrome autoplay policy)
+function unlockAudio(){
+  var ctx=new (window.AudioContext||window.webkitAudioContext)();
+  ctx.resume();
+  // Play silent buffer to unlock
+  var buf=ctx.createBuffer(1,1,22050);
+  var src=ctx.createBufferSource();
+  src.buffer=buf;src.connect(ctx.destination);src.start(0);
+  document.removeEventListener('click',unlockAudio);
+  document.removeEventListener('keydown',unlockAudio);
+}
+document.addEventListener('click',unlockAudio);
+document.addEventListener('keydown',unlockAudio);
 })();
 </script>
 </body>
