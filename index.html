@@ -362,6 +362,7 @@ a{color:inherit;text-decoration:none}
 <script>
 // ── SETTINGS ──────────────────────────────────────────────────────
 function getSettings(){try{return JSON.parse(localStorage.getItem('kd_settings')||'{}');}catch(e){return{};}}
+var PROXY='https://lucky-bar-5260.kanishq150393.workers.dev';
 function openSettings(){
   var s=getSettings();
   document.getElementById('eleven-input').value=s.elevenKey||'';
@@ -702,8 +703,6 @@ function draw(){
 draw();
 
 function speakText(txt,cb){var cfg=(typeof getSettings==='function')?getSettings():{};if(cfg.elevenKey){speakEleven(txt,cfg.elevenKey,cb);}else{speakBrowser(txt,cb);}}
-var PROXY='https://lucky-bar-5260.kanishq150393.workers.dev';
-
 function speakEleven(txt,key,cb){
   speaking=true;
   // Get voices first to find voiceId
