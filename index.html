@@ -392,14 +392,14 @@ function testVoice(){
   console.log('Testing with key length:', key.length, 'starts with:', key.substring(0,8));
   // First fetch available voices
   fetch('https://api.elevenlabs.io/v1/voices',{headers:{'xi-api-key':key}})
-  .then(function(r){return r.ok?r.json():Promise.reject('401: Invalid API key');})
+  .then(function(r){return r.ok?r.json():Promise.reject('401: Invalid API key — check key');})
   .then(function(data){
     var voiceId=data.voices&&data.voices.length>0?data.voices[0].voice_id:'21m00Tcm4TlvDq8ikWAM';
-    btn.textContent='Voice found: '+data.voices[0].name+'. Loading...';
-    return fetch('https://api.elevenlabs.io/v1/text-to-speech/'+voiceId,{
+    btn.textContent='Voice: '+data.voices[0].name+'. Loading audio...';
+    return fetch(PROXY,{
       method:'POST',
-      headers:{'Content-Type':'application/json','xi-api-key':key},
-      body:JSON.stringify({text:'Hello Kanishk, voice is working perfectly.',model_id:'eleven_monolingual_v1',voice_settings:{stability:0.75,similarity_boost:0.85}})
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({text:'Hello Kanishk, voice is working perfectly.',apiKey:key,voiceId:voiceId})
     });
   })
   .then(function(r){
@@ -702,24 +702,23 @@ function draw(){
 draw();
 
 function speakText(txt,cb){var cfg=(typeof getSettings==='function')?getSettings():{};if(cfg.elevenKey){speakEleven(txt,cfg.elevenKey,cb);}else{speakBrowser(txt,cb);}}
+var PROXY='https://lucky-bar-5260.kanishq150393.workers.dev';
+
 function speakEleven(txt,key,cb){
   speaking=true;
-  // Step 1: get available voices on this account
+  // Get voices first to find voiceId
   fetch('https://api.elevenlabs.io/v1/voices',{headers:{'xi-api-key':key}})
-  .then(function(r){
-    if(!r.ok) throw new Error('Auth failed: '+r.status);
-    return r.json();
-  })
+  .then(function(r){return r.ok?r.json():Promise.reject('voices failed');})
   .then(function(data){
-    var voiceId = (data.voices&&data.voices.length>0) ? data.voices[0].voice_id : '21m00Tcm4TlvDq8ikWAM';
-    // Step 2: generate speech with first available voice
-    return fetch('https://api.elevenlabs.io/v1/text-to-speech/'+voiceId,{
+    var voiceId=(data.voices&&data.voices.length>0)?data.voices[0].voice_id:'21m00Tcm4TlvDq8ikWAM';
+    // Route TTS through Cloudflare proxy to avoid CORS
+    return fetch(PROXY,{
       method:'POST',
-      headers:{'Content-Type':'application/json','xi-api-key':key},
-      body:JSON.stringify({text:txt,model_id:'eleven_monolingual_v1',voice_settings:{stability:0.75,similarity_boost:0.85}})
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({text:txt,apiKey:key,voiceId:voiceId})
     });
   })
-  .then(function(r){if(!r.ok)throw new Error('TTS failed: '+r.status);return r.blob();})
+  .then(function(r){if(!r.ok)throw new Error('Proxy failed: '+r.status);return r.blob();})
   .then(function(blob){
     var url=URL.createObjectURL(blob);
     var audio=new Audio(url);
@@ -729,7 +728,7 @@ function speakEleven(txt,key,cb){
     audio.play();
   })
   .catch(function(e){
-    console.error('ElevenLabs:',e.message);
+    console.error('Voice error:',e.message);
     speaking=false;
     speakBrowser(txt,cb);
   });
